@@ -21,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
         Reg = findViewById(R.id.registerbtn);
 
         Reg.setOnClickListener(v ->{
+            finish();
             Intent dash = new Intent(RegisterActivity.this, Dashboard.class);
             startActivity(dash);
         });

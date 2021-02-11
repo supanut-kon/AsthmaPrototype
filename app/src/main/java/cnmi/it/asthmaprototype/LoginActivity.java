@@ -23,12 +23,15 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.register);
 
         google.setOnClickListener(v -> {
+            finish();
             Intent dashboard = new Intent(LoginActivity.this, Dashboard.class);
             startActivity(dashboard);
         });
 
         register.setOnClickListener(v -> {
+            finish();
             Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(register);
         });
     }
     
