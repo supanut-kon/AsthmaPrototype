@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "888890887369",
+    "project_id": "asthmaap",
+    "storage_bucket": "asthmaap.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888890887369:android:4141aeaa1212fa7f675118",
+        "android_client_info": {
+          "package_name": "cnmi.it.asthmaprototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888890887369-94cfr8qi39bvkol3mo6rhd9k9s75vc4e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBb_q1xcqhl5fsE8xeTHd_MDVvZCvqHF1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888890887369-94cfr8qi39bvkol3mo6rhd9k9s75vc4e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
