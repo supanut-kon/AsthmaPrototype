@@ -6,11 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Profile extends AppCompatActivity {
 
     Button logout;
     ImageView profilepic;
+    TextView userAge;
+    TextView userHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

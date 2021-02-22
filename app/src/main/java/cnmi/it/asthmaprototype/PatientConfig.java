@@ -3,6 +3,7 @@ package cnmi.it.asthmaprototype;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class PatientConfig extends AppCompatActivity {
-
 
     RadioGroup genderGroup;
     EditText age;
@@ -26,19 +26,31 @@ public class PatientConfig extends AppCompatActivity {
         genderGroup = findViewById(R.id.GenderGroup);
         confirmbtn = findViewById(R.id.inputConfirmbtn);
 
-        int selectedGender = genderGroup.getCheckedRadioButtonId();
+
 
 
         confirmbtn.setOnClickListener(v ->{
-            RadioButton selectedRadio = findViewById(selectedGender);
-
-
+            saveData();
             finish();
             Intent toDashboard = new Intent(PatientConfig.this, Dashboard.class);
             startActivity(toDashboard);
         });
 
+    }
 
+    private void saveData(){
+        int selectedGender = genderGroup.getCheckedRadioButtonId();
+        RadioButton selectedRadio = findViewById(selectedGender);
+
+        final int iAge = Integer.parseInt(age.getText().toString().trim());
+        final int iHeight = Integer.parseInt(height.getText().toString().trim());
+        final String gender = selectedRadio.getText().toString();
+        CurrentUser currentUser = new CurrentUser();
+        currentUser.setAge(iAge);
+        currentUser.setHeight(iHeight);
+        currentUser.setGender(gender);
+
+        AsthmaDatabase.getDatabase(getApplicationContext()).userDAO().insert(currentUser);
     }
 
 }
