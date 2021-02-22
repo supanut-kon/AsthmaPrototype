@@ -14,6 +14,7 @@ public class Profile extends AppCompatActivity {
     ImageView profilepic;
     TextView userAge;
     TextView userHeight;
+    TextView userGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,13 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         logout = findViewById(R.id.logoutbtn);
+        userAge = findViewById(R.id.ageText);
+        userHeight = findViewById(R.id.heightText);
+        userGender = findViewById(R.id.genderText);
+
+        
+
+
 
         logout.setOnClickListener(v -> finish());
         profilepic = findViewById(R.id.profilepic);

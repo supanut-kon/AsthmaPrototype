@@ -7,9 +7,10 @@
     tools:context=".Profile">
 
     <TextView
-        android:id="@+id/Hi"
+        android:id="@+id/heightText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="292dp"
         android:text="TextView"
         android:textColor="@color/black"
@@ -55,7 +56,7 @@
         app:layout_constraintVertical_bias="0.097" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/ageText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Age 18 years"
@@ -93,11 +94,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/heightText"
         app:layout_constraintVertical_bias="0.409" />
 
     <TextView
-        android:id="@+id/heightText"
+        android:id="@+id/genderText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
