@@ -1,5 +1,6 @@
 package cnmi.it.asthmaprototype;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -16,6 +17,9 @@ public interface UserDAO {
 
     @Query("SELECT * FROM currentuser WHERE id IN (:userIds)")
     List<CurrentUser> loadUserByIds(int[] userIds);
+
+    @Query("SELECT * FROM currentuser")
+    LiveData<List<CurrentUser>> getLiveAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(CurrentUser info);

@@ -2,11 +2,25 @@ package cnmi.it.asthmaprototype;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class Profile extends AppCompatActivity {
 
@@ -15,6 +29,9 @@ public class Profile extends AppCompatActivity {
     TextView userAge;
     TextView userHeight;
     TextView userGender;
+    AsthmaDatabase db;
+    Executor executor;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +42,15 @@ public class Profile extends AppCompatActivity {
         userAge = findViewById(R.id.ageText);
         userHeight = findViewById(R.id.heightText);
         userGender = findViewById(R.id.genderText);
-
         
-
-
-
         logout.setOnClickListener(v -> finish());
         profilepic = findViewById(R.id.profilepic);
         profilepic.setImageResource(R.drawable.man);
+        
+
     }
+    
+    
 
 
 
