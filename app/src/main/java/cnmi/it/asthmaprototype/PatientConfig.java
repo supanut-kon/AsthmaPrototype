@@ -39,18 +39,18 @@ public class PatientConfig extends AppCompatActivity {
     }
 
     private void saveData(){
-        int selectedGender = genderGroup.getCheckedRadioButtonId();
-        RadioButton selectedRadio = findViewById(selectedGender);
+//        int selectedGender = genderGroup.getCheckedRadioButtonId();
+//        RadioButton selectedRadio = findViewById(selectedGender);
+//
+//        final int iAge = Integer.parseInt(age.getText().toString().trim());
+//        final int iHeight = Integer.parseInt(height.getText().toString().trim());
+//        final String gender = selectedRadio.getText().toString();
+//        CurrentUser currentUser = new CurrentUser();
+//        currentUser.setAge(iAge);
+//        currentUser.setHeight(iHeight);
+//        currentUser.setGender(gender);
 
-        final int iAge = Integer.parseInt(age.getText().toString().trim());
-        final int iHeight = Integer.parseInt(height.getText().toString().trim());
-        final String gender = selectedRadio.getText().toString();
-        CurrentUser currentUser = new CurrentUser();
-        currentUser.setAge(iAge);
-        currentUser.setHeight(iHeight);
-        currentUser.setGender(gender);
 
-        AsthmaDatabase.getDatabase(getApplicationContext()).userDAO().insert(currentUser);
     }
 
 }

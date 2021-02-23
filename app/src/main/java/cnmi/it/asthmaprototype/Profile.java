@@ -15,12 +15,6 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import io.reactivex.Single;
-import io.reactivex.SingleObserver;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 public class Profile extends AppCompatActivity {
 
@@ -29,7 +23,6 @@ public class Profile extends AppCompatActivity {
     TextView userAge;
     TextView userHeight;
     TextView userGender;
-    AsthmaDatabase db;
     Executor executor;
     Handler handler;
 
