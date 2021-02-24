@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -50,28 +51,33 @@ public class flowFragment extends AppCompatActivity {
         greenpef = findViewById(R.id.greenpef);
         yellowpef = findViewById(R.id.yellowpef);
         redpef = findViewById(R.id.redpef);
+        checkentry();
 
 
 
+
+    }
+    public void checkentry(){
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor f = db.rawQuery("SELECT * FROM asthma_flow", null); // WHERE Userid = currentUser
-        if(f == null){
+
+        if(f.getCount() < 0){
             finish();
             Intent toConfig = new Intent(flowFragment.this, PatientConfig.class);
             startActivity(toConfig);
         }else{
             flowMeasure();
         }
-
+        f.close();
     }
+
     public void flowMeasure(){
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM asthma_patient", null);
         c.moveToFirst();
         while (!c.isAfterLast()) {
-
             //user = new UserModel(c.getInt(0), c.getInt(1), c.getInt(2), c.getString(3));
             id = c.getInt(0);
             age = c.getInt(1);
@@ -94,21 +100,25 @@ public class flowFragment extends AppCompatActivity {
 //        }
 //        f.close();
 //        db.close();
+        DecimalFormat df = new DecimalFormat("#.##");
 
-        if(gender.equals("ชาย")){
-            peakflow = 319.13-(4.75*age)+0.035*Math.pow(age,2);
-        }else {
-            peakflow = -487.12+(7*age)-0.0085*Math.pow(age,2);
+        if(gender != null){
+            if(gender.equals("ชาย")){
+                peakflow = 319.13-(4.75*age)+0.035*Math.pow(age,2);
+            }else {
+                peakflow = -487.12+(7*age)-0.0085*Math.pow(age,2);
+            }
+
+            bar.setMax((int) peakflow);
+            greenpef.setText(df.format(peakflow));
+            yellowpef.setText(df.format(peakflow * (80.00 / 100.00)));
+            redpef.setText(df.format(peakflow * (60.00 / 100.00)));
+        } else {
+            bar.setMax(900);
+            greenpef.setText(String.valueOf(900));
+            yellowpef.setText(String.valueOf(900*(80.00/100.00)));
+            redpef.setText(String.valueOf(900*(60.00/100.00)));
         }
-
-        bar.setMax((int) peakflow);
-        greenpef.setText(String.valueOf(peakflow));
-        yellowpef.setText(String.valueOf(peakflow*(80.00/100.00)));
-        redpef.setText(String.valueOf(peakflow*(60.00/100.00)));
-
-
-
-        //bar.setMax(900);
         bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 
             @Override
@@ -127,7 +137,6 @@ public class flowFragment extends AppCompatActivity {
 
             }
         });
-
 
         savebtn.setOnClickListener(v -> {
             pfvalue[count] = bar.getProgress();
