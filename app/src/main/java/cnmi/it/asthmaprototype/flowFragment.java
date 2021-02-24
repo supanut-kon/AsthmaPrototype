@@ -103,8 +103,8 @@ public class flowFragment extends AppCompatActivity {
 
         bar.setMax((int) peakflow);
         greenpef.setText(String.valueOf(peakflow));
-        yellowpef.setText(String.valueOf((peakflow/80)*100));
-        redpef.setText(String.valueOf((peakflow/60)*100));
+        yellowpef.setText(String.valueOf(peakflow*(80.00/100.00)));
+        redpef.setText(String.valueOf(peakflow*(60.00/100.00)));
 
 
 
