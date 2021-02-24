@@ -2,7 +2,9 @@ package cnmi.it.asthmaprototype;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,6 +18,7 @@ public class PatientConfig extends AppCompatActivity {
     EditText age;
     EditText height;
     Button confirmbtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +29,23 @@ public class PatientConfig extends AppCompatActivity {
         genderGroup = findViewById(R.id.GenderGroup);
         confirmbtn = findViewById(R.id.inputConfirmbtn);
 
-
-
-
         confirmbtn.setOnClickListener(v ->{
-            saveData();
+            int iage = Integer.parseInt(age.getText().toString().trim());
+            int iheight = Integer.parseInt(height.getText().toString().trim());
+            int selectedGender = genderGroup.getCheckedRadioButtonId();
+            RadioButton selectedRadio = findViewById(selectedGender);
+            String igender = selectedRadio.getText().toString();
+            DatabaseHelper dbHelper = new DatabaseHelper(this);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(UserColumn.UserEntry.COLUMN_AGE, iage);
+            values.put(UserColumn.UserEntry.COLUMN_HEIGHT, iheight);
+            values.put(UserColumn.UserEntry.COLUMN_GENDER, igender);
+
+            db.insert(UserColumn.UserEntry.TABLE_NAME, null, values);
+
+            db.close();
             finish();
             Intent toDashboard = new Intent(PatientConfig.this, Dashboard.class);
             startActivity(toDashboard);
@@ -38,19 +53,5 @@ public class PatientConfig extends AppCompatActivity {
 
     }
 
-    private void saveData(){
-//        int selectedGender = genderGroup.getCheckedRadioButtonId();
-//        RadioButton selectedRadio = findViewById(selectedGender);
-//
-//        final int iAge = Integer.parseInt(age.getText().toString().trim());
-//        final int iHeight = Integer.parseInt(height.getText().toString().trim());
-//        final String gender = selectedRadio.getText().toString();
-//        CurrentUser currentUser = new CurrentUser();
-//        currentUser.setAge(iAge);
-//        currentUser.setHeight(iHeight);
-//        currentUser.setGender(gender);
-
-
-    }
 
 }

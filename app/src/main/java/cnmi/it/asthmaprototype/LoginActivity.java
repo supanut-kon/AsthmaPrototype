@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient googleSignInClient;
     FirebaseAuth auth;
     int RC_SIGN_IN = 1;
-    Button config;
 //    SharedPreferences sharedPreferences;
 //    static final String gName = "gPersonName";
 //    static final String gGvnName = "gGivenName";
@@ -54,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
 
         signInButton = findViewById(R.id.googlebtn);
         register = findViewById(R.id.register);
-        config = findViewById(R.id.configbtn);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -63,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         signInButton.setOnClickListener(v->{
-            signIn();
+           // signIn();
         });
 
         register.setOnClickListener(v -> {
@@ -71,6 +69,12 @@ public class LoginActivity extends AppCompatActivity {
             Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(register);
         });
+
+//        config.setOnClickListener(v ->{
+//           finish();
+//           Intent config = new Intent(LoginActivity.this, PatientConfig.class);
+//           startActivity(config);
+//        });
     }
 
 

@@ -1,6 +1,8 @@
 package cnmi.it.asthmaprototype;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,8 +51,21 @@ public class Dashboard extends AppCompatActivity {
         if (itemId == R.id.home) {
 
         } else if (itemId == R.id.add) {
+//            DatabaseHelper dbHelper = new DatabaseHelper(this);
+//            SQLiteDatabase db = dbHelper.getReadableDatabase();
+//            Cursor f = db.rawQuery("SELECT * FROM asthma_flow", null); // WHERE Userid = currentUser
+//            if(f != null){
+//                db.close();
+//                Intent firsttime = new Intent(Dashboard.this, flowFirstTime.class);
+//                startActivity(firsttime);
+//            }else {
+//                db.close();
+//                Intent intentFlow = new Intent(Dashboard.this, flowFragment.class);
+//                startActivity(intentFlow);
+//            }
             Intent intentFlow = new Intent(Dashboard.this, flowFragment.class);
             startActivity(intentFlow);
+
         } else if (itemId == R.id.profile) {
             Intent intentProfile = new Intent(Dashboard.this, Profile.class);
             startActivity(intentProfile);

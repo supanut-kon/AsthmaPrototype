@@ -31,6 +31,7 @@
             android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity" />
         <activity android:name=".flowFragment" />
+        <activity android:name=".flowFirstTime" />
     </application>
 
 </manifest>

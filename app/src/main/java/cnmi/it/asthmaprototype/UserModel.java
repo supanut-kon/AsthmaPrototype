@@ -6,6 +6,13 @@ public class UserModel {
     private int height;
     private String gender;
 
+    public UserModel(int id, int age, int height, String gender) {
+        this.id = id;
+        this.age = age;
+        this.height = height;
+        this.gender = gender;
+    }
+
     public int getId() {
         return id;
     }
