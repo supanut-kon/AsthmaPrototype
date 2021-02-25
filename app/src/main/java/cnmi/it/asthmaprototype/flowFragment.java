@@ -104,9 +104,9 @@ public class flowFragment extends AppCompatActivity {
 
         if(gender != null){
             if(gender.equals("ชาย")){
-                peakflow = 319.13-(4.75*age)+0.035*Math.pow(age,2);
+                peakflow = 319.13-(4.75*height)+0.035*Math.pow(height,2);
             }else {
-                peakflow = -487.12+(7*age)-0.0085*Math.pow(age,2);
+                peakflow = -487.12+(7*height)-0.0085*Math.pow(height,2);
             }
 
             bar.setMax((int) peakflow);
