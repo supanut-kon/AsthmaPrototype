@@ -42,42 +42,30 @@ public class LoginActivity extends AppCompatActivity {
 //    static final String gEmail = "gEmail";
 //    static final String gId = "gId";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         signInButton = findViewById(R.id.googlebtn);
-        register = findViewById(R.id.register);
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        //register = findViewById(R.id.register);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
         googleSignInClient = GoogleSignIn.getClient(this, gso);
-        signInButton.setOnClickListener(v->{
-           // signIn();
-        });
+        signInButton.setOnClickListener(v-> signIn());
 
-        register.setOnClickListener(v -> {
-            finish();
-            Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(register);
-        });
-
-//        config.setOnClickListener(v ->{
-//           finish();
-//           Intent config = new Intent(LoginActivity.this, PatientConfig.class);
-//           startActivity(config);
+//        register.setOnClickListener(v -> {
+//            finish();
+//            Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
+//            startActivity(register);
 //        });
+
     }
-
-
 
     private void signIn(){
         Intent signInIntent = googleSignInClient.getSignInIntent();
@@ -96,6 +84,16 @@ public class LoginActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completeTask){
         try{
             GoogleSignInAccount acc = completeTask.getResult(ApiException.class);
+            String name = acc.getDisplayName();
+            Uri pfphoto = acc.getPhotoUrl();
+            Intent toDashboard = new Intent(LoginActivity.this, Dashboard.class);
+            toDashboard.putExtra("strName", name);
+
+            if (pfphoto != null) {
+                toDashboard.putExtra("uri", pfphoto.toString());
+            }
+            startActivity(toDashboard);
+
             Toast.makeText(LoginActivity.this, "Signed In Successfully", Toast.LENGTH_SHORT).show();
 
         } catch (ApiException e) {

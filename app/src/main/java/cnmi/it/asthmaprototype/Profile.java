@@ -1,5 +1,6 @@
 package cnmi.it.asthmaprototype;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,6 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,12 +38,14 @@ public class Profile extends AppCompatActivity {
     int age;
     int height;
     String gender;
-
+    GoogleSignInClient googleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        googleSignInClient.getSignInIntent();
 
         logout = findViewById(R.id.logoutbtn);
         userAge = findViewById(R.id.ageText);
@@ -46,7 +53,7 @@ public class Profile extends AppCompatActivity {
         userGender = findViewById(R.id.genderText);
         configbtn = findViewById(R.id.configbtn);
         
-        logout.setOnClickListener(v -> finish());
+        logout.setOnClickListener(v -> GoogleSignOut());
         profilepic = findViewById(R.id.profilepic);
         profilepic.setImageResource(R.drawable.man);
 
@@ -56,9 +63,6 @@ public class Profile extends AppCompatActivity {
                 startActivity(config);
         });
         getDetails();
-
-
-
 
     }
 
@@ -88,6 +92,15 @@ public class Profile extends AppCompatActivity {
             userAge.setText("Fill in gender, age, and height first!");
 
         }
+    }
+
+    public void GoogleSignOut(){
+
+        googleSignInClient.signOut().addOnCompleteListener(this, task -> {
+            Intent backtoLogin = new Intent(Profile.this, LoginActivity.class);
+            backtoLogin.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(backtoLogin);
+        });
     }
     
     

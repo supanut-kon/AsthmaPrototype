@@ -109,6 +109,7 @@
     <SeekBar
 
         android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="560dp"
         android:layout_height="266dp"
         android:layout_marginTop="171dp"
@@ -119,7 +120,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.232" />
+        app:layout_constraintVertical_bias="0.22000003" />
 
     <Button
         android:id="@+id/flow_savebtn"

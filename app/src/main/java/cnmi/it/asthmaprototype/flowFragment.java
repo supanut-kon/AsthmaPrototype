@@ -27,7 +27,6 @@ public class flowFragment extends AppCompatActivity {
     TextView redpef;
     SeekBar bar;
     Integer[] pfvalue;
-    View blur;
     int count;
     int id;
     int age;
@@ -35,6 +34,7 @@ public class flowFragment extends AppCompatActivity {
     String gender;
     long flow;
     double peakflow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,6 @@ public class flowFragment extends AppCompatActivity {
         c.moveToFirst();
         while (!c.isAfterLast()) {
 
-            //user = new UserModel(c.getInt(0), c.getInt(1), c.getInt(2), c.getString(3));
             id = c.getInt(0);
             age = c.getInt(1);
             height = c.getInt(2);
@@ -81,19 +80,6 @@ public class flowFragment extends AppCompatActivity {
             c.moveToNext();
         }
         c.close();
-
-
-//        Cursor f = db.rawQuery("SELECT * FROM asthma_patient", null);
-//        f.moveToFirst();
-//        while (!f.isAfterLast()) {
-//
-//            //user = new UserModel(c.getInt(0), c.getInt(1), c.getInt(2), c.getString(3));
-//            flow = f.getInt(1);
-//
-//            f.moveToNext();
-//        }
-//        f.close();
-//        db.close();
 
         if(gender.equals("ชาย")){
             peakflow = 319.13-(4.75*age)+0.035*Math.pow(age,2);
@@ -105,8 +91,6 @@ public class flowFragment extends AppCompatActivity {
         greenpef.setText(String.valueOf(peakflow));
         yellowpef.setText(String.valueOf(peakflow*(80.00/100.00)));
         redpef.setText(String.valueOf(peakflow*(60.00/100.00)));
-
-
 
         //bar.setMax(900);
         bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
@@ -128,7 +112,6 @@ public class flowFragment extends AppCompatActivity {
             }
         });
 
-
         savebtn.setOnClickListener(v -> {
             pfvalue[count] = bar.getProgress();
             count++;
@@ -149,6 +132,8 @@ public class flowFragment extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 }
