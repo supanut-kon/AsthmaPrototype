@@ -22,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 //        if(savedInstanceState == null){
 //            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(R.id.fragcontainer, Dashboard.class, null).commit();
 //        }
         bottomNavigationView = findViewById(R.id.btnnvg);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add, R.id.profile).build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add).build();
 
     }
 

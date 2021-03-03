@@ -30,24 +30,17 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button register;
+
     SignInButton signInButton;
     GoogleSignInClient googleSignInClient;
-    FirebaseAuth auth;
     int RC_SIGN_IN = 1;
-//    SharedPreferences sharedPreferences;
-//    static final String gName = "gPersonName";
-//    static final String gGvnName = "gGivenName";
-//    static final String gFamName = "gFamilyName";
-//    static final String gEmail = "gEmail";
-//    static final String gId = "gId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar); y
 
         signInButton = findViewById(R.id.googlebtn);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
@@ -58,13 +51,6 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
         signInButton.setOnClickListener(v-> signIn());
-
-//        register.setOnClickListener(v -> {
-//            finish();
-//            Intent register = new Intent(LoginActivity.this, RegisterActivity.class);
-//            startActivity(register);
-//        });
-
     }
 
     private void signIn(){

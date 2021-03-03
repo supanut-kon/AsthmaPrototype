@@ -53,9 +53,6 @@ public class flowFragment extends AppCompatActivity {
         redpef = findViewById(R.id.redpef);
         checkentry();
 
-
-
-
     }
     public void checkentry(){
         DatabaseHelper dbHelper = new DatabaseHelper(this);

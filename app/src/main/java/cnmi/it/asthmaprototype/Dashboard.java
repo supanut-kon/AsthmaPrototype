@@ -34,11 +34,6 @@ public class Dashboard extends AppCompatActivity {
     ImageView dashboardPic;
     ProgressBar progressBar;
     TextView name;
-    String gName;
-    String gGvnName;
-    String gFamName;
-    String gEmail;
-    String gId;
     Uri gPhoto;
 
     @Override

@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/home"
         android:title="Home"
-        android:icon="@drawable/home"/>
+        android:icon="@drawable/home_white"
+        app:showAsAction="ifRoom"
+        android:contentDescription="Home"/>
     <item android:id="@+id/add"
         android:title="Add"
-        android:icon="@drawable/plus"/>
-    <item android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/user_dark"/>
+        android:icon="@drawable/statistics"
+        app:showAsAction="always"
+        android:contentDescription="Statistics"/>
+<!--    <item android:id="@+id/profile"-->
+<!--        android:title="Profile"-->
+<!--        android:icon="@drawable/user_dark"-->
+<!--        app:showAsAction="always"/>-->
 
 </menu>
