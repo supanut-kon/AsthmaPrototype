@@ -33,6 +33,7 @@ public class Dashboard extends AppCompatActivity {
     ImageView profilepic;
     ImageView dashboardPic;
     ProgressBar progressBar;
+    ImageView SOS;
     TextView name;
     Uri gPhoto;
 
@@ -59,6 +60,9 @@ public class Dashboard extends AppCompatActivity {
         name.setText(nname);
         dashboardPic = findViewById(R.id.dashboardimage);
         progressBar = findViewById(R.id.dashboardProgressBar);
+        SOS = findViewById(R.id.sosbtn);
+        SOS.setImageResource(R.drawable.sos);
+        SOS.setOnClickListener(v -> finish());
 
         progressBar.setScaleX(3f);
         progressBar.setScaleY(3f);

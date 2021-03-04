@@ -85,20 +85,7 @@ public class flowFragment extends AppCompatActivity {
         }
         c.close();
 
-
-//        Cursor f = db.rawQuery("SELECT * FROM asthma_patient", null);
-//        f.moveToFirst();
-//        while (!f.isAfterLast()) {
-//
-//            //user = new UserModel(c.getInt(0), c.getInt(1), c.getInt(2), c.getString(3));
-//            flow = f.getInt(1);
-//
-//            f.moveToNext();
-//        }
-//        f.close();
-//        db.close();
         DecimalFormat df = new DecimalFormat("#.##");
-
         if(gender != null){
             if(gender.equals("ชาย")){
                 peakflow = 319.13-(4.75*height)+0.035*Math.pow(height,2);
