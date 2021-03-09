@@ -27,7 +27,7 @@ public class flowFragment extends AppCompatActivity {
     TextView yellowpef;
     TextView redpef;
     SeekBar bar;
-    Integer[] pfvalue;
+    int pfvalue;
     View blur;
     int count;
     int id;
@@ -47,7 +47,6 @@ public class flowFragment extends AppCompatActivity {
         savebtn = findViewById(R.id.flow_savebtn);
         bar = findViewById(R.id.seekBar);
         barValue = findViewById(R.id.barvalue);
-        pfvalue = new Integer[3];
         greenpef = findViewById(R.id.greenpef);
         yellowpef = findViewById(R.id.yellowpef);
         redpef = findViewById(R.id.redpef);
@@ -123,23 +122,19 @@ public class flowFragment extends AppCompatActivity {
         });
 
         savebtn.setOnClickListener(v -> {
-            pfvalue[count] = bar.getProgress();
-            count++;
-            if(count == 3){
-                int max = Collections.max(Arrays.asList(pfvalue));
+            pfvalue = bar.getProgress();
+            DatabaseHelper dbHelper2 = new DatabaseHelper(this);
+            SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
 
-                DatabaseHelper dbHelper2 = new DatabaseHelper(this);
-                SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
+            values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
 
-                ContentValues values = new ContentValues();
-                values.put(FlowColumn.FlowEntry.COLUMN_FLOW, max);
-                values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
+            db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null,values);
+            db2.close();
 
-                db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null,values);
-                db2.close();
+            finish();
 
-                finish();
-            }
         });
     }
 

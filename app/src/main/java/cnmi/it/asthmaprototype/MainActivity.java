@@ -2,12 +2,15 @@ package cnmi.it.asthmaprototype;
 
 import android.os.Bundle;
 
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import android.view.View;
@@ -15,8 +18,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
-    BottomNavigationView bottomNavigationView;
+public class MainActivity extends AppCompatActivity implements Callback{
+    BottomAppBar bottomAppBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +27,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.dashboard_activity);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-        if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(R.id.fragcontainer, Dashboard.class, null).commit();
+//        if(savedInstanceState == null){
+//            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(R.id.fragcontainer, Dashboard.class, null).commit();
+//        }
+        if(savedInstanceState != null){
+            getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, new FirstFragment()).commit();
         }
+        bottomAppBar = findViewById(R.id.bottomAppBar);
+//        bottomAppBar.setOnMenuItemClickListener(menuItem -> {
+//            switch (menuItem.getItemId()){
+//                case R.id.home:
+//
+//        });
+        bottomAppBar.setOnMenuItemClickListener(menuItem ->{
+            int itemid = menuItem.getItemId();
 
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add).build();
+        });
+
+        //AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add).build();
 
     }
 
@@ -53,4 +69,19 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void someEvent(Fragment fragment) {
+        replaceFragment(fragment);
+    }
+
+    public void replaceFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+    }
+
+
+
 }

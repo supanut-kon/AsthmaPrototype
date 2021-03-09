@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_navigation"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
     app:startDestination="@id/dashboardnav">
 
     <fragment
         android:id="@+id/dashboardnav"
         android:name="cnmi.it.asthmaprototype.Dashboard"
-        android:label="Dashboard" />
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashbord">
+        <action
+            android:id="@+id/action_dashboardnav_to_profilenav"
+            app:destination="@id/profilenav" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profilenav"
+        android:name="cnmi.it.asthmaprototype.Profile"
+        android:label="Profile"
+        tools:layout="@layout/activity_profile">
+        <action
+            android:id="@+id/action_profilenav_to_dashboardnav"
+            app:destination="@id/dashboardnav" />
+    </fragment>
+
+
+
 </navigation>
