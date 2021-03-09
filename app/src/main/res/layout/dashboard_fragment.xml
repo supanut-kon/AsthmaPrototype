@@ -271,8 +271,7 @@
             android:id="@+id/dbprofilepic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="Profile picture" />
+            tools:srcCompat="@tools:sample/avatars" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -288,26 +287,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.071" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardviewSos"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        app:cardCornerRadius="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044" >
-
-        <ImageView
-            android:id="@+id/sosbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="SOS"
-            android:src="@drawable/sos"/>
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

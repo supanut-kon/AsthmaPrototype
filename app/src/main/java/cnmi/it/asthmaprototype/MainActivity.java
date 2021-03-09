@@ -24,12 +24,13 @@ public class MainActivity extends AppCompatActivity implements Callback{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dashboard_activity);
+        setContentView(R.layout.activity_main);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        if(savedInstanceState == null){
 //            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(R.id.fragcontainer, Dashboard.class, null).commit();
 //        }
+<<<<<<< HEAD
         if(savedInstanceState != null){
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, new FirstFragment()).commit();
         }
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity implements Callback{
         });
 
         //AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add).build();
+=======
+        bottomNavigationView = findViewById(R.id.btnnvg);
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add).build();
+>>>>>>> parent of 151879a (04032021-changes)
 
     }
 
