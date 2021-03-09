@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements Callback{
 //            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(R.id.fragcontainer, Dashboard.class, null).commit();
 //        }
 <<<<<<< HEAD
+<<<<<<< HEAD
         if(savedInstanceState != null){
             getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer, new FirstFragment()).commit();
         }
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements Callback{
 
         //AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add).build();
 =======
+=======
+>>>>>>> parent of 151879a (04032021-changes)
         bottomNavigationView = findViewById(R.id.btnnvg);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add).build();
 >>>>>>> parent of 151879a (04032021-changes)
