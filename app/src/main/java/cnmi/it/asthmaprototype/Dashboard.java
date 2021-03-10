@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -28,22 +27,23 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import org.w3c.dom.Text;
 
-public class Dashboard extends Fragment {
+public class Dashboard extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     ImageView profilepic;
-    ImageView dashboardPic; 
+    ImageView dashboardPic;
     ProgressBar progressBar;
+    ImageView SOS;
     TextView name;
     Uri gPhoto;
 
     @Override
-    public void onCreateView(Bundle savedInstanceState) {
-         return inflater.inflate(R.layout.dashboard_fragment, parent, false);
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dashboard_activity);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
+        Bundle extras = getIntent().getExtras();
 
 //        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
 //        if(acct != null){
@@ -60,6 +60,9 @@ public class Dashboard extends Fragment {
         name.setText(nname);
         dashboardPic = findViewById(R.id.dashboardimage);
         progressBar = findViewById(R.id.dashboardProgressBar);
+        SOS = findViewById(R.id.sosbtn);
+        SOS.setImageResource(R.drawable.sos);
+        SOS.setOnClickListener(v -> finish());
 
         progressBar.setScaleX(3f);
         progressBar.setScaleY(3f);

@@ -16,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,6 +39,8 @@ public class flowFragment extends AppCompatActivity {
     String gender;
     long flow;
     double peakflow;
+    ChipGroup periodchip;
+    FloatingActionButton fabNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +49,13 @@ public class flowFragment extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        savebtn = findViewById(R.id.flow_savebtn);
+        //savebtn = findViewById(R.id.flow_savebtn);
         bar = findViewById(R.id.seekBar);
         barValue = findViewById(R.id.barvalue);
         greenpef = findViewById(R.id.greenpef);
         yellowpef = findViewById(R.id.yellowpef);
         redpef = findViewById(R.id.redpef);
+        periodchip = findViewById(R.id.periodchips);
         checkentry();
 
     }
@@ -134,7 +140,7 @@ public class flowFragment extends AppCompatActivity {
             }
         });
 
-        savebtn.setOnClickListener(v -> {
+        fabNext.setOnClickListener(v ->{
             pfvalue = bar.getProgress();
             DatabaseHelper dbHelper2 = new DatabaseHelper(this);
             SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
@@ -146,9 +152,11 @@ public class flowFragment extends AppCompatActivity {
             db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null,values);
             db2.close();
 
-            finish();
-
+            //finish();
+            Intent toAfter = new Intent(flowFragment.this, AfterFlow.class);
+            startActivity(toAfter);
         });
+
     }
 
 
