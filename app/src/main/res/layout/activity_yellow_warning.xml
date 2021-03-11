@@ -26,25 +26,33 @@
         android:id="@+id/imageView3"
         android:layout_width="116dp"
         android:layout_height="109dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintVertical_bias="0.014"
         app:srcCompat="@drawable/ventolin"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="99dp" />
+        tools:layout_editor_absoluteX="51dp" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="169dp"
         android:layout_height="116dp"
+        android:layout_marginTop="136dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/easyhaler_sulfate"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="221dp" />
+        tools:layout_editor_absoluteX="121dp" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="109dp"
         android:layout_height="109dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/symbicort"
-        tools:layout_editor_absoluteX="232dp"
-        tools:layout_editor_absoluteY="101dp" />
+        tools:layout_editor_absoluteX="240dp" />
 
     <TextView
         android:id="@+id/textView16"
@@ -53,17 +61,24 @@
         android:text="เมื่อมีอาการจับหืดเฉียบพลัน"
         android:textColor="@color/black"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="36dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="ให้ใช้ยาดังนี้อย่างใดอย่างหนึ่ง"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="118dp"
-        tools:layout_editor_absoluteY="67dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.003" />
 
     <TextView
         android:id="@+id/textView18"
@@ -73,18 +88,25 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="357dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.032" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:text="ถ้าอาการไม่ดีขึ้น"
         android:textColor="#E30D0D"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="431dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.063" />
 
     <TextView
         android:id="@+id/textView21"
@@ -93,7 +115,25 @@
         android:text="ให้รีบไปโรงพยาบาลที่ใกล้ที่สุด"
         android:textColor="@color/black"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="431dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="0.063" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="และนัดพบแพทย์ภายใน 1 สัปดาห์"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView21"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

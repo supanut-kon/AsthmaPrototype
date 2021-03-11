@@ -21,7 +21,4 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.AsthmaPrototype.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.AsthmaPrototype.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

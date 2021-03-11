@@ -1,8 +1,6 @@
 package cnmi.it.asthmaprototype;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;

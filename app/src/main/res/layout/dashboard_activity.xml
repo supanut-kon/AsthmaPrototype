@@ -248,6 +248,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginTop="7dp"
+            app:backgroundTint="#2196F3"
             app:fabAlignmentMode="end"
             app:fabAnimationMode="slide"
             app:hideOnScroll="true"
@@ -266,11 +267,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="Add"
+            app:backgroundTint="#57C740"
             app:layout_anchor="@id/bottomAppBar"
             app:srcCompat="@drawable/add" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-<!--    <FrameLayout-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:cardCornerRadius="255dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toStartOf="@+id/cardView2"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53">
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/sos" />
+    </androidx.cardview.widget.CardView>
+
+    <!--    <FrameLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:id="@+id/fragmentContainer"-->
 <!--        android:layout_height="729dp"-->

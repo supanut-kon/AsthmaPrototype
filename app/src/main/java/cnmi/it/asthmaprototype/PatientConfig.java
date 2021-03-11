@@ -1,17 +1,15 @@
 package cnmi.it.asthmaprototype;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PatientConfig extends AppCompatActivity {
 
