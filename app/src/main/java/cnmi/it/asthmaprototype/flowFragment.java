@@ -5,42 +5,36 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.Collections;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class flowFragment extends AppCompatActivity {
-    Button savebtn;
     TextView barValue;
     TextView greenpef;
     TextView yellowpef;
     TextView redpef;
     SeekBar bar;
     int pfvalue;
-    View blur;
-    int count;
     int id;
     int age;
     int height;
     String gender;
-    long flow;
     double peakflow;
     ChipGroup periodchip;
+    EditText date;
     FloatingActionButton fabNext;
+    int yellowvalue, redvalue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,25 +50,30 @@ public class flowFragment extends AppCompatActivity {
         yellowpef = findViewById(R.id.yellowpef);
         redpef = findViewById(R.id.redpef);
         periodchip = findViewById(R.id.periodchips);
+        date = findViewById(R.id.flowdate);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        date.setText(df.format(new Date()));
         checkentry();
 
     }
-    public void checkentry(){
+
+    public void checkentry() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor f = db.rawQuery("SELECT * FROM asthma_flow", null); // WHERE Userid = currentUser
 
-        if(f.getCount() < 0){
+        if (f.getCount() < 0) {
             finish();
             Intent toConfig = new Intent(flowFragment.this, PatientConfig.class);
             startActivity(toConfig);
-        }else{
+        } else {
             flowMeasure();
         }
         f.close();
     }
 
-    public void flowMeasure(){
+    public void flowMeasure() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM asthma_patient", null);
@@ -104,24 +103,29 @@ public class flowFragment extends AppCompatActivity {
 //        db.close();
         DecimalFormat df = new DecimalFormat("#.##");
 
-        if(gender != null){
-            if(gender.equals("ชาย")){
-                peakflow = 319.13-(4.75*height)+0.035*Math.pow(height,2);
-            }else {
-                peakflow = -487.12+(7*height)-0.0085*Math.pow(height,2);
+        if (gender != null) {
+            if (gender.equals("ชาย")) {
+                peakflow = 319.13 - (4.75 * height) + 0.035 * Math.pow(height, 2);
+            } else {
+                peakflow = -487.12 + (7 * height) - 0.0085 * Math.pow(height, 2);
             }
+
+
+            yellowvalue = (int) (peakflow * (80.00 / 100.00));
+
+            redvalue = (int) (peakflow * (60.00 / 100.00));
 
             bar.setMax((int) peakflow);
             greenpef.setText(df.format(peakflow));
-            yellowpef.setText(df.format(peakflow * (80.00 / 100.00)));
-            redpef.setText(df.format(peakflow * (60.00 / 100.00)));
+            yellowpef.setText(df.format(yellowvalue));
+            redpef.setText(df.format(redvalue));
         } else {
             bar.setMax(900);
             greenpef.setText(String.valueOf(900));
-            yellowpef.setText(String.valueOf(900*(80.00/100.00)));
-            redpef.setText(String.valueOf(900*(60.00/100.00)));
+            yellowpef.setText(String.valueOf(900 * (80.00 / 100.00)));
+            redpef.setText(String.valueOf(900 * (60.00 / 100.00)));
         }
-        bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+        bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -140,7 +144,7 @@ public class flowFragment extends AppCompatActivity {
             }
         });
 
-        fabNext.setOnClickListener(v ->{
+        fabNext.setOnClickListener(v -> {
             pfvalue = bar.getProgress();
             DatabaseHelper dbHelper2 = new DatabaseHelper(this);
             SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
@@ -149,12 +153,14 @@ public class flowFragment extends AppCompatActivity {
             values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
             values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
 
-            db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null,values);
+            db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
             db2.close();
-
-            //finish();
-            Intent toAfter = new Intent(flowFragment.this, AfterFlow.class);
-            startActivity(toAfter);
+            if (pfvalue <= redvalue){
+                startActivity(new Intent(flowFragment.this, RedWarning.class));
+            }else {
+                Intent toAfter = new Intent(flowFragment.this, AfterFlow.class);
+                startActivity(toAfter);
+            }
         });
 
     }

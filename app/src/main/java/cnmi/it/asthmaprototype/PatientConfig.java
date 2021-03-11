@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 public class PatientConfig extends AppCompatActivity {
 
@@ -18,6 +19,7 @@ public class PatientConfig extends AppCompatActivity {
     EditText age;
     EditText height;
     Button confirmbtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

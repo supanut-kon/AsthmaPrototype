@@ -1,5 +1,6 @@
 package cnmi.it.asthmaprototype;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,6 +20,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jjoe64.graphview.GraphView;
@@ -30,12 +32,14 @@ import org.w3c.dom.Text;
 public class Dashboard extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    BottomAppBar bottomAppBar;
     ImageView profilepic;
     ImageView dashboardPic;
     ProgressBar progressBar;
     ImageView SOS;
     TextView name;
     Uri gPhoto;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,35 +59,36 @@ public class Dashboard extends AppCompatActivity {
 
         //bottomNavigationView = findViewById(R.id.btnnvg);
         profilepic = findViewById(R.id.dbprofilepic);
-        profilepic.setImageURI(pf);
+//        profilepic.setImageURI(pf);
+        profilepic.setImageResource(R.drawable.man);
         name = findViewById(R.id.user_name);
-        name.setText(nname);
+        name.setText("Patient's Name");
         dashboardPic = findViewById(R.id.dashboardimage);
-        progressBar = findViewById(R.id.dashboardProgressBar);
+//        progressBar = findViewById(R.id.dashboardProgressBar);
+        bottomAppBar = findViewById(R.id.bottomAppBar);
         SOS = findViewById(R.id.sosbtn);
         SOS.setImageResource(R.drawable.sos);
         SOS.setOnClickListener(v -> finish());
 
-        progressBar.setScaleX(3f);
-        progressBar.setScaleY(3f);
-        progressBar.setProgress(75);
-        dashboardPic.setImageResource(R.drawable.ventolin_inhaler);
+//        progressBar.setScaleX(3f);
+//        progressBar.setScaleY(3f);
+//        progressBar.setProgress(75);
+//        dashboardPic.setImageResource(R.drawable.ventolin_inhaler);
 
-//    bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-//        int itemId = item.getItemId();
-//        if (itemId == R.id.home) {
-//
-//        } else if (itemId == R.id.add) {
-//
-//            Intent intentFlow = new Intent(Dashboard.this, flowFragment.class);
-//            startActivity(intentFlow);
-//
-//        } else if (itemId == R.id.profile) {
-//            Intent intentProfile = new Intent(Dashboard.this, Profile.class);
-//            startActivity(intentProfile);
-//        }
-//        return true;
-//    });
+        bottomAppBar.setOnMenuItemClickListener(item ->{
+            int itemId = item.getItemId();
+            if (itemId == R.id.home) {
+
+            } else if (itemId == R.id.add) {
+                Intent intentFlow = new Intent(Dashboard.this, Profile.class);
+                startActivity(intentFlow);
+            }
+            return true;
+        });
+
+        fab.setOnClickListener(v -> {
+           startActivity(new Intent(Dashboard.this, flowFragment.class));
+        });
 
     }
 }

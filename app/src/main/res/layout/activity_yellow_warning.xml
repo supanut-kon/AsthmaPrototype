@@ -7,4 +7,93 @@
     android:background="#B9FFC107"
     tools:context=".YellowWarning">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943"
+        app:srcCompat="@drawable/check" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="116dp"
+        android:layout_height="109dp"
+        app:srcCompat="@drawable/ventolin"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="99dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="169dp"
+        android:layout_height="116dp"
+        app:srcCompat="@drawable/easyhaler_sulfate"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="221dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="109dp"
+        android:layout_height="109dp"
+        app:srcCompat="@drawable/symbicort"
+        tools:layout_editor_absoluteX="232dp"
+        tools:layout_editor_absoluteY="101dp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เมื่อมีอาการจับหืดเฉียบพลัน"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="36dp" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ให้ใช้ยาดังนี้อย่างใดอย่างหนึ่ง"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="67dp" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="288dp"
+        android:layout_height="57dp"
+        android:text="ครั้งละ 2 สูด  อาจสูดซ้ำได้ทุก 15 นาที ติดต่อกันไม่เกิน 3 ครั้ง"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="357dp" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ถ้าอาการไม่ดีขึ้น"
+        android:textColor="#E30D0D"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="431dp" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ให้รีบไปโรงพยาบาลที่ใกล้ที่สุด"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="431dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
