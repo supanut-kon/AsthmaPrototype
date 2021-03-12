@@ -18,9 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.dashboard_activity);
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-        if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(R.id.fragcontainer, Dashboard.class, null).commit();
-        }
+//        if(savedInstanceState == null){
+//            getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).add(R.id.fragcontainer, Dashboard.class, null).commit();
+//        }
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home, R.id.add).build();
 

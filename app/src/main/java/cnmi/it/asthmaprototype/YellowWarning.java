@@ -15,7 +15,7 @@ public class YellowWarning extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yellow_warning);
 
-        fab.findViewById(R.id.floatingActionButton);
+        fab = findViewById(R.id.floatingActionButton);
 
         fab.setOnClickListener(v -> finish());
     }

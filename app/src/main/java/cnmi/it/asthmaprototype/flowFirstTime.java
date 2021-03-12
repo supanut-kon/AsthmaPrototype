@@ -8,7 +8,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,8 +25,8 @@ public class flowFirstTime extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.flow_firsttime);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
 
         savebtn = findViewById(R.id.flow_savebtnFT);
@@ -37,7 +36,7 @@ public class flowFirstTime extends AppCompatActivity {
         pfvalue = new Integer[3];
 
         bar.setMax(900);
-        bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+        bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -56,11 +55,11 @@ public class flowFirstTime extends AppCompatActivity {
             }
         });
 
-        savebtn.setOnClickListener(v ->{
+        savebtn.setOnClickListener(v -> {
 
             pfvalue[count] = bar.getProgress();
             count++;
-            if(count == 3){
+            if (count == 3) {
                 int max = Collections.max(Arrays.asList(pfvalue));
 
                 DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -70,7 +69,7 @@ public class flowFirstTime extends AppCompatActivity {
                 values.put(FlowColumn.FlowEntry.COLUMN_FLOW, max);
                 values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
 
-                db.insert(FlowColumn.FlowEntry.TABLE_NAME, null,values);
+                db.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
                 db.close();
 
                 finish();

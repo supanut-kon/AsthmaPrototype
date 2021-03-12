@@ -16,14 +16,14 @@ public class splashScreen extends AppCompatActivity {
         setContentView(R.layout.splash_screen);
 
 
-        new Timer().schedule(new TimerTask(){
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 finish();
                 Intent tologin = new Intent(splashScreen.this, LoginActivity.class);
                 startActivity(tologin);
             }
-        },5000);
+        }, 5000);
 
     }
 }

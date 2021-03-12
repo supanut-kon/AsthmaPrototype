@@ -122,8 +122,10 @@
         android:text="น้ำหนัก"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/heightInput"
-        tools:layout_editor_absoluteX="62dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heightInput" />
 
     <EditText
         android:id="@+id/editTextNumber"

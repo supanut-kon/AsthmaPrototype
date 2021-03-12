@@ -63,9 +63,10 @@
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="193dp"
+        android:layout_width="235dp"
         android:layout_height="33dp"
-        android:text="ครั้งละ 1 สูด วันละ 2 ครั้ง"
+        android:text="ครั้งละ.........สูด วันละ......ครั้ง"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,6 +81,7 @@
         android:layout_width="324dp"
         android:layout_height="47dp"
         android:text="ยากิน .....................ครั้งละ .................. เม็ด วันละ ................... ครั้ง"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -90,9 +92,10 @@
 
     <TextView
         android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ก่อนออกกำลังกาย 15 นาที อาจใช้ยาขยายหลอดลมฉุกเฉิน"
+        android:layout_width="276dp"
+        android:layout_height="83dp"
+        android:text="ก่อนออกกำลังกาย 15 นาที อาจใช้ยาขยายหลอดลมฉุกเฉิน ครั้งละ 2 สูด"
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,16 +104,4 @@
         app:layout_constraintTop_toBottomOf="@+id/textView25"
         app:layout_constraintVertical_bias="0.122" />
 
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ครั้งละ 2 สูด"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26"
-        app:layout_constraintVertical_bias="0.101" />
 </androidx.constraintlayout.widget.ConstraintLayout>

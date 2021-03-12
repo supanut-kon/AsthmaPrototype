@@ -44,7 +44,7 @@
         android:layout_height="115dp"
         app:cardBackgroundColor="#CEFFEB3B"
         app:layout_constraintEnd_toEndOf="@+id/seekBar"
-        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView6">
 
@@ -163,7 +163,7 @@
             tools:text="ช่วงเช้า" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/afternoonchip"
+            android:id="@+id/eveningchip"
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

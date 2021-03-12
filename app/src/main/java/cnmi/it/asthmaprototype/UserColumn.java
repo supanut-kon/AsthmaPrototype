@@ -4,7 +4,8 @@ import android.provider.BaseColumns;
 
 public final class UserColumn {
 
-    private UserColumn() {}
+    private UserColumn() {
+    }
 
     public static class UserEntry implements BaseColumns {
         public static final String TABLE_NAME = "asthma_patient";

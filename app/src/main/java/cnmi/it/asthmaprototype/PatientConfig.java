@@ -29,7 +29,7 @@ public class PatientConfig extends AppCompatActivity {
         genderGroup = findViewById(R.id.GenderGroup);
         confirmbtn = findViewById(R.id.inputConfirmbtn);
 
-        confirmbtn.setOnClickListener(v ->{
+        confirmbtn.setOnClickListener(v -> {
             int iage = Integer.parseInt(age.getText().toString().trim());
             int iheight = Integer.parseInt(height.getText().toString().trim());
             int selectedGender = genderGroup.getCheckedRadioButtonId();

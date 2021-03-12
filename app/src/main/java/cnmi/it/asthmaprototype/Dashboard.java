@@ -8,7 +8,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -51,9 +50,10 @@ public class Dashboard extends AppCompatActivity {
         dashboardPic = findViewById(R.id.dashboardimage);
 //        progressBar = findViewById(R.id.dashboardProgressBar);
         bottomAppBar = findViewById(R.id.bottomAppBar);
-        SOS = findViewById(R.id.sosbtn);
-        SOS.setImageResource(R.drawable.sos);
-        SOS.setOnClickListener(v ->{
+        SOS = findViewById(R.id.sosimg);
+        fab = findViewById(R.id.fabadd);
+
+        SOS.setOnClickListener(v -> {
             startActivity(new Intent(Dashboard.this, RedWarning.class));
         });
 
@@ -62,7 +62,7 @@ public class Dashboard extends AppCompatActivity {
 //        progressBar.setProgress(75);
 //        dashboardPic.setImageResource(R.drawable.ventolin_inhaler);
 
-        bottomAppBar.setOnMenuItemClickListener(item ->{
+        bottomAppBar.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
 
@@ -74,7 +74,7 @@ public class Dashboard extends AppCompatActivity {
         });
 
         fab.setOnClickListener(v -> {
-           startActivity(new Intent(Dashboard.this, flowFragment.class));
+            startActivity(new Intent(Dashboard.this, flowFragment.class));
         });
 
     }

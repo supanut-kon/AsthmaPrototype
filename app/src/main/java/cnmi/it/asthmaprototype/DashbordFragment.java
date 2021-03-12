@@ -46,12 +46,12 @@ public class DashbordFragment extends Fragment {
 
 
     @Override
-    public void onAttach(Context context){
+    public void onAttach(Context context) {
         super.onAttach(context);
-        try{
+        try {
             callBack = (Callback) context;
-        } catch (ClassCastException e){
-            throw new ClassCastException(context.toString()+ " must implement Callback");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement Callback");
         }
 
 

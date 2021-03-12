@@ -19,12 +19,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FlowColumn.FlowEntry.COLUMN_FLOW + " INTEGER," + FlowColumn.FlowEntry.COLUMN_USER_ID + " INTEGER)";
     private static final String SQL_DELETE_FLOW = "DROP TABLE IF EXISTS " + UserColumn.UserEntry.TABLE_NAME;
 
-    public DatabaseHelper(Context context){
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 
-    public void onCreate(SQLiteDatabase db){
+    public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(SQL_CREATE_ENTRIES);
         db.execSQL(SQL_CREATE_FLOW);

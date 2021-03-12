@@ -10,8 +10,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -35,13 +35,14 @@ public class flowFragment extends AppCompatActivity {
     EditText date;
     FloatingActionButton fabNext;
     int yellowvalue, redvalue;
+    Chip morning, evening;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.flow_fragment);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         //savebtn = findViewById(R.id.flow_savebtn);
         bar = findViewById(R.id.seekBar);
@@ -51,6 +52,13 @@ public class flowFragment extends AppCompatActivity {
         redpef = findViewById(R.id.redpef);
         periodchip = findViewById(R.id.periodchips);
         date = findViewById(R.id.flowdate);
+        fabNext = findViewById(R.id.fabNextBtn);
+        morning = findViewById(R.id.morningchip);
+        evening = findViewById(R.id.eveningchip);
+
+        morning.setText("ช่วงเช้า");
+        evening.setText("ช่วงเย็น");
+
 
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         date.setText(df.format(new Date()));
@@ -116,9 +124,9 @@ public class flowFragment extends AppCompatActivity {
             redvalue = (int) (peakflow * (60.00 / 100.00));
 
             bar.setMax((int) peakflow);
-            greenpef.setText(df.format(peakflow));
-            yellowpef.setText(df.format(yellowvalue));
-            redpef.setText(df.format(redvalue));
+            greenpef.setText(df.format((int) peakflow));
+            yellowpef.setText(df.format((int) yellowvalue));
+            redpef.setText(df.format((int) redvalue));
         } else {
             bar.setMax(900);
             greenpef.setText(String.valueOf(900));
@@ -155,9 +163,11 @@ public class flowFragment extends AppCompatActivity {
 
             db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
             db2.close();
-            if (pfvalue <= redvalue){
+            if (pfvalue < redvalue) {
+                finish();
                 startActivity(new Intent(flowFragment.this, RedWarning.class));
-            }else {
+            } else {
+                finish();
                 Intent toAfter = new Intent(flowFragment.this, AfterFlow.class);
                 startActivity(toAfter);
             }

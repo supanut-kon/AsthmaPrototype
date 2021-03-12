@@ -4,7 +4,8 @@ import android.provider.BaseColumns;
 
 public final class FlowColumn {
 
-    private FlowColumn() {}
+    private FlowColumn() {
+    }
 
     public static class FlowEntry implements BaseColumns {
         public static final String TABLE_NAME = "asthma_flow";

@@ -33,32 +33,32 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        googleSignInClient.getSignInIntent();
+        //googleSignInClient.getSignInIntent();
 
         logout = findViewById(R.id.logoutbtn);
         userAge = findViewById(R.id.ageText);
         userHeight = findViewById(R.id.heightText);
         userGender = findViewById(R.id.genderText);
         configbtn = findViewById(R.id.configbtn);
-        
+
         logout.setOnClickListener(v -> GoogleSignOut());
         profilepic = findViewById(R.id.profilepic);
         profilepic.setImageResource(R.drawable.man);
 
         configbtn.setOnClickListener(v -> {
 
-                Intent config = new Intent(Profile.this, PatientConfig.class);
-                startActivity(config);
+            Intent config = new Intent(Profile.this, PatientConfig.class);
+            startActivity(config);
         });
         getDetails();
 
     }
 
-    public void getDetails(){
+    public void getDetails() {
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM asthma_patient", null);
-        if(c!=null) {
+        if (c != null) {
             c.moveToFirst();
             while (!c.isAfterLast()) {
 
@@ -82,7 +82,7 @@ public class Profile extends AppCompatActivity {
         }
     }
 
-    public void GoogleSignOut(){
+    public void GoogleSignOut() {
 
         googleSignInClient.signOut().addOnCompleteListener(this, task -> {
             Intent backtoLogin = new Intent(Profile.this, LoginActivity.class);
@@ -90,9 +90,6 @@ public class Profile extends AppCompatActivity {
             startActivity(backtoLogin);
         });
     }
-    
-    
-
 
 
 }

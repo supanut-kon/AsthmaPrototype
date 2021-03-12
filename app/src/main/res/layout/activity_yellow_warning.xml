@@ -27,10 +27,12 @@
         android:layout_width="116dp"
         android:layout_height="109dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17"
         app:layout_constraintVertical_bias="0.014"
-        app:srcCompat="@drawable/ventolin"
-        tools:layout_editor_absoluteX="51dp" />
+        app:srcCompat="@drawable/ventolin" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -38,10 +40,11 @@
         android:layout_height="116dp"
         android:layout_marginTop="136dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/easyhaler_sulfate"
-        tools:layout_editor_absoluteX="121dp" />
+        app:srcCompat="@drawable/easyhaler_sulfate" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -49,10 +52,11 @@
         android:layout_height="109dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/textView17"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/symbicort"
-        tools:layout_editor_absoluteX="240dp" />
+        app:srcCompat="@drawable/symbicort" />
 
     <TextView
         android:id="@+id/textView16"
@@ -99,11 +103,13 @@
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="16dp"
         android:text="ถ้าอาการไม่ดีขึ้น"
         android:textColor="#E30D0D"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
         app:layout_constraintVertical_bias="0.063" />

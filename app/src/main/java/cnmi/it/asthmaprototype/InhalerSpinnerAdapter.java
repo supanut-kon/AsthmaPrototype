@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 
 public class InhalerSpinnerAdapter extends ArrayAdapter<String> {
     Context ctx;
-    String[] textArray ={};
-    Integer[] imageArray ={};
+    String[] textArray = {};
+    Integer[] imageArray = {};
 
 
     public InhalerSpinnerAdapter(@NonNull Context context, int resource) {

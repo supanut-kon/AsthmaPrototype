@@ -5,7 +5,7 @@ public class FlowModel {
     private int pef;
     private int userid;
 
-    public FlowModel(int id, int pef, int userid){
+    public FlowModel(int id, int pef, int userid) {
         this.id = id;
         this.pef = pef;
         this.userid = userid;
