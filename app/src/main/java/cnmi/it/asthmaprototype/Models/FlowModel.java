@@ -1,4 +1,4 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Models;
 
 public class FlowModel {
     private int id;

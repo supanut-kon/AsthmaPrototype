@@ -1,4 +1,4 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import cnmi.it.asthmaprototype.R;
 
 public class AfterFlow extends AppCompatActivity {
 

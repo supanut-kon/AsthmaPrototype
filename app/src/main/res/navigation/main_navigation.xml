@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dashboardnav"
-        android:name="cnmi.it.asthmaprototype.Dashboard"
+        android:name="cnmi.it.asthmaprototype.Activities.Dashboard"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dashbord">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/profilenav"
-        android:name="cnmi.it.asthmaprototype.Profile"
+        android:name="cnmi.it.asthmaprototype.Activities.Profile"
         android:label="Profile"
         tools:layout="@layout/activity_profile">
         <action

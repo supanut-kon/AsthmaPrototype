@@ -1,4 +1,4 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Activities;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -19,7 +19,11 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class flowFragment extends AppCompatActivity {
+import cnmi.it.asthmaprototype.Database.DatabaseHelper;
+import cnmi.it.asthmaprototype.Models.FlowColumn;
+import cnmi.it.asthmaprototype.R;
+
+public class FlowActivity extends AppCompatActivity {
     TextView barValue;
     TextView greenpef;
     TextView yellowpef;
@@ -40,7 +44,7 @@ public class flowFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.flow_fragment);
+        setContentView(R.layout.activity_flow);
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
@@ -73,7 +77,7 @@ public class flowFragment extends AppCompatActivity {
 
         if (f.getCount() < 0) {
             finish();
-            Intent toConfig = new Intent(flowFragment.this, PatientConfig.class);
+            Intent toConfig = new Intent(FlowActivity.this, PatientConfig.class);
             startActivity(toConfig);
         } else {
             flowMeasure();
@@ -165,10 +169,10 @@ public class flowFragment extends AppCompatActivity {
             db2.close();
             if (pfvalue < redvalue) {
                 finish();
-                startActivity(new Intent(flowFragment.this, RedWarning.class));
+                startActivity(new Intent(FlowActivity.this, RedWarning.class));
             } else {
                 finish();
-                Intent toAfter = new Intent(flowFragment.this, AfterFlow.class);
+                Intent toAfter = new Intent(FlowActivity.this, AfterFlow.class);
                 startActivity(toAfter);
             }
         });

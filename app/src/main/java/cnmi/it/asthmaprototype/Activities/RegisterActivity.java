@@ -1,10 +1,12 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import cnmi.it.asthmaprototype.R;
 
 public class RegisterActivity extends AppCompatActivity {
     Button Reg;

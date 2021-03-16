@@ -1,4 +1,4 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +16,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+
+import cnmi.it.asthmaprototype.R;
 
 public class LoginActivity extends AppCompatActivity {
 

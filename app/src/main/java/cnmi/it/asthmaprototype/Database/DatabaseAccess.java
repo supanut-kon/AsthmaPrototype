@@ -1,14 +1,16 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import cnmi.it.asthmaprototype.Models.PatientModel;
+
 public class DatabaseAccess {
     private static DatabaseAccess instance;
     private final SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
-    private UserModel userModel;
+    private PatientModel patientModel;
 //    private SummaryModel sumModel;
 //    private ArrayList<MedModel> medModelArrayList;
 

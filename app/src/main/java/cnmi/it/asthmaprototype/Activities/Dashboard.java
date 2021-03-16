@@ -1,4 +1,4 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import cnmi.it.asthmaprototype.R;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -74,7 +76,7 @@ public class Dashboard extends AppCompatActivity {
         });
 
         fab.setOnClickListener(v -> {
-            startActivity(new Intent(Dashboard.this, flowFragment.class));
+            startActivity(new Intent(Dashboard.this, FlowActivity.class));
         });
 
     }

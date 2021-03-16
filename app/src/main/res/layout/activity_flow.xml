@@ -43,8 +43,8 @@
         android:layout_width="70dp"
         android:layout_height="115dp"
         app:cardBackgroundColor="#CEFFEB3B"
-        app:layout_constraintEnd_toEndOf="@+id/seekBar"
-        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView6">
 
@@ -114,7 +114,7 @@
         app:layout_constraintHorizontal_bias="0.389"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
+        app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
         android:id="@+id/barvalue"
@@ -139,7 +139,8 @@
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.086"
+        android:onClick=""/>
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/periodchips"
@@ -159,6 +160,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             app:chipBackgroundColor="@color/choice_state"
             tools:text="ช่วงเช้า" />
 
@@ -167,6 +169,7 @@
             style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             app:chipBackgroundColor="@color/choice_state"
             tools:text="ช่วงเย็น" />
     </com.google.android.material.chip.ChipGroup>

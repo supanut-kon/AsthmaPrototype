@@ -1,4 +1,4 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -12,20 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
+import cnmi.it.asthmaprototype.Database.DatabaseHelper;
+import cnmi.it.asthmaprototype.R;
+
 
 public class Profile extends AppCompatActivity {
 
     Button logout;
     ImageView profilepic;
-    TextView userAge;
-    TextView userHeight;
-    TextView userGender;
-    UserModel user;
+    TextView patientAge, patientHeight, patientGender, patientWeight, patientCongenital;
     Button configbtn;
     int id;
     int age;
     int height;
     String gender;
+    String weight;
+    String congenital;
     GoogleSignInClient googleSignInClient;
 
     @Override
@@ -36,9 +38,11 @@ public class Profile extends AppCompatActivity {
         //googleSignInClient.getSignInIntent();
 
         logout = findViewById(R.id.logoutbtn);
-        userAge = findViewById(R.id.ageText);
-        userHeight = findViewById(R.id.heightText);
-        userGender = findViewById(R.id.genderText);
+        patientAge = findViewById(R.id.ageText);
+        patientHeight = findViewById(R.id.heightText);
+        patientGender = findViewById(R.id.genderText);
+        patientWeight = findViewById(R.id.weightProfileText);
+        patientCongenital = findViewById(R.id.congenitalProfileText);
         configbtn = findViewById(R.id.configbtn);
 
         logout.setOnClickListener(v -> GoogleSignOut());
@@ -66,18 +70,21 @@ public class Profile extends AppCompatActivity {
                 id = c.getInt(0);
                 age = c.getInt(1);
                 height = c.getInt(2);
-                gender = c.getString(3);
-
+                weight = c.getString(3);
+                congenital = c.getString(4);
+                gender = c.getString(5);
                 c.moveToNext();
             }
             c.close();
             db.close();
 
-            userAge.setText(String.format("Age %s Years old", age));
-            userHeight.setText(String.format("%s Centimetres", height));
-            userGender.setText(String.format("เพศ %s", gender));
+            patientAge.setText(String.format("อายุ %s ปี", age));
+            patientHeight.setText(String.format("สูง %s เซนติเมตร", height));
+            patientGender.setText(String.format("เพศ %s", gender));
+            patientWeight.setText(String.format("น้ำหนัก %s", weight));
+            patientCongenital.setText(String.format("โรคประจำตัว %s", congenital));
         } else {
-            userAge.setText("Fill in gender, age, and height first!");
+            patientAge.setText("Fill in gender, age, and height first!");
 
         }
     }
