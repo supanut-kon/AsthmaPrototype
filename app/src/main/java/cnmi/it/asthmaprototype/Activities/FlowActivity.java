@@ -1,15 +1,19 @@
 package cnmi.it.asthmaprototype.Activities;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -17,11 +21,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.FlowColumn;
 import cnmi.it.asthmaprototype.R;
+
+import static android.media.CamcorderProfile.get;
 
 public class FlowActivity extends AppCompatActivity {
     TextView barValue;
@@ -40,6 +48,7 @@ public class FlowActivity extends AppCompatActivity {
     FloatingActionButton fabNext;
     int yellowvalue, redvalue;
     Chip morning, evening;
+    final Calendar calendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +73,26 @@ public class FlowActivity extends AppCompatActivity {
         evening.setText("ช่วงเย็น");
 
 
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        date.setText(df.format(new Date()));
+//        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//        date.setText(df.format(new Date()));
+        DatePickerDialog.OnDateSetListener setdate = (view, year, month, dayOfMonth) -> {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, month);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        };
+
+        date.setOnClickListener(v -> new DatePickerDialog(FlowActivity.this, setdate, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show());
+
         checkentry();
 
+    }
+
+    public void updateLabel() {
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat df = new SimpleDateFormat(myFormat, Locale.US);
+
+        date.setText(String.valueOf(calendar.getTime()));
     }
 
     public void checkentry() {
@@ -178,6 +203,7 @@ public class FlowActivity extends AppCompatActivity {
         });
 
     }
+
 
 
 }

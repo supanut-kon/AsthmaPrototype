@@ -51,13 +51,13 @@ public class PatientConfig extends AppCompatActivity {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
-            values.put(PatientColumn.UserEntry.COLUMN_AGE, iage);
-            values.put(PatientColumn.UserEntry.COLUMN_HEIGHT, iheight);
-            values.put(PatientColumn.UserEntry.COLUMN_GENDER, igender);
-            values.put(PatientColumn.UserEntry.COLUMN_WEIGHT, iweight);
-            values.put(PatientColumn.UserEntry.COLUMN_CONGENITAL, icongenital);
+            values.put(PatientColumn.PatientEntry.COLUMN_AGE, iage);
+            values.put(PatientColumn.PatientEntry.COLUMN_HEIGHT, iheight);
+            values.put(PatientColumn.PatientEntry.COLUMN_GENDER, igender);
+            values.put(PatientColumn.PatientEntry.COLUMN_WEIGHT, iweight);
+            values.put(PatientColumn.PatientEntry.COLUMN_CONGENITAL, icongenital);
 
-            db.insert(PatientColumn.UserEntry.TABLE_NAME, null, values);
+            db.insert(PatientColumn.PatientEntry.TABLE_NAME, null, values);
 
             db.close();
             finish();

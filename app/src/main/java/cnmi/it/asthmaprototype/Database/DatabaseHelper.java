@@ -8,22 +8,32 @@ import cnmi.it.asthmaprototype.Models.FlowColumn;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
 
 public class  DatabaseHelper extends SQLiteOpenHelper {
+
+
     private static final String DATABASE_NAME = "asthma_patient.db";
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + PatientColumn.UserEntry.TABLE_NAME + " (" +
-                    PatientColumn.UserEntry._ID + " INTEGER PRIMARY KEY," +
-                    PatientColumn.UserEntry.COLUMN_AGE + " INTEGER," +
-                    PatientColumn.UserEntry.COLUMN_HEIGHT + " INTEGER," +
-                    PatientColumn.UserEntry.COLUMN_WEIGHT + " TEXT, " +
-                    PatientColumn.UserEntry.COLUMN_CONGENITAL+" TEXT, " +
-                    PatientColumn.UserEntry.COLUMN_GENDER + " TEXT)";
-    private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + PatientColumn.UserEntry.TABLE_NAME;
+            "CREATE TABLE " + PatientColumn.PatientEntry.TABLE_NAME + " (" +
+                    PatientColumn.PatientEntry._ID + " INTEGER PRIMARY KEY," +
+                    PatientColumn.PatientEntry.COLUMN_AGE + " INTEGER," +
+                    PatientColumn.PatientEntry.COLUMN_HEIGHT + " INTEGER," +
+                    PatientColumn.PatientEntry.COLUMN_WEIGHT + " TEXT, " +
+                    PatientColumn.PatientEntry.COLUMN_CONGENITAL+" TEXT, " +
+                    PatientColumn.PatientEntry.COLUMN_GENDER + " TEXT)";
+
+    private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + PatientColumn.PatientEntry.TABLE_NAME;
 
     private static final String SQL_CREATE_FLOW = "CREATE TABLE " + FlowColumn.FlowEntry.TABLE_NAME + " (" +
             FlowColumn.FlowEntry._ID + " INTEGER PRIMARY KEY," +
-            FlowColumn.FlowEntry.COLUMN_FLOW + " INTEGER," + FlowColumn.FlowEntry.COLUMN_USER_ID + " INTEGER)";
-    private static final String SQL_DELETE_FLOW = "DROP TABLE IF EXISTS " + PatientColumn.UserEntry.TABLE_NAME;
+            FlowColumn.FlowEntry.COLUMN_FLOW + " INTEGER," +
+            FlowColumn.FlowEntry.COLUMN_MAX + " INTEGER," +
+            FlowColumn.FlowEntry.COLUMN_80 + " INTEGER," +
+            FlowColumn.FlowEntry.COLUMN_60 + " INTEGER," +
+            FlowColumn.FlowEntry.COLUMN_USER_ID + " INTEGER," +
+            FlowColumn.FlowEntry.COLUMN_TIME+ " TIME," +
+            FlowColumn.FlowEntry.COLUMN_DATE+ " DATE)";
+
+    private static final String SQL_DELETE_FLOW = "DROP TABLE IF EXISTS " + FlowColumn.FlowEntry.TABLE_NAME;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
