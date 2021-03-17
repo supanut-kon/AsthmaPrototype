@@ -1,9 +1,13 @@
 package cnmi.it.asthmaprototype.Database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
+import cnmi.it.asthmaprototype.Models.FlowModel;
 import cnmi.it.asthmaprototype.Models.PatientModel;
 
 public class DatabaseAccess {
@@ -11,6 +15,8 @@ public class DatabaseAccess {
     private final SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
     private PatientModel patientModel;
+    private FlowModel flows;
+    private ArrayList<FlowModel> flowsArraylist;
 //    private SummaryModel sumModel;
 //    private ArrayList<MedModel> medModelArrayList;
 
@@ -34,6 +40,17 @@ public class DatabaseAccess {
         if (database != null) {
             this.database.close();
         }
+    }
+
+    public ArrayList<FlowModel> getFlow(){
+        flowsArraylist = new ArrayList<FlowModel>();
+
+        Cursor c = database.rawQuery("SELECT * FROM asthma_flow", null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            
+        }
+
     }
 
 //    public ArrayList<MedModel> getDruglist(){

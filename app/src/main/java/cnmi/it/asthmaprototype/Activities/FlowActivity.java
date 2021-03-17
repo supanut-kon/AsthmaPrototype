@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -60,7 +62,7 @@ public class FlowActivity extends AppCompatActivity {
         //savebtn = findViewById(R.id.flow_savebtn);
         bar = findViewById(R.id.seekBar);
         barValue = findViewById(R.id.barvalue);
-        greenpef = findViewById(R.id.greenpef);
+        greenpef = findViewById(R.id.greenpeftext);
         yellowpef = findViewById(R.id.yellowpef);
         redpef = findViewById(R.id.redpef);
         periodchip = findViewById(R.id.periodchips);
@@ -72,16 +74,17 @@ public class FlowActivity extends AppCompatActivity {
         morning.setText("ช่วงเช้า");
         evening.setText("ช่วงเย็น");
 
-
-//        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//        date.setText(df.format(new Date()));
         DatePickerDialog.OnDateSetListener setdate = (view, year, month, dayOfMonth) -> {
             calendar.set(Calendar.YEAR, year);
             calendar.set(Calendar.MONTH, month);
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateLabel();
         };
-
+        String dateFormat = "d MMMM y";
+        SimpleDateFormat df = new SimpleDateFormat(dateFormat, new Locale("th", "TH"));
+        Date today = new Date();
+        date.setText(df.format(today));
+        date.setInputType(InputType.TYPE_NULL);
         date.setOnClickListener(v -> new DatePickerDialog(FlowActivity.this, setdate, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show());
 
         checkentry();
@@ -89,10 +92,10 @@ public class FlowActivity extends AppCompatActivity {
     }
 
     public void updateLabel() {
-        String myFormat = "dd/MM/yyyy";
-        SimpleDateFormat df = new SimpleDateFormat(myFormat, Locale.US);
+        String myFormat = "d MMMM y";
+        SimpleDateFormat df = new SimpleDateFormat(myFormat, new Locale("th", "TH"));
 
-        date.setText(String.valueOf(calendar.getTime()));
+        date.setText(df.format(calendar.getTime()));
     }
 
     public void checkentry() {
@@ -126,7 +129,6 @@ public class FlowActivity extends AppCompatActivity {
         }
         c.close();
 
-
 //        Cursor f = db.rawQuery("SELECT * FROM asthma_patient", null);
 //        f.moveToFirst();
 //        while (!f.isAfterLast()) {
@@ -138,6 +140,7 @@ public class FlowActivity extends AppCompatActivity {
 //        }
 //        f.close();
 //        db.close();
+
         DecimalFormat df = new DecimalFormat("#.##");
 
         if (gender != null) {
@@ -152,10 +155,10 @@ public class FlowActivity extends AppCompatActivity {
 
             redvalue = (int) (peakflow * (60.00 / 100.00));
 
-            bar.setMax((int) peakflow);
-            greenpef.setText(df.format((int) peakflow));
-            yellowpef.setText(df.format((int) yellowvalue));
-            redpef.setText(df.format((int) redvalue));
+            bar.setMax((int) ((int) peakflow+(peakflow*(15.00/100.00))));
+            greenpef.setText(String.valueOf((int) peakflow));
+            yellowpef.setText(String.valueOf((int) yellowvalue));
+            redpef.setText(String.valueOf((int) redvalue));
         } else {
             bar.setMax(900);
             greenpef.setText(String.valueOf(900));
@@ -188,6 +191,9 @@ public class FlowActivity extends AppCompatActivity {
 
             ContentValues values = new ContentValues();
             values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
+            values.put(FlowColumn.FlowEntry.COLUMN_MAX, peakflow);
+            values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
+            values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
             values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
 
             db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
