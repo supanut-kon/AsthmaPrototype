@@ -188,6 +188,8 @@ public class FlowActivity extends AppCompatActivity {
             pfvalue = bar.getProgress();
             DatabaseHelper dbHelper2 = new DatabaseHelper(this);
             SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
+            String datetext = date.getText().toString();
+            String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
 
             ContentValues values = new ContentValues();
             values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
@@ -195,6 +197,9 @@ public class FlowActivity extends AppCompatActivity {
             values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
             values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
             values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
+            values.put(FlowColumn.FlowEntry.COLUMN_DATE, datetext);
+            values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
+
 
             db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
             db2.close();

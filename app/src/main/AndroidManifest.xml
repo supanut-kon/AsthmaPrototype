@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AsthmaPrototype">
-        <activity android:name=".AfterFlow"></activity>
+        <activity android:name=".Activities.AfterFlow"></activity>
         <activity android:name=".Activities.RedWarning" />
         <activity android:name=".Activities.YellowWarning" />
         <activity android:name=".Activities.GreenWarning" />

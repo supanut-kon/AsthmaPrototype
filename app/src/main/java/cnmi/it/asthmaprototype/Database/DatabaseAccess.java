@@ -43,14 +43,17 @@ public class DatabaseAccess {
     }
 
     public ArrayList<FlowModel> getFlow(){
-        flowsArraylist = new ArrayList<FlowModel>();
+        flowsArraylist = new ArrayList<>();
 
         Cursor c = database.rawQuery("SELECT * FROM asthma_flow", null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            
+            flows = new FlowModel(c.getInt(0),c.getInt(1),c.getInt(2),c.getInt(3),c.getInt(4),c.getInt(5),c.getString(6),c.getString(7));
+            flowsArraylist.add(flows);
+            c.moveToNext();
         }
-
+        c.close();
+        return flowsArraylist;
     }
 
 //    public ArrayList<MedModel> getDruglist(){

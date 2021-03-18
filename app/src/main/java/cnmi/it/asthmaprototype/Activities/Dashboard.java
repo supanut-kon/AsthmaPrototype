@@ -8,11 +8,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
+import cnmi.it.asthmaprototype.CardAdapter;
+import cnmi.it.asthmaprototype.Database.DatabaseAccess;
+import cnmi.it.asthmaprototype.Models.FlowModel;
 import cnmi.it.asthmaprototype.R;
 
 public class Dashboard extends AppCompatActivity {
@@ -26,6 +33,8 @@ public class Dashboard extends AppCompatActivity {
     TextView name;
     Uri gPhoto;
     FloatingActionButton fab;
+    RecyclerView recyclerView;
+    CardAdapter card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,7 @@ public class Dashboard extends AppCompatActivity {
         bottomAppBar = findViewById(R.id.bottomAppBar);
         SOS = findViewById(R.id.sosimg);
         fab = findViewById(R.id.fabadd);
+        recyclerView = findViewById(R.id.recyclerView);
 
         SOS.setOnClickListener(v -> {
             startActivity(new Intent(Dashboard.this, RedWarning.class));
@@ -63,6 +73,17 @@ public class Dashboard extends AppCompatActivity {
 //        progressBar.setScaleY(3f);
 //        progressBar.setProgress(75);
 //        dashboardPic.setImageResource(R.drawable.ventolin_inhaler);
+
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        ArrayList<FlowModel> queryFlows = databaseAccess.getFlow();
+        databaseAccess.close();
+
+        LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layout);
+        card = new CardAdapter(this, queryFlows);
+        recyclerView.setAdapter(card);
+        card.notifyDataSetChanged();
 
         bottomAppBar.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
@@ -79,5 +100,20 @@ public class Dashboard extends AppCompatActivity {
             startActivity(new Intent(Dashboard.this, FlowActivity.class));
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        ArrayList<FlowModel> queryFlows = databaseAccess.getFlow();
+        databaseAccess.close();
+
+        LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layout);
+        card = new CardAdapter(this, queryFlows);
+        recyclerView.setAdapter(card);
+        card.notifyDataSetChanged();
     }
 }
