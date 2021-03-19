@@ -34,21 +34,14 @@ import cnmi.it.asthmaprototype.R;
 import static android.media.CamcorderProfile.get;
 
 public class FlowActivity extends AppCompatActivity {
-    TextView barValue;
-    TextView greenpef;
-    TextView yellowpef;
-    TextView redpef;
+    TextView barValue, greenpef,yellowpef, redpef;
     SeekBar bar;
-    int pfvalue;
-    int id;
-    int age;
-    int height;
+    int pfvalue, id, age, height, yellowvalue, redvalue;
     String gender;
     double peakflow;
     ChipGroup periodchip;
     EditText date;
     FloatingActionButton fabNext;
-    int yellowvalue, redvalue;
     Chip morning, evening;
     final Calendar calendar = Calendar.getInstance();
 
@@ -70,7 +63,6 @@ public class FlowActivity extends AppCompatActivity {
         fabNext = findViewById(R.id.fabNextBtn);
         morning = findViewById(R.id.morningchip);
         evening = findViewById(R.id.eveningchip);
-
         morning.setText("ช่วงเช้า");
         evening.setText("ช่วงเย็น");
 
@@ -141,8 +133,6 @@ public class FlowActivity extends AppCompatActivity {
 //        f.close();
 //        db.close();
 
-        DecimalFormat df = new DecimalFormat("#.##");
-
         if (gender != null) {
             if (gender.equals("ชาย")) {
                 peakflow = 319.13 - (4.75 * height) + 0.035 * Math.pow(height, 2);
@@ -170,7 +160,7 @@ public class FlowActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //int val = (progress *(seekBar.getWidth()- 2 *seekBar.getThumbOffset())) / seekBar.getMax();
-                barValue.setText(Integer.toString(progress));
+                barValue.setText(String.valueOf(progress));
             }
 
             @Override

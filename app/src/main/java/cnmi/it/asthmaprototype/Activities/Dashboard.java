@@ -85,6 +85,7 @@ public class Dashboard extends AppCompatActivity {
         recyclerView.setAdapter(card);
         card.notifyDataSetChanged();
 
+
         bottomAppBar.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {

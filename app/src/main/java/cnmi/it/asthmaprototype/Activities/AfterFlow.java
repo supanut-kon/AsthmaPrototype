@@ -3,9 +3,11 @@ package cnmi.it.asthmaprototype.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +24,7 @@ public class AfterFlow extends AppCompatActivity {
     CheckBox cough, heavybreathing, chestpain, suddenwake, easilytired;
     FloatingActionButton savefab;
     int selectedchoice;
+    Spinner carespinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,8 @@ public class AfterFlow extends AppCompatActivity {
         savefab = findViewById(R.id.savestfab);
         abnormal = findViewById(R.id.AbnormalRadioButton);
         normal = findViewById(R.id.NormalRadioButton);
+        carespinner = findViewById(R.id.carespinner);
+
 
         symptomsheader.setVisibility(View.GONE);
         cough.setVisibility(View.GONE);
@@ -45,6 +50,11 @@ public class AfterFlow extends AppCompatActivity {
         heavybreathing.setVisibility(View.GONE);
         suddenwake.setVisibility(View.GONE);
         easilytired.setVisibility(View.GONE);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.caremethods, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carespinner.setAdapter(adapter);
+
 
 
 //        if(selectedchoice == R.id.AbnormalRadioButton){
