@@ -7,22 +7,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -38,7 +33,7 @@ public class FlowActivity extends AppCompatActivity {
     SeekBar bar;
     int pfvalue, id, age, height, yellowvalue, redvalue;
     String gender;
-    double peakflow;
+    double max;
     ChipGroup periodchip;
     EditText date;
     FloatingActionButton fabNext;
@@ -115,7 +110,7 @@ public class FlowActivity extends AppCompatActivity {
             id = c.getInt(0);
             age = c.getInt(1);
             height = c.getInt(2);
-            gender = c.getString(3);
+            gender = c.getString(5);
 
             c.moveToNext();
         }
@@ -135,18 +130,18 @@ public class FlowActivity extends AppCompatActivity {
 
         if (gender != null) {
             if (gender.equals("ชาย")) {
-                peakflow = 319.13 - (4.75 * height) + 0.035 * Math.pow(height, 2);
+                max = 319.13 - (4.75 * height) + 0.035 * Math.pow(height, 2);
             } else {
-                peakflow = -487.12 + (7 * height) - 0.0085 * Math.pow(height, 2);
+                max = -487.12 + (7 * height) - 0.0085 * Math.pow(height, 2);
             }
 
 
-            yellowvalue = (int) (peakflow * (80.00 / 100.00));
+            yellowvalue = (int) (max * (80.00 / 100.00));
 
-            redvalue = (int) (peakflow * (60.00 / 100.00));
+            redvalue = (int) (max * (60.00 / 100.00));
 
-            bar.setMax((int) ((int) peakflow+(peakflow*(15.00/100.00))));
-            greenpef.setText(String.valueOf((int) peakflow));
+            bar.setMax((int) ((int) max +(max *(15.00/100.00))));
+            greenpef.setText(String.valueOf((int) max));
             yellowpef.setText(String.valueOf((int) yellowvalue));
             redpef.setText(String.valueOf((int) redvalue));
         } else {
@@ -176,29 +171,54 @@ public class FlowActivity extends AppCompatActivity {
 
         fabNext.setOnClickListener(v -> {
             pfvalue = bar.getProgress();
-            DatabaseHelper dbHelper2 = new DatabaseHelper(this);
-            SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
-            String datetext = date.getText().toString();
-            String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
+//            DatabaseHelper dbHelper2 = new DatabaseHelper(this);
+//            SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
+//
+//
+//            ContentValues values = new ContentValues();
+//            values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
+//            values.put(FlowColumn.FlowEntry.COLUMN_MAX, peakflow);
+//            values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
+//            values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
+//            values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
+//            values.put(FlowColumn.FlowEntry.COLUMN_DATE, datetext);
+//            values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
 
-            ContentValues values = new ContentValues();
-            values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
-            values.put(FlowColumn.FlowEntry.COLUMN_MAX, peakflow);
-            values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
-            values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
-            values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
-            values.put(FlowColumn.FlowEntry.COLUMN_DATE, datetext);
-            values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
 
-
-            db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
-            db2.close();
+//            db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
+//            db2.close();
             if (pfvalue < redvalue) {
                 finish();
-                startActivity(new Intent(FlowActivity.this, RedWarning.class));
+                String datetext = date.getText().toString();
+                String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
+                DatabaseHelper dbHelper2 = new DatabaseHelper(this);
+                SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_ZONE, "red");
+                values.put(FlowColumn.FlowEntry.COLUMN_MAX, max);
+                values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
+                values.put(FlowColumn.FlowEntry.COLUMN_DATE, datetext);
+                values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
+                db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
+                db2.close();
+                Intent toRed = new Intent(FlowActivity.this, RedWarning.class);
+
+                startActivity(toRed);
             } else {
                 finish();
                 Intent toAfter = new Intent(FlowActivity.this, AfterFlow.class);
+                String datetext = date.getText().toString();
+
+                toAfter.putExtra("pfvalue", pfvalue);
+                toAfter.putExtra("max", max);
+                toAfter.putExtra("yellow", yellowvalue);
+                toAfter.putExtra("red", redvalue);
+                toAfter.putExtra("id", 1);
+                toAfter.putExtra("date", datetext);
+
                 startActivity(toAfter);
             }
         });

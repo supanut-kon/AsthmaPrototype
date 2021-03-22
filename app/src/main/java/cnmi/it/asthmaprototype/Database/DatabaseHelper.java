@@ -26,9 +26,13 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_FLOW = "CREATE TABLE " + FlowColumn.FlowEntry.TABLE_NAME + " (" +
             FlowColumn.FlowEntry._ID + " INTEGER PRIMARY KEY," +
             FlowColumn.FlowEntry.COLUMN_FLOW + " INTEGER," +
+            FlowColumn.FlowEntry.COLUMN_ZONE + " TEXT,"+
             FlowColumn.FlowEntry.COLUMN_MAX + " INTEGER," +
             FlowColumn.FlowEntry.COLUMN_80 + " INTEGER," +
             FlowColumn.FlowEntry.COLUMN_60 + " INTEGER," +
+            FlowColumn.FlowEntry.COLUMN_HAVE_SYMPTOM + " BOOLEAN," +
+            FlowColumn.FlowEntry.COLUMN_SYMPTOMS + " TEXT," +
+            FlowColumn.FlowEntry.COLUMN_CAREMETHOD + " TEXT,"+
             FlowColumn.FlowEntry.COLUMN_USER_ID + " INTEGER," +
             FlowColumn.FlowEntry.COLUMN_TIME+ " TIME," +
             FlowColumn.FlowEntry.COLUMN_DATE+ " DATE)";

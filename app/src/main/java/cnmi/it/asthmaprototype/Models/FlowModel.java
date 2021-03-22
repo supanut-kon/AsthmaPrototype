@@ -3,22 +3,62 @@ package cnmi.it.asthmaprototype.Models;
 public class FlowModel {
     private int id;
     private int pef;
+    private String zone;
     private int max;
     private int percent80;
     private int percent60;
     private int userid;
     private String date;
     private String time;
+    private String haveSymptom;
+    private String[] symptoms;
+    private String caremethod;
 
-    public FlowModel(int id, int pef, int max, int percent80, int percent60, int userid, String date, String time) {
+    public FlowModel(int id, int pef,String zone, int max, int percent80, int percent60, int userid, String date, String time, String haveSymptom, String[] symptoms, String caremethod) {
         this.id = id;
         this.pef = pef;
+        this.zone = zone;
         this.max = max;
         this.percent80 = percent80;
         this.percent60 = percent60;
         this.userid = userid;
         this.date = date;
         this.time = time;
+        this.haveSymptom = haveSymptom;
+        this.symptoms = symptoms;
+        this.caremethod = caremethod;
+    }
+
+    public String getZone() {
+        return zone;
+    }
+
+    public void setZone(String zone) {
+        this.zone = zone;
+    }
+
+    public String getHaveSymptom() {
+        return haveSymptom;
+    }
+
+    public void setHaveSymptom(String haveSymptom) {
+        this.haveSymptom = haveSymptom;
+    }
+
+    public String[] getSymptoms() {
+        return symptoms;
+    }
+
+    public void setSymptoms(String[] symptoms) {
+        this.symptoms = symptoms;
+    }
+
+    public String getCaremethod() {
+        return caremethod;
+    }
+
+    public void setCaremethod(String caremethod) {
+        this.caremethod = caremethod;
     }
 
     public int getMax() {
