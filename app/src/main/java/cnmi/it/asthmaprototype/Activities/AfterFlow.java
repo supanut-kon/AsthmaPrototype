@@ -6,7 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
@@ -27,8 +30,7 @@ import cnmi.it.asthmaprototype.R;
 
 public class AfterFlow extends AppCompatActivity {
 
-    RadioGroup symptoms;
-    RadioButton abnormal, normal;
+    RadioButton abnormal;
     TextView symptomsheader;
     CheckBox cough, heavybreathing, chestpain, suddenwake, easilytired;
     FloatingActionButton savefab;
@@ -37,6 +39,7 @@ public class AfterFlow extends AppCompatActivity {
     double max;
     String date, selectedspinner;
     double peakflow;
+    Button normal;
 
     final Calendar calendar = Calendar.getInstance();
 
@@ -55,7 +58,7 @@ public class AfterFlow extends AppCompatActivity {
         max = extras.getDouble("max");
         date = extras.getString("datetext");
 
-        symptoms = findViewById(R.id.symptomchoice);
+
         symptomsheader = findViewById(R.id.symptomsheader);
         cough = findViewById(R.id.cough);
         heavybreathing = findViewById(R.id.heavybreathing);
@@ -64,8 +67,8 @@ public class AfterFlow extends AppCompatActivity {
         easilytired = findViewById(R.id.easilytired);
         savefab = findViewById(R.id.savestfab);
         abnormal = findViewById(R.id.AbnormalRadioButton);
-        normal = findViewById(R.id.NormalRadioButton);
         carespinner = findViewById(R.id.carespinner);
+        normal = findViewById(R.id.normalbtn);
 
         symptomsArray = new ArrayList<>();
 
@@ -76,16 +79,23 @@ public class AfterFlow extends AppCompatActivity {
         suddenwake.setVisibility(View.GONE);
         easilytired.setVisibility(View.GONE);
 
+
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.caremethods, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carespinner.setAdapter(adapter);
-        carespinner.setOnItemClickListener((parent, view, position, id) -> selectedspinner = parent.getItemAtPosition(position).toString());
+        carespinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedspinner = parent.getItemAtPosition(position).toString();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
 
-//        if(selectedchoice == R.id.AbnormalRadioButton){
-//
-//        }
         abnormal.setOnClickListener(v -> {
             symptomsheader.setVisibility(View.VISIBLE);
             cough.setVisibility(View.VISIBLE);
@@ -110,8 +120,8 @@ public class AfterFlow extends AppCompatActivity {
                 symptomsArray.add(easilytired.getText().toString());
             }
 
-
             savefab.setOnClickListener(vi -> {
+                String symptomsArrayListString = Arrays.toString(symptomsArray.toArray()).replaceAll("[\\[\\]]","");
                 String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
                 DatabaseHelper dbHelper2 = new DatabaseHelper(this);
                 SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
@@ -125,7 +135,7 @@ public class AfterFlow extends AppCompatActivity {
                 values.put(FlowColumn.FlowEntry.COLUMN_DATE, date);
                 values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
                 values.put(FlowColumn.FlowEntry.COLUMN_HAVE_SYMPTOM, abnormal.getText().toString());
-                values.put(FlowColumn.FlowEntry.COLUMN_SYMPTOMS, String.valueOf(symptomsArray));
+                values.put(FlowColumn.FlowEntry.COLUMN_SYMPTOMS, symptomsArrayListString);
                 values.put(FlowColumn.FlowEntry.COLUMN_CAREMETHOD, selectedspinner);
 
                 db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
@@ -136,7 +146,7 @@ public class AfterFlow extends AppCompatActivity {
             });
         });
 
-        normal.setOnClickListener(v -> savefab.setOnClickListener(vi -> {
+        normal.setOnClickListener(v -> {
 
             String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
             DatabaseHelper dbHelper2 = new DatabaseHelper(this);
@@ -158,11 +168,7 @@ public class AfterFlow extends AppCompatActivity {
             finish();
             Intent toGreen = new Intent(AfterFlow.this, GreenWarning.class);
             startActivity(toGreen);
-        }));
-
-
-//            selectedchoice = symptoms.getCheckedRadioButtonId();
-
+        });
 
     }
 }

@@ -211,7 +211,6 @@ public class FlowActivity extends AppCompatActivity {
                 finish();
                 Intent toAfter = new Intent(FlowActivity.this, AfterFlow.class);
                 String datetext = date.getText().toString();
-
                 toAfter.putExtra("pfvalue", pfvalue);
                 toAfter.putExtra("max", max);
                 toAfter.putExtra("yellow", yellowvalue);

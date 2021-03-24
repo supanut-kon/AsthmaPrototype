@@ -21,31 +21,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068" />
 
-    <RadioGroup
-        android:id="@+id/symptomchoice"
-        android:layout_width="138dp"
-        android:layout_height="95dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RadioButton
+        android:id="@+id/AbnormalRadioButton"
+        android:layout_width="139dp"
+        android:layout_height="50dp"
+        android:buttonTint="#D50A0A"
+        android:text="มีอาการผิดปกติ"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.00999999">
-
-        <RadioButton
-            android:id="@+id/NormalRadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="#8BC34A"
-            android:text="ไม่มีอาการใดๆ" />
-
-        <RadioButton
-            android:id="@+id/AbnormalRadioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:buttonTint="#D50A0A"
-            android:text="มีอาการผิดปกติ" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/normalbtn" />
 
     <TextView
         android:id="@+id/symptomsheader"
@@ -58,7 +43,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.204"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/symptomchoice" />
+        app:layout_constraintTop_toBottomOf="@+id/AbnormalRadioButton" />
+
+    <View
+        android:id="@+id/checkboxViewGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </View>
 
     <CheckBox
         android:id="@+id/cough"
@@ -77,11 +68,10 @@
         android:id="@+id/heavybreathing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:text="หายใจเสียงวี๊ด"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/symptomsheader" />
 
@@ -101,7 +91,7 @@
         android:layout_height="wrap_content"
         android:text="ตื่นกลางคืนเพราะไอหรือเหนื่อย"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintHorizontal_bias="0.287"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chestpain" />
 
@@ -111,7 +101,7 @@
         android:layout_height="wrap_content"
         android:text="ออกกำลังกายแล้วเหนื่อยกว่าปกติ"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintHorizontal_bias="0.302"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/suddenwake" />
 
@@ -135,25 +125,35 @@
         android:layout_height="46dp"
         app:layout_constraintBottom_toTopOf="@+id/savestfab"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.917"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView27"
+        app:layout_constraintVertical_bias="0.196" />
 
     <TextView
         android:id="@+id/textView27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="504dp"
+        android:layout_marginTop="500dp"
         android:text="การดูแลรักษา"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/carespinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.188"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/normalbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#0D8811"
+        android:text="ไม่มีอาการผิดปกติ"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.248"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

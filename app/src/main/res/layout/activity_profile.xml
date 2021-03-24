@@ -56,20 +56,6 @@
             tools:srcCompat="@tools:sample/avatars" />
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/nametext"
-        android:layout_width="227dp"
-        android:layout_height="41dp"
-        android:text="Patient's Name"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.233"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView7"
-        app:layout_constraintVertical_bias="0.097" />
-
     <!--    <TextView-->
 <!--        android:id="@+id/textView9"-->
 <!--        android:layout_width="330dp"-->
@@ -84,6 +70,20 @@
 <!--        app:layout_constraintTop_toBottomOf="@+id/textView8"-->
 <!--        app:layout_constraintVertical_bias="0.154" />-->
 
+
+    <TextView
+        android:id="@+id/nametext"
+        android:layout_width="227dp"
+        android:layout_height="41dp"
+        android:text="Patient's Name"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.282"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView7"
+        app:layout_constraintVertical_bias="0.041" />
 
     <TextView
         android:id="@+id/ageText"
@@ -109,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/configbtn"
-        app:layout_constraintVertical_bias="0.42" />
+        app:layout_constraintVertical_bias="0.291" />
 
     <TextView
         android:id="@+id/genderText"
@@ -129,12 +129,12 @@
         android:id="@+id/configbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Patient Configuration"
+        android:text="แก้ไขข้อมูลผู้ป่วย"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heightText"
-        app:layout_constraintVertical_bias="0.505" />
+        app:layout_constraintVertical_bias="0.66" />
 
     <TextView
         android:id="@+id/weightProfileText"

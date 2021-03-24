@@ -128,17 +128,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Spinner
-        android:id="@+id/medspinner"
-        android:layout_width="280dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/medheader"
-        app:layout_constraintVertical_bias="0.0" />
-
     <TextView
         android:id="@+id/medheader"
         android:layout_width="wrap_content"
@@ -154,30 +143,6 @@
         app:layout_constraintTop_toBottomOf="@+id/congenitaltext"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/hospitalheader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="โรงพยาบาล"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/medspinner" />
-
-    <Spinner
-        android:id="@+id/hospitalspinner"
-        android:layout_width="280dp"
-        android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hospitalheader"
-        app:layout_constraintVertical_bias="0.0" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/saveprofilefab"
         android:layout_width="wrap_content"
@@ -187,7 +152,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hospitalspinner"
         app:srcCompat="@drawable/check" />
 
     <EditText
@@ -213,5 +177,13 @@
         app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weightText" />
+
+    <Button
+        android:id="@+id/editMedbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="เลือกยา"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="481dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

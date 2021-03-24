@@ -2,6 +2,8 @@ package cnmi.it.asthmaprototype.Models;
 
 public class PatientModel {
     private int id;
+    private String hn;
+    private String name;
     private int age;
     private int height;
     private String gender;
@@ -9,14 +11,32 @@ public class PatientModel {
     private String congenital;
 
 
-    public PatientModel(int id, int age, int height, String gender, String weight, String congenital) {
+    public PatientModel(int id, String hn, String name,int age, int height, String gender, String weight, String congenital) {
         this.id = id;
+        this.hn = hn;
+        this.name = name;
         this.age = age;
         this.height = height;
         this.gender = gender;
         this.weight = weight;
         this.congenital = congenital;
 
+    }
+
+    public String getHn() {
+        return hn;
+    }
+
+    public void setHn(String hn) {
+        this.hn = hn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getWeight() {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="caremethods" >
-        <item>พ่นยาทที่บ้าน</item>
+        <item>พ่นยาที่บ้าน</item>
         <item>พ่นยาที่ ร.พ.</item>
         <item>นอน ร.พ.</item>
         <item>ขาดเรียน</item>

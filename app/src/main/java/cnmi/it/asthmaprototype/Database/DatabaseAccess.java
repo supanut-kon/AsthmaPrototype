@@ -17,8 +17,6 @@ public class DatabaseAccess {
     private PatientModel patientModel;
     private FlowModel flows;
     private ArrayList<FlowModel> flowsArraylist;
-//    private SummaryModel sumModel;
-//    private ArrayList<MedModel> medModelArrayList;
 
 
     private DatabaseAccess(Context context) {

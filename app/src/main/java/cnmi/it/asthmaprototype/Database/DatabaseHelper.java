@@ -16,6 +16,8 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + PatientColumn.PatientEntry.TABLE_NAME + " (" +
                     PatientColumn.PatientEntry._ID + " INTEGER PRIMARY KEY," +
                     PatientColumn.PatientEntry.COLUMN_AGE + " INTEGER," +
+                    PatientColumn.PatientEntry.COLUMN_HN + " TEXT," +
+                    PatientColumn.PatientEntry.COLUMN_NAME + " TEXT," +
                     PatientColumn.PatientEntry.COLUMN_HEIGHT + " INTEGER," +
                     PatientColumn.PatientEntry.COLUMN_WEIGHT + " TEXT, " +
                     PatientColumn.PatientEntry.COLUMN_CONGENITAL+" TEXT, " +
