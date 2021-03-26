@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
-import cnmi.it.asthmaprototype.CardAdapter;
+import cnmi.it.asthmaprototype.Adapters.CardAdapter;
 import cnmi.it.asthmaprototype.Database.DatabaseAccess;
 import cnmi.it.asthmaprototype.Models.FlowModel;
 import cnmi.it.asthmaprototype.R;

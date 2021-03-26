@@ -1,4 +1,4 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import cnmi.it.asthmaprototype.Models.FlowModel;
+import cnmi.it.asthmaprototype.R;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.SumHolder> {
 

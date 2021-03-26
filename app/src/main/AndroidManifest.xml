@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AsthmaPrototype">
-        <activity android:name=".Activities.AfterFlow"></activity>
+        <activity android:name=".HospitalSelectActivity" />
+        <activity android:name=".Activities.AddMedActivity"
+            android:exported="true"/>
+        <activity android:name=".Activities.AfterFlow" />
         <activity android:name=".Activities.RedWarning" />
         <activity android:name=".Activities.YellowWarning" />
         <activity android:name=".Activities.GreenWarning" />

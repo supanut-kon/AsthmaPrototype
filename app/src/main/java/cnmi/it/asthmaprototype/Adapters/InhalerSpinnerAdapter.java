@@ -1,4 +1,4 @@
-package cnmi.it.asthmaprototype;
+package cnmi.it.asthmaprototype.Adapters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;

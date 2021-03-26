@@ -67,5 +67,10 @@ public class PatientConfig extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Bundle extras = getIntent().getExtras();
 
+    }
 }
