@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/home"
-        android:title="Home"
-        android:icon="@drawable/home_white"
-        app:showAsAction="ifRoom"
-        android:contentDescription="Home"/>
+<!--    <item android:id="@+id/home"-->
+<!--        android:title="Home"-->
+<!--        android:icon="@drawable/home_white"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        android:contentDescription="Home"/>-->
+    <item android:id="@+id/guide"
+        android:title="guide"
+        app:showAsAction="always"
+        android:contentDescription="Guide"
+        android:icon="@drawable/open_book"/>
+
     <item android:id="@+id/add"
         android:title="Add"
-        android:icon="@drawable/statistics"
+        android:icon="@drawable/graph"
         app:showAsAction="always"
         android:contentDescription="Statistics"/>
+
+
 <!--    <item android:id="@+id/profile"-->
 <!--        android:title="Profile"-->
 <!--        android:icon="@drawable/user_dark"-->

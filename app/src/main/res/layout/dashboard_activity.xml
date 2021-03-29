@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="380dp"
@@ -83,7 +84,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="35dp"
                     android:layout_weight="1"
                     android:text="Good"
                     android:textAlignment="center"
@@ -98,7 +99,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/dashboardItem"
         android:layout_width="380dp"
-        android:layout_height="288dp"
+        android:layout_height="175dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
@@ -202,16 +203,15 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
+        android:id="@+id/profilepiccard"
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:cardCornerRadius="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
@@ -229,11 +229,11 @@
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cardView2"
-        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintEnd_toStartOf="@+id/profilepiccard"
+        app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.063" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -273,7 +273,7 @@
             android:contentDescription="Add"
             app:backgroundTint="#57C740"
             app:layout_anchor="@id/bottomAppBar"
-            app:srcCompat="@drawable/add" />
+            app:srcCompat="@drawable/inhaler_icon" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <androidx.cardview.widget.CardView
@@ -282,11 +282,11 @@
         android:layout_height="75dp"
         app:cardCornerRadius="255dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toStartOf="@+id/cardView2"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintEnd_toStartOf="@+id/profilepiccard"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.53">
+        app:layout_constraintVertical_bias="0.51">
 
         <ImageView
             android:id="@+id/sosimg"

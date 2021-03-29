@@ -22,13 +22,10 @@ public class Profile extends AppCompatActivity {
     ImageView profilepic;
     TextView patientAge, patientHeight, patientGender, patientWeight, patientCongenital;
     Button configbtn;
-    int id;
-    int age;
-    int height;
-    String gender;
-    String weight;
-    String congenital;
+    int id, age, height;
+    String gender, weight, congenital;
     GoogleSignInClient googleSignInClient;
+    ImageView backImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +41,13 @@ public class Profile extends AppCompatActivity {
         patientWeight = findViewById(R.id.weightProfileText);
         patientCongenital = findViewById(R.id.congenitalProfileText);
         configbtn = findViewById(R.id.configbtn);
+        backImg = findViewById(R.id.backImage);
 
         logout.setOnClickListener(v -> GoogleSignOut());
         profilepic = findViewById(R.id.profilepic);
         profilepic.setImageResource(R.drawable.man);
+
+        backImg.setOnClickListener(v -> onBackPressed());
 
         configbtn.setOnClickListener(v -> {
 

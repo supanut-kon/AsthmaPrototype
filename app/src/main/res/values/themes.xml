@@ -17,14 +17,6 @@
         <item name="fontFamily">@font/sarabunregular</item>
     </style>
 
-    <style name="textviewcustomfont" parent="android:Widget.TextView">
-        <item name="android:fontFamily">@font/sarabunregular</item>
-    </style>
-
-    <style name="buttoncustomtext" parent="android:Widget.Holo.Button">
-        <item name="android:fontFamily">@font/sarabunregular</item>
-    </style>
-
     <style name="Theme.AsthmaPrototype.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

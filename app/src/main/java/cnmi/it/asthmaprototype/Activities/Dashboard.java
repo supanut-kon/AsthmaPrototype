@@ -8,9 +8,14 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,13 +34,15 @@ public class Dashboard extends AppCompatActivity {
     ImageView profilepic;
     ImageView dashboardPic;
     ProgressBar progressBar;
+    String gName;
     ImageView SOS;
     TextView name;
     Uri gPhoto;
     FloatingActionButton fab;
     RecyclerView recyclerView;
     CardAdapter card;
-
+    CardView profilecard;
+//    private FusedLocationProviderClient fusedLocationProviderClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,22 +51,22 @@ public class Dashboard extends AppCompatActivity {
         //setSupportActionBar(toolbar);
         Bundle extras = getIntent().getExtras();
 
-//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-//        if(acct != null){
-//            gName = acct.getDisplayName();
-//            gPhoto = acct.getPhotoUrl();
-//        }
+//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+        if(acct != null){
+            gName = acct.getDisplayName();
+            gPhoto = acct.getPhotoUrl();
+        }
 //        Uri pf = Uri.parse(extras.getString("uri"));
 //        String nname = extras.getString("strName");
 
-        //bottomNavigationView = findViewById(R.id.btnnvg);
         profilepic = findViewById(R.id.dbprofilepic);
-//        profilepic.setImageURI(pf);
+        profilepic.setImageURI(gPhoto);
         profilepic.setImageResource(R.drawable.man);
         name = findViewById(R.id.user_name);
         name.setText("Patient's Name");
         dashboardPic = findViewById(R.id.dashboardimage);
-//        progressBar = findViewById(R.id.dashboardProgressBar);
         bottomAppBar = findViewById(R.id.bottomAppBar);
         SOS = findViewById(R.id.sosimg);
         fab = findViewById(R.id.fabadd);
@@ -69,22 +76,19 @@ public class Dashboard extends AppCompatActivity {
             startActivity(new Intent(Dashboard.this, RedWarning.class));
         });
 
-//        progressBar.setScaleX(3f);
-//        progressBar.setScaleY(3f);
-//        progressBar.setProgress(75);
-//        dashboardPic.setImageResource(R.drawable.ventolin_inhaler);
+        getFlows();
 
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         ArrayList<FlowModel> queryFlows = databaseAccess.getFlow();
         databaseAccess.close();
 
+
         LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
         card = new CardAdapter(this, queryFlows);
         recyclerView.setAdapter(card);
         card.notifyDataSetChanged();
-
 
         bottomAppBar.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
@@ -97,15 +101,12 @@ public class Dashboard extends AppCompatActivity {
             return true;
         });
 
-        fab.setOnClickListener(v -> {
-            startActivity(new Intent(Dashboard.this, FlowActivity.class));
-        });
+        fab.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, FlowActivity.class)));
+
+        profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, Profile.class)));
 
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+    public void getFlows(){
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         ArrayList<FlowModel> queryFlows = databaseAccess.getFlow();
@@ -117,4 +118,11 @@ public class Dashboard extends AppCompatActivity {
         recyclerView.setAdapter(card);
         card.notifyDataSetChanged();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getFlows();
+    }
+
 }
