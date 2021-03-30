@@ -17,15 +17,18 @@ public class AddMedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_med);
 
-        card1 = findViewById(R.id.card1);
-        card2 = findViewById(R.id.card2);
+//        card1 = findViewById(R.id.card1);
+//        card2 = findViewById(R.id.card2);
+//
+//        card1.setOnClickListener(v ->{
+//           card1.setChecked(!card1.isChecked());
+//        });
+//
+//        card2.setOnClickListener(v ->{
+//            card2.setChecked(!card2.isChecked());
+//        });
 
-        card1.setOnClickListener(v ->{
-           card1.setChecked(!card1.isChecked());
-        });
+        
 
-        card2.setOnClickListener(v ->{
-            card2.setChecked(!card2.isChecked());
-        });
     }
 }
