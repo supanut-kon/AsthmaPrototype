@@ -17,7 +17,7 @@
         <activity android:name=".Activities.GuideActivity" />
         <activity android:name=".HospitalSelectActivity" />
         <activity
-            android:name=".Activities.AddMedActivity"
+            android:name=".Activities.AddInhalerActivity"
             android:exported="true" />
         <activity android:name=".Activities.AfterFlow" />
         <activity android:name=".Activities.RedWarning" />

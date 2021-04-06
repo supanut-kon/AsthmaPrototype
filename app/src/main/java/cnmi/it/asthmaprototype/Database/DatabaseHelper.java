@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import cnmi.it.asthmaprototype.Models.FlowColumn;
+import cnmi.it.asthmaprototype.Models.InhalerColumn;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
 
 public class  DatabaseHelper extends SQLiteOpenHelper {
@@ -39,6 +40,14 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
             FlowColumn.FlowEntry.COLUMN_TIME+ " TIME," +
             FlowColumn.FlowEntry.COLUMN_DATE+ " DATE)";
 
+    private static final String SQL_CREATE_INHALER = "CREATE TABLE " + InhalerColumn.InhalerEntry.TABLE_NAME + " (" +
+            InhalerColumn.InhalerEntry._ID + " INTEGER PRIMARY KEY," +
+            InhalerColumn.InhalerEntry.COLUMN_NAME + " TEXT,"+
+            InhalerColumn.InhalerEntry.COLUMN_IMAGE+ " BLOB,"+
+            InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE+ " DATE)";
+
+    private static final String SQL_DELETE_INHALER = "DROP TABLE IF EXISTS " + InhalerColumn.InhalerEntry.TABLE_NAME;
+
     private static final String SQL_DELETE_FLOW = "DROP TABLE IF EXISTS " + FlowColumn.FlowEntry.TABLE_NAME;
 
     public DatabaseHelper(Context context) {
@@ -46,10 +55,12 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(SQL_CREATE_ENTRIES);
         db.execSQL(SQL_CREATE_FLOW);
+        db.execSQL(SQL_CREATE_INHALER);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -57,6 +68,7 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
         // to simply to discard the data and start over
         db.execSQL(SQL_DELETE_ENTRIES);
         db.execSQL(SQL_DELETE_FLOW);
+        db.execSQL(SQL_DELETE_INHALER);
         onCreate(db);
     }
 }
