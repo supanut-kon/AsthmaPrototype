@@ -16,13 +16,10 @@ import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
 import cnmi.it.asthmaprototype.R;
 
-public class PatientConfig extends AppCompatActivity {
+public class PatientInformationEdit extends AppCompatActivity {
 
     RadioGroup genderGroup;
-    EditText age;
-    EditText height;
-    EditText weight;
-    EditText congenital;
+    EditText age, height, weight, congenital, hn, patientname;
     //Button confirmbtn;
     FloatingActionButton savefab;
 
@@ -30,7 +27,7 @@ public class PatientConfig extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_config);
+        setContentView(R.layout.activity_patient_info);
 
         age = findViewById(R.id.ageInput);
         height = findViewById(R.id.heightInput);
@@ -38,6 +35,8 @@ public class PatientConfig extends AppCompatActivity {
         savefab = findViewById(R.id.saveprofilefab);
         weight = findViewById(R.id.weightText);
         congenital = findViewById(R.id.congenitaltext);
+        hn = findViewById(R.id.hntext);
+        patientname = findViewById(R.id.patientnametext);
 
         savefab.setOnClickListener(v -> {
             int iage = Integer.parseInt(age.getText().toString().trim());
@@ -45,23 +44,23 @@ public class PatientConfig extends AppCompatActivity {
             int selectedGender = genderGroup.getCheckedRadioButtonId();
             RadioButton selectedRadio = findViewById(selectedGender);
             String igender = selectedRadio.getText().toString();
-            String iweight = weight.getText().toString().trim();
-            String icongenital = congenital.getText().toString().trim();
+
             DatabaseHelper dbHelper = new DatabaseHelper(this);
             SQLiteDatabase db = dbHelper.getWritableDatabase();
 
             ContentValues values = new ContentValues();
+            values.put(PatientColumn.PatientEntry.COLUMN_HN, hn.getText().toString().trim());
             values.put(PatientColumn.PatientEntry.COLUMN_AGE, iage);
             values.put(PatientColumn.PatientEntry.COLUMN_HEIGHT, iheight);
             values.put(PatientColumn.PatientEntry.COLUMN_GENDER, igender);
-            values.put(PatientColumn.PatientEntry.COLUMN_WEIGHT, iweight);
-            values.put(PatientColumn.PatientEntry.COLUMN_CONGENITAL, icongenital);
+            values.put(PatientColumn.PatientEntry.COLUMN_WEIGHT, weight.getText().toString().trim());
+            values.put(PatientColumn.PatientEntry.COLUMN_CONGENITAL, congenital.getText().toString().trim());
 
             db.insert(PatientColumn.PatientEntry.TABLE_NAME, null, values);
 
             db.close();
             finish();
-            Intent toDashboard = new Intent(PatientConfig.this, Dashboard.class);
+            Intent toDashboard = new Intent(PatientInformationEdit.this, Dashboard.class);
             startActivity(toDashboard);
         });
 

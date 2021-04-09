@@ -7,6 +7,20 @@
     tools:context=".Activities.Profile">
 
     <TextView
+        android:id="@+id/hnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nametext"
+        app:layout_constraintVertical_bias="0.034" />
+
+    <TextView
         android:id="@+id/congenitalProfileText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +41,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="292dp"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -120,10 +133,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintHorizontal_bias="0.002"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nametext"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintTop_toBottomOf="@+id/hnText"
+        app:layout_constraintVertical_bias="0.047" />
 
     <Button
         android:id="@+id/configbtn"
@@ -132,9 +145,10 @@
         android:text="แก้ไขข้อมูลผู้ป่วย"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heightText"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintVertical_bias="0.567" />
 
     <TextView
         android:id="@+id/weightProfileText"

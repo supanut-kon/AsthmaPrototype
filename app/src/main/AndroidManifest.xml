@@ -23,7 +23,7 @@
         <activity android:name=".Activities.RedWarning" />
         <activity android:name=".Activities.YellowWarning" />
         <activity android:name=".Activities.GreenWarning" />
-        <activity android:name=".Activities.PatientConfig" />
+        <activity android:name=".Activities.PatientInformationEdit" />
         <activity android:name=".Activities.Profile" />
         <activity
             android:name=".MainActivity"
@@ -44,6 +44,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.PasscodeActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

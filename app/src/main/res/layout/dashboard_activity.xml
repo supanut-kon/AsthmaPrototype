@@ -241,6 +241,7 @@
         android:layout_height="86dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
@@ -264,7 +265,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:menu="@menu/bottom_navigation_items"/>
+            app:menu="@menu/bottom_navigation_items" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabadd"
@@ -274,6 +275,16 @@
             app:backgroundTint="#57C740"
             app:layout_anchor="@id/bottomAppBar"
             app:srcCompat="@drawable/inhaler_icon" />
+
+        <Button
+            android:id="@+id/dashboardyellowbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFC107"
+            android:text="คนไข้มีอาการ"
+            android:textColor="@color/black"
+            app:layout_anchor="@+id/bottomAppBar"
+            app:layout_anchorGravity="center" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <androidx.cardview.widget.CardView
