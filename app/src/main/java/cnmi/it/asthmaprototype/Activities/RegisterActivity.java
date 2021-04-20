@@ -11,6 +11,7 @@ import cnmi.it.asthmaprototype.R;
 public class RegisterActivity extends AppCompatActivity {
     Button Reg;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +20,8 @@ public class RegisterActivity extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
         Reg = findViewById(R.id.registerbtn);
+
+
 
         Reg.setOnClickListener(v -> {
             finish();

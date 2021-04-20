@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -131,7 +130,7 @@ public class AfterFlow extends AppCompatActivity {
                 values.put(FlowColumn.FlowEntry.COLUMN_MAX, peakflow);
                 values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
                 values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
-                values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
+                values.put(FlowColumn.FlowEntry.COLUMN_PATIENT_ID, 1);
                 values.put(FlowColumn.FlowEntry.COLUMN_DATE, date);
                 values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
                 values.put(FlowColumn.FlowEntry.COLUMN_HAVE_SYMPTOM, abnormal.getText().toString());
@@ -157,7 +156,7 @@ public class AfterFlow extends AppCompatActivity {
             values.put(FlowColumn.FlowEntry.COLUMN_MAX, peakflow);
             values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
             values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
-            values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
+            values.put(FlowColumn.FlowEntry.COLUMN_PATIENT_ID, 1);
             values.put(FlowColumn.FlowEntry.COLUMN_DATE, date);
             values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
             values.put(FlowColumn.FlowEntry.COLUMN_HAVE_SYMPTOM, normal.getText().toString());

@@ -9,7 +9,7 @@ public class InhalerColumn {
     }
 
     public static class InhalerEntry implements BaseColumns{
-        public static final String TABLE_NAME = "inhaler";
+        public static final String TABLE_NAME = "asthma_inhaler";
 
         public static final String _ID = "id";
         public static final String COLUMN_NAME = "name";

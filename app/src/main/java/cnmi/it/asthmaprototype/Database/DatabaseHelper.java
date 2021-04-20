@@ -20,7 +20,7 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
                     PatientColumn.PatientEntry.COLUMN_HN + " TEXT," +
                     PatientColumn.PatientEntry.COLUMN_NAME + " TEXT," +
                     PatientColumn.PatientEntry.COLUMN_HEIGHT + " INTEGER," +
-                    PatientColumn.PatientEntry.COLUMN_WEIGHT + " TEXT, " +
+                    PatientColumn.PatientEntry.COLUMN_WEIGHT + " INTEGER, " +
                     PatientColumn.PatientEntry.COLUMN_CONGENITAL+" TEXT, " +
                     PatientColumn.PatientEntry.COLUMN_GENDER + " TEXT)";
 
@@ -36,11 +36,17 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
             FlowColumn.FlowEntry.COLUMN_HAVE_SYMPTOM + " BOOLEAN," +
             FlowColumn.FlowEntry.COLUMN_SYMPTOMS + " TEXT," +
             FlowColumn.FlowEntry.COLUMN_CAREMETHOD + " TEXT,"+
-            FlowColumn.FlowEntry.COLUMN_USER_ID + " INTEGER," +
+            FlowColumn.FlowEntry.COLUMN_PATIENT_ID + " INTEGER," +
             FlowColumn.FlowEntry.COLUMN_TIME+ " TIME," +
             FlowColumn.FlowEntry.COLUMN_DATE+ " DATE)";
 
     private static final String SQL_CREATE_INHALER = "CREATE TABLE " + InhalerColumn.InhalerEntry.TABLE_NAME + " (" +
+            InhalerColumn.InhalerEntry._ID + " INTEGER PRIMARY KEY," +
+            InhalerColumn.InhalerEntry.COLUMN_NAME + " TEXT,"+
+            InhalerColumn.InhalerEntry.COLUMN_IMAGE+ " BLOB,"+
+            InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE+ " DATE)";
+
+    private static final String SQL_CREATE_USER = "CREATE TABLE " + InhalerColumn.InhalerEntry.TABLE_NAME + " (" +
             InhalerColumn.InhalerEntry._ID + " INTEGER PRIMARY KEY," +
             InhalerColumn.InhalerEntry.COLUMN_NAME + " TEXT,"+
             InhalerColumn.InhalerEntry.COLUMN_IMAGE+ " BLOB,"+

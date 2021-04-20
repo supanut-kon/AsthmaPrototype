@@ -7,21 +7,21 @@ public class FlowModel {
     private int max;
     private int percent80;
     private int percent60;
-    private int userid;
+    private int patientid;
     private String date;
     private String time;
     private String haveSymptom;
     private String[] symptoms;
     private String caremethod;
 
-    public FlowModel(int id, int pef,String zone, int max, int percent80, int percent60, int userid, String date, String time, String haveSymptom, String[] symptoms, String caremethod) {
+    public FlowModel(int id, int pef, String zone, int max, int percent80, int percent60, int patientid, String date, String time, String haveSymptom, String[] symptoms, String caremethod) {
         this.id = id;
         this.pef = pef;
         this.zone = zone;
         this.max = max;
         this.percent80 = percent80;
         this.percent60 = percent60;
-        this.userid = userid;
+        this.patientid = patientid;
         this.date = date;
         this.time = time;
         this.haveSymptom = haveSymptom;
@@ -117,11 +117,11 @@ public class FlowModel {
         this.pef = pef;
     }
 
-    public int getUserid() {
-        return userid;
+    public int getPatientid() {
+        return patientid;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setPatientid(int patientid) {
+        this.patientid = patientid;
     }
 }
