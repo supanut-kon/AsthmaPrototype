@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import cnmi.it.asthmaprototype.Models.FlowColumn;
 import cnmi.it.asthmaprototype.Models.InhalerColumn;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
+import cnmi.it.asthmaprototype.Models.UserColumn;
 
 public class  DatabaseHelper extends SQLiteOpenHelper {
 
@@ -46,11 +47,12 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
             InhalerColumn.InhalerEntry.COLUMN_IMAGE+ " BLOB,"+
             InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE+ " DATE)";
 
-    private static final String SQL_CREATE_USER = "CREATE TABLE " + InhalerColumn.InhalerEntry.TABLE_NAME + " (" +
-            InhalerColumn.InhalerEntry._ID + " INTEGER PRIMARY KEY," +
-            InhalerColumn.InhalerEntry.COLUMN_NAME + " TEXT,"+
-            InhalerColumn.InhalerEntry.COLUMN_IMAGE+ " BLOB,"+
-            InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE+ " DATE)";
+    private static final String SQL_CREATE_USER = "CREATE TABLE " + UserColumn.UserEntry.TABLE_NAME + " (" +
+            UserColumn.UserEntry._ID + " INTEGER PRIMARY KEY," +
+            UserColumn.UserEntry.NAME + " TEXT,"+
+            UserColumn.UserEntry.EMAIL + " TEXT,"+
+            UserColumn.UserEntry.PASSWORD + "TEXT," +
+            UserColumn.UserEntry.PATIENTID + " INTEGER)";
 
     private static final String SQL_DELETE_INHALER = "DROP TABLE IF EXISTS " + InhalerColumn.InhalerEntry.TABLE_NAME;
 
@@ -67,6 +69,7 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_ENTRIES);
         db.execSQL(SQL_CREATE_FLOW);
         db.execSQL(SQL_CREATE_INHALER);
+        db.execSQL(SQL_CREATE_USER);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
