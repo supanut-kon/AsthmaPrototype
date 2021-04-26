@@ -9,7 +9,7 @@ public class UserModel {
 
 
 
-    public UserModel() {
+    public UserModel(int id, String name, String email, String password, int[] patientid) {
         this.id = id;
         this.name = name;
         this.email = email;

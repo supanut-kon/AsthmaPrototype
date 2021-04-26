@@ -61,11 +61,11 @@ public class Dashboard extends AppCompatActivity {
 //        Uri pf = Uri.parse(extras.getString("uri"));
 //        String nname = extras.getString("strName");
 
-        profilepic = findViewById(R.id.dbprofilepic);
-        profilepic.setImageURI(gPhoto);
-        profilepic.setImageResource(R.drawable.man);
+//        profilepic = findViewById(R.id.dbprofilepic);
+//        profilepic.setImageURI(gPhoto);
+//        profilepic.setImageResource(R.drawable.man);
         name = findViewById(R.id.user_name);
-        name.setText("Patient's Name");
+//        name.setText("Patient's Name");
         dashboardPic = findViewById(R.id.dashboardimage);
         bottomAppBar = findViewById(R.id.bottomAppBar);
         SOS = findViewById(R.id.sosimg);
@@ -117,6 +117,12 @@ public class Dashboard extends AppCompatActivity {
         card = new CardAdapter(this, queryFlows);
         recyclerView.setAdapter(card);
         card.notifyDataSetChanged();
+    }
+
+    private void getPatient(){
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+
     }
 
     @Override

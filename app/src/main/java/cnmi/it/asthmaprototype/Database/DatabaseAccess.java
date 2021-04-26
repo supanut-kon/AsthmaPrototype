@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import cnmi.it.asthmaprototype.Models.FlowModel;
 import cnmi.it.asthmaprototype.Models.PatientModel;
+import cnmi.it.asthmaprototype.Models.UserModel;
 
 public class DatabaseAccess {
     private static DatabaseAccess instance;
@@ -18,6 +19,8 @@ public class DatabaseAccess {
     private PatientModel patientModel;
     private FlowModel flows;
     private ArrayList<FlowModel> flowsArraylist;
+    private ArrayList<UserModel> userArraylist;
+    private UserModel theuser;
 
 
     private DatabaseAccess(Context context) {
@@ -54,4 +57,34 @@ public class DatabaseAccess {
         c.close();
         return flowsArraylist;
     }
+
+    public ArrayList<UserModel> getUser(String currentUserId){
+        userArraylist = new ArrayList<>();
+
+        Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE id = " + currentUserId, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3), new int[]{c.getInt(4)});
+            userArraylist.add(theuser);
+            c.moveToNext();
+        }
+        c.close();
+        return userArraylist;
+    }
+
+    public ArrayList<UserModel> getPatient(String currentUserId){
+        userArraylist = new ArrayList<>();
+
+        Cursor c = database.rawQuery("SELECT * FROM asthma_patient WHERE id = " + currentUserId, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            theuser = new PatientModel();
+            userArraylist.add(theuser);
+            c.moveToNext();
+        }
+        c.close();
+        return userArraylist;
+    }
+
+
 }

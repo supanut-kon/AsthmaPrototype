@@ -216,16 +216,17 @@
 
         <ImageView
             android:id="@+id/dbprofilepic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            tools:srcCompat="@drawable/add_user"
+            android:layout_gravity="center" />
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="name"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
