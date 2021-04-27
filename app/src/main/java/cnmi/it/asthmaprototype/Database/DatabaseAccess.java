@@ -58,10 +58,24 @@ public class DatabaseAccess {
         return flowsArraylist;
     }
 
-    public ArrayList<UserModel> getUser(String currentUserId){
+    public ArrayList<UserModel> getUserInfoAfterLogin(String userEmail){
         userArraylist = new ArrayList<>();
 
-        Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE id = " + currentUserId, null);
+        Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE email = " + userEmail, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3), new int[]{c.getInt(4)});
+            userArraylist.add(theuser);
+            c.moveToNext();
+        }
+        c.close();
+        return userArraylist;
+    }
+    
+    public ArrayList<UserModel> getUser(int id){
+        userArraylist = new ArrayList<>();
+
+        Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE id = " + id, null);
         c.moveToFirst();
         while (!c.isAfterLast()){
             theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3), new int[]{c.getInt(4)});

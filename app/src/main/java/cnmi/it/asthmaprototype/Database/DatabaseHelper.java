@@ -20,6 +20,7 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
                     PatientColumn.PatientEntry.COLUMN_AGE + " INTEGER," +
                     PatientColumn.PatientEntry.COLUMN_HN + " TEXT," +
                     PatientColumn.PatientEntry.COLUMN_NAME + " TEXT," +
+                    PatientColumn.PatientEntry.COLUMN_BD + " DATE," +
                     PatientColumn.PatientEntry.COLUMN_HEIGHT + " INTEGER," +
                     PatientColumn.PatientEntry.COLUMN_WEIGHT + " INTEGER, " +
                     PatientColumn.PatientEntry.COLUMN_CONGENITAL+" TEXT, " +
@@ -52,7 +53,7 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
             UserColumn.UserEntry.NAME + " TEXT,"+
             UserColumn.UserEntry.EMAIL + " TEXT,"+
             UserColumn.UserEntry.PASSWORD + "TEXT," +
-            UserColumn.UserEntry.PATIENTID + " INTEGER)";
+            UserColumn.UserEntry.PATIENTID + " TEXT)";
 
     private static final String SQL_DELETE_INHALER = "DROP TABLE IF EXISTS " + InhalerColumn.InhalerEntry.TABLE_NAME;
 

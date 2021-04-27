@@ -1,6 +1,8 @@
 package cnmi.it.asthmaprototype.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -29,11 +31,9 @@ import cnmi.it.asthmaprototype.R;
 
 public class Dashboard extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
     BottomAppBar bottomAppBar;
     ImageView profilepic;
     ImageView dashboardPic;
-    ProgressBar progressBar;
     String gName;
     ImageView SOS;
     TextView name;
@@ -49,7 +49,8 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.dashboard_activity);
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-        Bundle extras = getIntent().getExtras();
+        //Bundle extras = getIntent().getExtras();
+        SharedPreferences getPrefs = this.getSharedPreferences("AppPreferences", MODE_PRIVATE);
 
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -72,9 +73,11 @@ public class Dashboard extends AppCompatActivity {
         fab = findViewById(R.id.fabadd);
         recyclerView = findViewById(R.id.recyclerView);
 
+
         SOS.setOnClickListener(v -> {
             startActivity(new Intent(Dashboard.this, RedWarning.class));
         });
+
 
         getFlows();
 
@@ -89,7 +92,6 @@ public class Dashboard extends AppCompatActivity {
         card = new CardAdapter(this, queryFlows);
         recyclerView.setAdapter(card);
         card.notifyDataSetChanged();
-
         bottomAppBar.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
@@ -103,7 +105,7 @@ public class Dashboard extends AppCompatActivity {
 
         fab.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, FlowActivity.class)));
 
-        profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, Profile.class)));
+        //profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, Profile.class)));
 
     }
     public void getFlows(){

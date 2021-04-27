@@ -12,6 +12,7 @@ public final class PatientColumn {
         public static final String COLUMN_HN = "hn";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_AGE = "age";
+        public static final String COLUMN_BD = "birthdate";
         public static final String COLUMN_HEIGHT = "height";
         public static final String COLUMN_GENDER = "gender";
         public static final String COLUMN_WEIGHT = "weight";

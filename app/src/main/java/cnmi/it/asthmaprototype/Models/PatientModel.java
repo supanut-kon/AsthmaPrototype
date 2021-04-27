@@ -1,26 +1,38 @@
 package cnmi.it.asthmaprototype.Models;
 
+import java.util.Date;
+
 public class PatientModel {
     private int id;
     private String hn;
     private String name;
     private int age;
+    private Date birthdate;
     private int height;
     private String gender;
     private String weight;
     private String congenital;
 
 
-    public PatientModel(int id, String hn, String name,int age, int height, String gender, String weight, String congenital) {
+    public PatientModel(int id, String hn, String name,int age, Date birthdate, int height, String gender, String weight, String congenital) {
         this.id = id;
         this.hn = hn;
         this.name = name;
         this.age = age;
+        this.birthdate = birthdate;
         this.height = height;
         this.gender = gender;
         this.weight = weight;
         this.congenital = congenital;
 
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getHn() {
