@@ -16,11 +16,12 @@ public class DatabaseAccess {
     private static DatabaseAccess instance;
     private final SQLiteOpenHelper openHelper;
     private SQLiteDatabase database;
-    private PatientModel patientModel;
     private FlowModel flows;
     private ArrayList<FlowModel> flowsArraylist;
     private ArrayList<UserModel> userArraylist;
+    private ArrayList<PatientModel> patientArraylist;
     private UserModel theuser;
+    private PatientModel patients;
 
 
     private DatabaseAccess(Context context) {
@@ -64,7 +65,7 @@ public class DatabaseAccess {
         Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE email = " + userEmail, null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3), new int[]{c.getInt(4)});
+            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3));
             userArraylist.add(theuser);
             c.moveToNext();
         }
@@ -78,7 +79,7 @@ public class DatabaseAccess {
         Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE id = " + id, null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3), new int[]{c.getInt(4)});
+            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3));
             userArraylist.add(theuser);
             c.moveToNext();
         }
@@ -86,18 +87,18 @@ public class DatabaseAccess {
         return userArraylist;
     }
 
-    public ArrayList<UserModel> getPatient(String currentUserId){
-        userArraylist = new ArrayList<>();
+    public ArrayList<PatientModel> getPatient(int currentUserId){
+        patientArraylist = new ArrayList<>();
 
-        Cursor c = database.rawQuery("SELECT * FROM asthma_patient WHERE id = " + currentUserId, null);
+        Cursor c = database.rawQuery("SELECT * FROM asthma_patient WHERE userid = " + currentUserId, null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            theuser = new PatientModel(c.getInt(0), c.getString(1), c.getString(2), );
-            userArraylist.add(theuser);
+            patients = new PatientModel(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getString(4), c.getInt(5), c.getString(6), c.getString(7), c.getString(8), c.getString(9), c.getInt(10));
+            patientArraylist.add(patients);
             c.moveToNext();
         }
         c.close();
-        return userArraylist;
+        return patientArraylist;
     }
 
 

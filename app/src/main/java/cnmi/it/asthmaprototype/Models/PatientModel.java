@@ -7,14 +7,16 @@ public class PatientModel {
     private String hn;
     private String name;
     private int age;
-    private Date birthdate;
+    private String birthdate;
     private int height;
     private String gender;
     private String weight;
     private String congenital;
+    private String inhaler;
+    private int userid;
 
 
-    public PatientModel(int id, String hn, String name,int age, Date birthdate, int height, String gender, String weight, String congenital) {
+    public PatientModel(int id, String hn, String name,int age, String birthdate, int height, String gender, String weight, String congenital, String inhaler, int userid) {
         this.id = id;
         this.hn = hn;
         this.name = name;
@@ -24,14 +26,32 @@ public class PatientModel {
         this.gender = gender;
         this.weight = weight;
         this.congenital = congenital;
+        this.inhaler = inhaler;
+        this.userid = userid;
 
     }
 
-    public Date getBirthdate() {
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public String getInhaler() {
+        return inhaler;
+    }
+
+    public void setInhaler(String inhaler) {
+        this.inhaler = inhaler;
+    }
+
+    public String getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
     }
 

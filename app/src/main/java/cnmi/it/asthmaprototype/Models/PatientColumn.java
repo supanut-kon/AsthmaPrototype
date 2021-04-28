@@ -17,5 +17,6 @@ public final class PatientColumn {
         public static final String COLUMN_GENDER = "gender";
         public static final String COLUMN_WEIGHT = "weight";
         public static final String COLUMN_CONGENITAL = "congenital";
+        public static final String COLUMN_USER = "userid";
     }
 }

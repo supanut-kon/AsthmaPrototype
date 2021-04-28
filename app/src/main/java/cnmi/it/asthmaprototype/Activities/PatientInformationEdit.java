@@ -2,6 +2,7 @@ package cnmi.it.asthmaprototype.Activities;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ public class PatientInformationEdit extends AppCompatActivity {
 
     RadioGroup genderGroup;
     EditText age, height, weight, congenital, hn, patientname;
+    int userid;
     //Button confirmbtn;
     FloatingActionButton savefab;
 
@@ -28,6 +30,12 @@ public class PatientInformationEdit extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_info);
+        userid = 0;
+        SharedPreferences getPrefs = this.getSharedPreferences("AppPreferences", MODE_PRIVATE);
+        if(getPrefs !=null) {
+
+            userid = getPrefs.getInt("id", 0);
+        }
 
         age = findViewById(R.id.ageInput);
         height = findViewById(R.id.heightInput);
@@ -55,6 +63,7 @@ public class PatientInformationEdit extends AppCompatActivity {
             values.put(PatientColumn.PatientEntry.COLUMN_GENDER, igender);
             values.put(PatientColumn.PatientEntry.COLUMN_WEIGHT, weight.getText().toString().trim());
             values.put(PatientColumn.PatientEntry.COLUMN_CONGENITAL, congenital.getText().toString().trim());
+            values.put(PatientColumn.PatientEntry.COLUMN_USER, userid);
 
             db.insert(PatientColumn.PatientEntry.TABLE_NAME, null, values);
 

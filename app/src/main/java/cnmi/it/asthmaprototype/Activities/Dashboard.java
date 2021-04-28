@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import cnmi.it.asthmaprototype.Adapters.CardAdapter;
 import cnmi.it.asthmaprototype.Database.DatabaseAccess;
 import cnmi.it.asthmaprototype.Models.FlowModel;
+import cnmi.it.asthmaprototype.Models.PatientModel;
+import cnmi.it.asthmaprototype.Models.UserModel;
 import cnmi.it.asthmaprototype.R;
 
 public class Dashboard extends AppCompatActivity {
@@ -51,6 +53,17 @@ public class Dashboard extends AppCompatActivity {
         //setSupportActionBar(toolbar);
         //Bundle extras = getIntent().getExtras();
         SharedPreferences getPrefs = this.getSharedPreferences("AppPreferences", MODE_PRIVATE);
+        int userid = getPrefs.getInt("id", 0);
+
+        DatabaseAccess db = DatabaseAccess.getInstance(this);
+        db.open();
+        ArrayList<PatientModel> patients = db.getPatient(userid);
+        if(patients == null){
+            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PatientInformationEdit.class)));
+        }else {
+            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, AddProfile.class)));
+        }
+
 
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -121,11 +134,6 @@ public class Dashboard extends AppCompatActivity {
         card.notifyDataSetChanged();
     }
 
-    private void getPatient(){
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-
-    }
 
     @Override
     protected void onResume() {

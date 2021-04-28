@@ -5,16 +5,15 @@ public class UserModel {
     private String name;
     private String email;
     private String password;
-    private int[] patientid;
 
 
 
-    public UserModel(int id, String name, String email, String password, int[] patientid) {
+
+    public UserModel(int id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.patientid = patientid;
     }
 
     public int getId() {
@@ -49,13 +48,6 @@ public class UserModel {
         this.password = password;
     }
 
-    public int[] getPatientid() {
-        return patientid;
-    }
-
-    public void setPatientid(int[] patientid) {
-        this.patientid = patientid;
-    }
 }
 
 

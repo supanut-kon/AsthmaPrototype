@@ -4,7 +4,7 @@ public class FlowModel {
     private int id;
     private int pef;
     private String zone;
-    private int max;
+    private int pefr_max;
     private int percent80;
     private int percent60;
     private int patientid;
@@ -14,11 +14,11 @@ public class FlowModel {
     private String[] symptoms;
     private String caremethod;
 
-    public FlowModel(int id, int pef, String zone, int max, int percent80, int percent60, int patientid, String date, String time, String haveSymptom, String[] symptoms, String caremethod) {
+    public FlowModel(int id, int pef, String zone, int pefr_max, int percent80, int percent60, int patientid, String date, String time, String haveSymptom, String[] symptoms, String caremethod) {
         this.id = id;
         this.pef = pef;
         this.zone = zone;
-        this.max = max;
+        this.pefr_max = pefr_max;
         this.percent80 = percent80;
         this.percent60 = percent60;
         this.patientid = patientid;
@@ -61,12 +61,12 @@ public class FlowModel {
         this.caremethod = caremethod;
     }
 
-    public int getMax() {
-        return max;
+    public int getPefr_max() {
+        return pefr_max;
     }
 
-    public void setMax(int max) {
-        this.max = max;
+    public void setPefr_max(int pefr_max) {
+        this.pefr_max = pefr_max;
     }
 
     public int getPercent80() {

@@ -12,7 +12,7 @@ public final class FlowColumn {
 
         public static final String COLUMN_FLOW = "flow";
         public static final String COLUMN_ZONE = "zone";
-        public static final String COLUMN_MAX = "max";
+        public static final String COLUMN_MAX = "pefr_max";
         public static final String COLUMN_80 = "percent80";
         public static final String COLUMN_60 = "percent60";
         public static final String COLUMN_PATIENT_ID = "userid";

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AsthmaPrototype">
-        <activity android:name=".Activities.StatsActivity"></activity>
+        <activity android:name=".Activities.AddProfile"></activity>
+        <activity android:name=".Activities.StatsActivity" />
         <activity android:name=".Activities.GuideActivity" />
         <activity android:name=".HospitalSelectActivity" />
         <activity
@@ -44,8 +45,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.PasscodeActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".Activities.PasscodeActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
