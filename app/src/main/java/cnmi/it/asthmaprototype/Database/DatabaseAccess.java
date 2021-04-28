@@ -92,7 +92,7 @@ public class DatabaseAccess {
         Cursor c = database.rawQuery("SELECT * FROM asthma_patient WHERE id = " + currentUserId, null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            theuser = new PatientModel();
+            theuser = new PatientModel(c.getInt(0), c.getString(1), c.getString(2), );
             userArraylist.add(theuser);
             c.moveToNext();
         }
