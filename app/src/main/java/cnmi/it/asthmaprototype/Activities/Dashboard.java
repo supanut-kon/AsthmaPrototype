@@ -58,11 +58,11 @@ public class Dashboard extends AppCompatActivity {
         DatabaseAccess db = DatabaseAccess.getInstance(this);
         db.open();
         ArrayList<PatientModel> patients = db.getPatient(userid);
-        if(patients == null){
-            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PatientInformationEdit.class)));
-        }else {
-            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, AddProfile.class)));
-        }
+//        if(patients == null){
+//            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PatientInformationEdit.class)));
+//        }else {
+//            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, AddProfile.class)));
+//        }
 
 
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
