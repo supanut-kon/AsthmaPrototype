@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -13,18 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AsthmaPrototype">
-        <activity android:name=".Activities.AddProfile"></activity>
-        <activity android:name=".Activities.StatsActivity" />
+        <activity android:name=".Activities.StatsActivity"></activity>
         <activity android:name=".Activities.GuideActivity" />
         <activity android:name=".HospitalSelectActivity" />
-        <activity
-            android:name=".Activities.AddInhalerActivity"
-            android:exported="true" />
+
         <activity android:name=".Activities.AfterFlow" />
-        <activity android:name=".Activities.RedWarning" />
-        <activity android:name=".Activities.YellowWarning" />
-        <activity android:name=".Activities.GreenWarning" />
-        <activity android:name=".Activities.PatientInformationEdit" />
+        <activity android:name=".Activities.RedWarning"
+            android:exported="true"/>
+        <activity android:name=".Activities.YellowWarning"
+            android:exported="true"/>
+        <activity android:name=".Activities.GreenWarning"
+            android:exported="true"/>
+
         <activity android:name=".Activities.Profile" />
         <activity
             android:name=".MainActivity"
@@ -33,7 +34,9 @@
         <activity android:name=".Activities.LoginActivity" />
         <activity
             android:name=".Activities.Dashboard"
-            android:parentActivityName=".Activities.LoginActivity" />
+            android:parentActivityName=".Activities.LoginActivity">
+
+        </activity>
         <activity
             android:name=".Activities.RegisterActivity"
             android:parentActivityName=".Activities.LoginActivity" />
@@ -45,10 +48,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activities.PasscodeActivity"
-            android:exported="true" />
-
+        <activity android:name=".Activities.PatientInformationEdit" />
+        <activity android:name=".Activities.FlowActivityAfterYellow" />
     </application>
 
 </manifest>

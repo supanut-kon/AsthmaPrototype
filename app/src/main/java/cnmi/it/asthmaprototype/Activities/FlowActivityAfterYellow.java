@@ -26,9 +26,7 @@ import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.FlowColumn;
 import cnmi.it.asthmaprototype.R;
 
-import static android.media.CamcorderProfile.get;
-
-public class FlowActivity extends AppCompatActivity {
+public class FlowActivityAfterYellow extends AppCompatActivity {
     TextView barValue, greenpef,yellowpef, redpef;
     SeekBar bar;
     int pfvalue, id, age, height, yellowvalue, redvalue;
@@ -72,7 +70,7 @@ public class FlowActivity extends AppCompatActivity {
         Date today = new Date();
         date.setText(df.format(today));
         date.setInputType(InputType.TYPE_NULL);
-        date.setOnClickListener(v -> new DatePickerDialog(FlowActivity.this, setdate, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show());
+        date.setOnClickListener(v -> new DatePickerDialog(FlowActivityAfterYellow.this, setdate, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show());
 
         checkentry();
 
@@ -92,7 +90,7 @@ public class FlowActivity extends AppCompatActivity {
 
         if (f.getCount() < 0) {
             finish();
-            Intent toConfig = new Intent(FlowActivity.this, PatientInformationEdit.class);
+            Intent toConfig = new Intent(FlowActivityAfterYellow.this, PatientInformationEdit.class);
             startActivity(toConfig);
         } else {
             flowMeasure();
@@ -204,12 +202,12 @@ public class FlowActivity extends AppCompatActivity {
                 values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
                 db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
                 db2.close();
-                Intent toRed = new Intent(FlowActivity.this, RedWarning.class);
+                Intent toRed = new Intent(FlowActivityAfterYellow.this, RedWarning.class);
 
                 startActivity(toRed);
             } else {
                 finish();
-                Intent toAfter = new Intent(FlowActivity.this, AfterFlow.class);
+                Intent toAfter = new Intent(FlowActivityAfterYellow.this, AfterFlow.class);
                 String datetext = date.getText().toString();
                 toAfter.putExtra("pfvalue", pfvalue);
                 toAfter.putExtra("max", max);
@@ -218,7 +216,7 @@ public class FlowActivity extends AppCompatActivity {
                 toAfter.putExtra("id", 1);
                 toAfter.putExtra("date", datetext);
 
-                startActivity(toAfter);
+                //startActivity(toAfter);
             }
         });
 

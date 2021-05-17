@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
         guestIn.setOnClickListener(v -> {
             finish();
-            startActivity(new Intent(LoginActivity.this, Dashboard.class));
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

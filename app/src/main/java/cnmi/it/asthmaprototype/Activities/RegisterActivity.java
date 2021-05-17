@@ -65,11 +65,11 @@ public class RegisterActivity extends AppCompatActivity {
                 db.insert(UserColumn.UserEntry.TABLE_NAME, null, values);
                 db.close();
 
-                int id = loginAfterRegister(em);
+//                int id = loginAfterRegister(em);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("username", un);
                 editor.putString("email", em);
-                editor.putInt("id", id);
+//                editor.putInt("id", id);
                 editor.apply();
 
                 finish();
