@@ -8,6 +8,7 @@ public class PatientModel {
     private String name;
     private int age;
     private String birthdate;
+    private int pefr;
     private int height;
     private String gender;
     private String weight;
@@ -16,12 +17,13 @@ public class PatientModel {
     private int userid;
 
 
-    public PatientModel(int id, String hn, String name,int age, String birthdate, int height, String gender, String weight, String congenital, String inhaler, int userid) {
+    public PatientModel(int id, String hn, String name,int age, String birthdate,int peft, int height, String gender, String weight, String congenital, String inhaler, int userid) {
         this.id = id;
         this.hn = hn;
         this.name = name;
         this.age = age;
         this.birthdate = birthdate;
+        this.pefr = pefr;
         this.height = height;
         this.gender = gender;
         this.weight = weight;
@@ -29,6 +31,14 @@ public class PatientModel {
         this.inhaler = inhaler;
         this.userid = userid;
 
+    }
+
+    public int getPefr() {
+        return pefr;
+    }
+
+    public void setPefr(int pefr) {
+        this.pefr = pefr;
     }
 
     public int getUserid() {

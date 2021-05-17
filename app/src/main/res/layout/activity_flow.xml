@@ -191,12 +191,13 @@
         android:id="@+id/switch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="632dp"
         android:text="บันทึกย้อนหลัง"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.942"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/periodchips"
+        app:layout_constraintVertical_bias="0.007" />
 
     <Button
         android:id="@+id/flowcancelbtn"

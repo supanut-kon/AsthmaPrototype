@@ -52,17 +52,17 @@ public class Dashboard extends AppCompatActivity {
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
         //Bundle extras = getIntent().getExtras();
-        SharedPreferences getPrefs = this.getSharedPreferences("AppPreferences", MODE_PRIVATE);
-        int userid = getPrefs.getInt("id", 0);
+//        SharedPreferences getPrefs = this.getSharedPreferences("AppPreferences", MODE_PRIVATE);
+//        int userid = getPrefs.getInt("id", 0);
 
-        DatabaseAccess db = DatabaseAccess.getInstance(this);
-        db.open();
-        ArrayList<PatientModel> patients = db.getPatient(userid);
-        if(patients == null){
-            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PatientInformationEdit.class)));
-        }else {
-            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, AddProfile.class)));
-        }
+//        DatabaseAccess db = DatabaseAccess.getInstance(this);
+//        db.open();
+//        ArrayList<PatientModel> patients = db.getPatient(userid);
+//        if(patients == null){
+//            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PatientInformationEdit.class)));
+//        }else {
+//            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, AddProfile.class)));
+//        }
 
 
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -74,6 +74,7 @@ public class Dashboard extends AppCompatActivity {
         }
 //        Uri pf = Uri.parse(extras.getString("uri"));
 //        String nname = extras.getString("strName");
+        profilecard = findViewById(R.id.profilepiccard);
 
 //        profilepic = findViewById(R.id.dbprofilepic);
 //        profilepic.setImageURI(gPhoto);
@@ -92,19 +93,19 @@ public class Dashboard extends AppCompatActivity {
         });
 
 
-        getFlows();
+        //getFlows();
 
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        ArrayList<FlowModel> queryFlows = databaseAccess.getFlow();
-        databaseAccess.close();
+//        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+//        databaseAccess.open();
+//        ArrayList<FlowModel> queryFlows = databaseAccess.getFlow();
+//        databaseAccess.close();
 
+//        LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+//        recyclerView.setLayoutManager(layout);
+//        card = new CardAdapter(this, queryFlows);
+//        recyclerView.setAdapter(card);
+//        card.notifyDataSetChanged();
 
-        LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layout);
-        card = new CardAdapter(this, queryFlows);
-        recyclerView.setAdapter(card);
-        card.notifyDataSetChanged();
         bottomAppBar.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
@@ -138,7 +139,7 @@ public class Dashboard extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getFlows();
+//        getFlows();
     }
 
 }

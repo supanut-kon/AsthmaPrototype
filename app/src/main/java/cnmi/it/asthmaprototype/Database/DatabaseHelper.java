@@ -21,6 +21,7 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
                     PatientColumn.PatientEntry.COLUMN_HN + " TEXT," +
                     PatientColumn.PatientEntry.COLUMN_NAME + " TEXT," +
                     PatientColumn.PatientEntry.COLUMN_BD + " DATE," +
+                    PatientColumn.PatientEntry.COLUMN_PEFR + " INTEGER," +
                     PatientColumn.PatientEntry.COLUMN_HEIGHT + " INTEGER," +
                     PatientColumn.PatientEntry.COLUMN_WEIGHT + " INTEGER, " +
                     PatientColumn.PatientEntry.COLUMN_CONGENITAL+" TEXT, " +

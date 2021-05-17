@@ -9,14 +9,15 @@ public final class PatientColumn {
 
     public static class PatientEntry implements BaseColumns {
         public static final String TABLE_NAME = "asthma_patient";
-        public static final String COLUMN_HN = "hn";
-        public static final String COLUMN_NAME = "name";
-        public static final String COLUMN_AGE = "age";
-        public static final String COLUMN_BD = "birthdate";
-        public static final String COLUMN_HEIGHT = "height";
-        public static final String COLUMN_GENDER = "gender";
-        public static final String COLUMN_WEIGHT = "weight";
-        public static final String COLUMN_CONGENITAL = "congenital";
-        public static final String COLUMN_USER = "userid";
+        public static final String COLUMN_HN = "hn";//1
+        public static final String COLUMN_NAME = "name";//2
+        public static final String COLUMN_AGE = "age";//3
+        public static final String COLUMN_BD = "birthdate";//4
+        public static final String COLUMN_PEFR = "peakflow";//5
+        public static final String COLUMN_HEIGHT = "height";//6
+        public static final String COLUMN_GENDER = "gender";//7
+        public static final String COLUMN_WEIGHT = "weight";//8
+        public static final String COLUMN_CONGENITAL = "congenital";//9
+        public static final String COLUMN_USER = "userid";//10
     }
 }

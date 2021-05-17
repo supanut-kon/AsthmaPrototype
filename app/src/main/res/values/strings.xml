@@ -6,4 +6,12 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="green_list">
+        - พ่นยาที่ใช้เป็นประจำ แม้ไม่มีอาการ
+        - ก่อนออกกำลังกาย 15 นาที อาจใช้ยาขยายหลอดลมฉุกเฉิน ครั้งละ 2 สูด
+    </string>
+
+
+
 </resources>

@@ -30,7 +30,7 @@ public class Profile extends AppCompatActivity {
     ImageView profilepic;
     TextView patientAge, patientHeight, patientGender, patientWeight, patientCongenital, patientName, patientHn;
     Button configbtn;
-    int id, age, height;
+    int id = 0, age, height;
     String gender, weight, congenital, name ,hn;
     GoogleSignInClient googleSignInClient;
     ImageView backImg;
@@ -64,17 +64,17 @@ public class Profile extends AppCompatActivity {
         backImg.setOnClickListener(v -> onBackPressed());
 
         configbtn.setOnClickListener(v -> {
-            new AlertDialog.Builder(this)
-                    .setTitle("Set Passcode")
-                    .setMessage("Please set a passcode before continue")
-                    .setCancelable(true)
-                    .setView(passcodeInput)
-                    .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-
-                    }).setNegativeButton(android.R.string.no, null)
-                    .show();
-//            Intent config = new Intent(Profile.this, PatientInformationEdit.class);
-//            startActivity(config);
+//            new AlertDialog.Builder(this)
+//                    .setTitle("Set Passcode")
+//                    .setMessage("Please set a passcode before continue")
+//                    .setCancelable(true)
+//                    .setView(passcodeInput)
+//                    .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+//
+//                    }).setNegativeButton(android.R.string.no, null)
+//                    .show();
+            Intent config = new Intent(Profile.this, PatientInformationEdit.class);
+            startActivity(config);
         });
         getDetails();
 
@@ -90,18 +90,18 @@ public class Profile extends AppCompatActivity {
 
                 //user = new UserModel(c.getInt(0), c.getInt(1), c.getInt(2), c.getString(3));
                 id = c.getInt(0);
-                age = c.getInt(1);
-                hn = c.getString(2);
-                name = c.getString(3);
-                height = c.getInt(4);
-                weight = c.getString(5);
-                congenital = c.getString(6);
+                age = c.getInt(3);
+                hn = c.getString(1);
+                name = c.getString(2);
+                height = c.getInt(6);
+                weight = c.getString(8);
+                congenital = c.getString(9);
                 gender = c.getString(7);
                 c.moveToNext();
             }
             c.close();
             db.close();
-            if(age == Integer.parseInt(null)){
+            if(id == 0){
                 patientAge.setText("Fill in gender, age, and height first!");
             } else {
                 patientName.setText(name);
