@@ -29,7 +29,7 @@ import cnmi.it.asthmaprototype.R;
 public class FlowActivityAfterYellow extends AppCompatActivity {
     TextView barValue, greenpef,yellowpef, redpef;
     SeekBar bar;
-    int pfvalue, id, age, height, yellowvalue, redvalue;
+    int pfvalue, id, age, height, yellowvalue, redvalue, count;
     String gender;
     double max;
     ChipGroup periodchip;
@@ -46,6 +46,8 @@ public class FlowActivityAfterYellow extends AppCompatActivity {
         //setSupportActionBar(toolbar);
 
         //savebtn = findViewById(R.id.flow_savebtn);
+        Bundle extras = getIntent().getExtras();
+        count = extras.getInt("count");
         bar = findViewById(R.id.seekBar);
         barValue = findViewById(R.id.barvalue);
         greenpef = findViewById(R.id.greenpeftext);
@@ -186,7 +188,7 @@ public class FlowActivityAfterYellow extends AppCompatActivity {
 //            db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
 //            db2.close();
             if (pfvalue < redvalue) {
-                finish();
+
                 String datetext = date.getText().toString();
                 String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
                 DatabaseHelper dbHelper2 = new DatabaseHelper(this);
@@ -203,19 +205,49 @@ public class FlowActivityAfterYellow extends AppCompatActivity {
                 db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
                 db2.close();
                 Intent toRed = new Intent(FlowActivityAfterYellow.this, RedWarning.class);
-
-                startActivity(toRed);
-            } else {
                 finish();
-                Intent toAfter = new Intent(FlowActivityAfterYellow.this, AfterFlow.class);
-                String datetext = date.getText().toString();
-                toAfter.putExtra("pfvalue", pfvalue);
-                toAfter.putExtra("max", max);
-                toAfter.putExtra("yellow", yellowvalue);
-                toAfter.putExtra("red", redvalue);
-                toAfter.putExtra("id", 1);
-                toAfter.putExtra("date", datetext);
+                startActivity(toRed);
+            } else if(pfvalue < yellowvalue && pfvalue > redvalue) {
+                String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
+                DatabaseHelper dbHelper2 = new DatabaseHelper(this);
+                SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_ZONE, "yellow");
+                values.put(FlowColumn.FlowEntry.COLUMN_MAX, max);
+                values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_PATIENT_ID, 1);
+                values.put(FlowColumn.FlowEntry.COLUMN_DATE, date.getText().toString());
+                values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
 
+
+                db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
+                db2.close();
+
+                Intent toYellow = new Intent(FlowActivityAfterYellow.this, YellowFinalWarningActivity.class);
+                toYellow.putExtra("count", count+1);
+                finish();
+                startActivity(toYellow);
+            }
+            else {
+
+                String datetext = date.getText().toString();
+                String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
+                DatabaseHelper dbHelper2 = new DatabaseHelper(this);
+                SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_ZONE, "green");
+                values.put(FlowColumn.FlowEntry.COLUMN_MAX, max);
+                values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
+                values.put(FlowColumn.FlowEntry.COLUMN_PATIENT_ID, 1);
+                values.put(FlowColumn.FlowEntry.COLUMN_DATE, datetext);
+                values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
+                db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
+                db2.close();
+                finish();
                 //startActivity(toAfter);
             }
         });

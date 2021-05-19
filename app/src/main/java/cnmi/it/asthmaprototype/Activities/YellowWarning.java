@@ -24,12 +24,15 @@ public class YellowWarning extends AppCompatActivity {
     FloatingActionButton fab, yellowTimer;
     TextView yellowtext, yellowinhaler, timer, againText, timerText;
     Button hiddenBtn;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yellow_warning);
 
+//        Bundle extras = getIntent().getExtras();
+//        extras.getInt("count");
         timer = findViewById(R.id.timer);
         yellowtext = findViewById(R.id.RedTextview);
         yellowtext.setText("- ใช้ยาขยายหลอดลมฉุกเฉิน ครั้งละ 3 สูด \nอาจสูดซ้ำได้ทุก 15 นาที ติดต่อกันไม่เกิน 3 ครั้ง\n\n- เป่าเครื่องวัดแรงลมสูงสุดซ้ำ หากอาการไม่ดีขึ้น\nหรือค่าแรงลมสูงสุดที่เป่าได้ยังอยู่ระดับเดิม \nให้รีบไปโรงพยาบาลที่ใกล้ที่สุด \n\n- หากอาการดีขึ้น ให้ใช้ยาขยายหลอดลมฉุกเฉิน 2-4 สูด ทุก 3-4 ชั่วโมงต่ออีก 1-2 วัน และปรับเพิ่มยาที่ใช้ประจำทุกวันเป็น 2 เท่า");
@@ -68,7 +71,10 @@ public class YellowWarning extends AppCompatActivity {
 
             }
         }.start());
-        hiddenBtn.setOnClickListener(v -> startActivity(new Intent(YellowWarning.this, FlowActivityAfterYellow.class)));
+        Intent toFlow = new Intent(YellowWarning.this, FlowActivityAfterYellow.class);
+        toFlow.putExtra("count", count+1);
+        hiddenBtn.setOnClickListener(v -> startActivity(toFlow));
+
         fab.setOnClickListener(v -> finish());
 
     }

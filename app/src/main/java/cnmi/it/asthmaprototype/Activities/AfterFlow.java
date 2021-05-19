@@ -127,7 +127,7 @@ public class AfterFlow extends AppCompatActivity {
                 ContentValues values = new ContentValues();
                 values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
                 values.put(FlowColumn.FlowEntry.COLUMN_ZONE, "yellow");
-                values.put(FlowColumn.FlowEntry.COLUMN_MAX, peakflow);
+                values.put(FlowColumn.FlowEntry.COLUMN_MAX, max);
                 values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
                 values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
                 values.put(FlowColumn.FlowEntry.COLUMN_PATIENT_ID, 1);
@@ -153,7 +153,7 @@ public class AfterFlow extends AppCompatActivity {
             ContentValues values = new ContentValues();
             values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
             values.put(FlowColumn.FlowEntry.COLUMN_ZONE, "green");
-            values.put(FlowColumn.FlowEntry.COLUMN_MAX, peakflow);
+            values.put(FlowColumn.FlowEntry.COLUMN_MAX, max);
             values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
             values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
             values.put(FlowColumn.FlowEntry.COLUMN_PATIENT_ID, 1);

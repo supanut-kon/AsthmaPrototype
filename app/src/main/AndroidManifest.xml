@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AsthmaPrototype">
-        <activity android:name=".Activities.GreenFinalActivity"></activity>
+        <activity android:name=".Activities.GreenFinalActivity" />
         <activity android:name=".Activities.FinalWarningActivity" />
         <activity android:name=".Activities.StatsActivity" />
         <activity android:name=".Activities.GuideActivity" />
@@ -51,6 +51,7 @@
         </activity>
         <activity android:name=".Activities.PatientInformationEdit" />
         <activity android:name=".Activities.FlowActivityAfterYellow" />
+        <activity android:name=".Activities.YellowFinalWarningActivity" android:exported="true"/>
     </application>
 
 </manifest>
