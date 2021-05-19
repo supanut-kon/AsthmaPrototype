@@ -135,7 +135,7 @@
         app:srcCompat="@drawable/check" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/YellowHeader1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="เมื่อมีอาการจับหืดเฉียบพลัน"
@@ -159,7 +159,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/YellowHeader1"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -176,7 +176,7 @@
         app:layout_constraintVertical_bias="0.48" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/TimerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="จับเวลา"
@@ -191,14 +191,16 @@
         android:id="@+id/hiddenBtn"
         android:layout_width="137dp"
         android:layout_height="56dp"
+        android:layout_marginTop="18dp"
         android:backgroundTint="@color/white"
         android:text="วัดแรงลมสูงสุด"
         android:textColor="#FF9800"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+        app:layout_constraintTop_toBottomOf="@+id/timer"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/againText"
@@ -206,10 +208,11 @@
         android:layout_height="wrap_content"
         android:text="โปรดวัดแรงลมสูงสุดอีกครั้ง"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/yellowCalFab"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/hiddenBtn"
-        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintHorizontal_bias="0.892"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+        app:layout_constraintTop_toBottomOf="@+id/timer"
+        app:layout_constraintVertical_bias="0.46" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
