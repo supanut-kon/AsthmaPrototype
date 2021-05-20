@@ -63,6 +63,7 @@ public class PatientInformationEdit extends AppCompatActivity {
             values.put(PatientColumn.PatientEntry.COLUMN_GENDER, igender);
             values.put(PatientColumn.PatientEntry.COLUMN_WEIGHT, weight.getText().toString().trim());
             values.put(PatientColumn.PatientEntry.COLUMN_CONGENITAL, congenital.getText().toString().trim());
+            values.put(PatientColumn.PatientEntry.COLUMN_USER, 1);
             values.put(PatientColumn.PatientEntry.COLUMN_USER, userid);
 
             db.insert(PatientColumn.PatientEntry.TABLE_NAME, null, values);

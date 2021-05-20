@@ -90,13 +90,13 @@ public class Profile extends AppCompatActivity {
 
                 //user = new UserModel(c.getInt(0), c.getInt(1), c.getInt(2), c.getString(3));
                 id = c.getInt(0);
-                age = c.getInt(3);
-                hn = c.getString(1);
-                name = c.getString(2);
+                age = c.getInt(1);
+                hn = c.getString(2);
+                name = c.getString(3);
                 height = c.getInt(6);
-                weight = c.getString(8);
-                congenital = c.getString(9);
-                gender = c.getString(7);
+                weight = c.getString(7);
+                congenital = c.getString(8);
+                gender = c.getString(9);
                 c.moveToNext();
             }
             c.close();

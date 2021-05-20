@@ -25,17 +25,16 @@ public class YellowFinalWarningActivity extends AppCompatActivity {
     TextView yellowtext, yellowinhaler, timer, againText, timerText, yellowHeader, yellowDesc, inhalertext, inhalerlabel;
     Button hiddenBtn;
     ImageView image;
-    int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yellow_warning);
 
-        Bundle extras = getIntent().getExtras();
-        if(extras!=null) {
-            count = extras.getInt("count");
-        } else count =1;
+//        Bundle extras = getIntent().getExtras();
+//        if(extras!=null) {
+//            count = extras.getInt("count");
+//        } else count =1;
         fab = findViewById(R.id.floatingActionButton);
         timer = findViewById(R.id.timer);
         yellowtext = findViewById(R.id.RedTextview);
@@ -55,15 +54,14 @@ public class YellowFinalWarningActivity extends AppCompatActivity {
         yellowDesc.setVisibility(View.INVISIBLE);
         hiddenBtn.setVisibility(View.INVISIBLE);
         againText.setVisibility(View.INVISIBLE);
-        //yellowTimer.setVisibility(View.INVISIBLE);
-        //timer.setVisibility(View.INVISIBLE);
+        yellowTimer.setVisibility(View.INVISIBLE);
+        timer.setVisibility(View.INVISIBLE);
+        timerText.setVisibility(View.INVISIBLE);
 
         yellowHeader.setText("อาการยังไม่ดีขึ้น");
-        if(count<3) {
-            yellowtext.setText("- ใช้ยาขยายหลอดลมฉุกเฉิน ครั้งละ 3 สูด\nเป่าเครื่องวัดแรงลมสูงสุดซ้ำ หากอาการไม่ดีขึ้น\nหรือค่าแรงลมสูงสุดที่เป่าได้ยังอยู่ระดับเดิม \nให้รีบไปโรงพยาบาลที่ใกล้ที่สุด\n\nขณะนี้คนไข้ได้ใช้ยาพ่นฉุกเฉินแล้ว " + count + " ครั้ง\nซึ่งไม่ควรเกินสามครั้ง ผู้ปกครองสามารถให้คนไข้ใช้ยาพ่นฉุกเฉินอีกครั้ง หรือนำคนไข้ไปโรงพยาบาลที่ใกล้ที่สุด");
-        }else {
-            yellowtext.setText("คนไข้ใช้ยาพ่นฉุกเฉิน 3 ครั้งแล้ว\nผู้ปกครองควรนำคนไข้ไปโรงพยาบาลที่ใกล้ที่สุด");
-        }
+        yellowtext.setTextSize(20);
+        yellowtext.setText("- ผู้ปกครองควรนำคนไข้ไปโรงพยาบาลที่ใกล้ที่สุดโดยด่วน");
+
         yellowTimer.setOnClickListener(v -> new CountDownTimer(9000, 1000){
 
             @Override

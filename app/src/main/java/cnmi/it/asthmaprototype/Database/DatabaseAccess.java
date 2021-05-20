@@ -93,7 +93,7 @@ public class DatabaseAccess {
         Cursor c = database.rawQuery("SELECT * FROM asthma_patient WHERE userid = " + currentUserId, null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            patients = new PatientModel(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getString(4), c.getInt(5),c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getString(10), c.getInt(11));
+            patients = new PatientModel(c.getInt(0), c.getString(1), c.getString(2), c.getInt(3), c.getString(4), c.getInt(5),c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getInt(10));
             patientArraylist.add(patients);
             c.moveToNext();
         }

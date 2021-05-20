@@ -248,7 +248,9 @@ public class FlowActivityAfterYellow extends AppCompatActivity {
                 db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
                 db2.close();
                 finish();
-                //startActivity(toAfter);
+                Intent toFinalGreen = new Intent(FlowActivityAfterYellow.this, GreenFinalActivity.class);
+
+                startActivity(toFinalGreen);
             }
         });
 

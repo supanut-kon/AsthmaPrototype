@@ -24,7 +24,7 @@ public class RedWarning extends AppCompatActivity {
 
         redText = findViewById(R.id.RedTextview);
         redText.setText("- ใช้ยาขยายหลอดลมฉุกเฉิน 6-10 สูด \nทุก 15 นาทีขณะเดินทางไปโรงพยาบาล\n\n- กินยาสเตียร์รอยด์ 1 เม็ด \nแล้วรีบไปโรงพยาบาลทันที");
-        redInhaler =findViewById(R.id.RedinhalerText);
+        redInhaler = findViewById(R.id.RedinhalerText);
         redInhaler.setText("6-10 สูด ทุก 15 นาทีขณะเดินทางไปโรงพยาบาล");
 
         fab = findViewById(R.id.floatingActionButton);
