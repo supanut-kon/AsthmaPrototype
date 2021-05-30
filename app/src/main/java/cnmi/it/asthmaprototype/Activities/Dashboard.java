@@ -54,12 +54,12 @@ public class Dashboard extends AppCompatActivity {
         //Bundle extras = getIntent().getExtras();
         SharedPreferences getPrefs = this.getSharedPreferences("AppPreferences", MODE_PRIVATE);
         int userid = getPrefs.getInt("id", 0);
-
+        profilecard = findViewById(R.id.profilepiccard);
         DatabaseAccess db = DatabaseAccess.getInstance(this);
         db.open();
         ArrayList<PatientModel> patients = db.getPatient(userid);
 //        if(patients == null){
-//            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PatientInformationEdit.class)));
+            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PasscodeActivity.class)));
 //        }else {
 //            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, AddProfile.class)));
 //        }

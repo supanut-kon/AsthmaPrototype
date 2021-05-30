@@ -52,6 +52,8 @@
         <activity android:name=".Activities.PatientInformationEdit" />
         <activity android:name=".Activities.FlowActivityAfterYellow" />
         <activity android:name=".Activities.YellowFinalWarningActivity" android:exported="true"/>
+        <activity android:name=".Activities.PasscodeActivity" />
+        <activity android:name=".Activities.AddInhalerActivity" android:exported="true"/>
     </application>
 
 </manifest>

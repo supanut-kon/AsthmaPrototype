@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     SignInButton signInButton;
     GoogleSignInClient googleSignInClient;
     Button guestIn;
+    TextView skip;
     int RC_SIGN_IN = 1;
 
     @Override
@@ -38,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         guestIn = findViewById(R.id.guestlogin);
         //register = findViewById(R.id.register);
+        skip = findViewById(R.id.SkipText);
+
+        skip.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, Dashboard.class)));
 
         guestIn.setOnClickListener(v -> {
             finish();

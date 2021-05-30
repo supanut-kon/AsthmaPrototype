@@ -22,7 +22,7 @@ public class PasscodeActivity  extends AppCompatActivity {
         passcodeView = findViewById(R.id.passcodeView);
 
 
-        passcodeView.setPasscodeLength(4).setLocalPasscode("1234")
+        passcodeView.setPasscodeLength(4)
                 .setListener(new PasscodeView.PasscodeViewListener() {
                     @Override
                     public void onFail() {
@@ -31,8 +31,14 @@ public class PasscodeActivity  extends AppCompatActivity {
 
                     @Override
                     public void onSuccess(String number) {
+                        finish();
                         startActivity(new Intent(PasscodeActivity.this, PatientInformationEdit.class));
                     }
                 });
+
+        String passcode = passcodeView.getLocalPasscode();
+        
+        
+
     }
 }

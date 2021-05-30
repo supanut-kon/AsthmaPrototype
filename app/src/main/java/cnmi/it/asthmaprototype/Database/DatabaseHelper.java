@@ -46,15 +46,20 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_INHALER = "CREATE TABLE " + InhalerColumn.InhalerEntry.TABLE_NAME + " (" +
             InhalerColumn.InhalerEntry._ID + " INTEGER PRIMARY KEY," +
-            InhalerColumn.InhalerEntry.COLUMN_NAME + " TEXT,"+
-            InhalerColumn.InhalerEntry.COLUMN_IMAGE+ " BLOB,"+
+            InhalerColumn.InhalerEntry.COLUMN_INHALERID+ " INT,"+
+            InhalerColumn.InhalerEntry.COLUMN_PRESC+" TEXT,"+
+            InhalerColumn.InhalerEntry.COLUMN_EMINHALERID+ " INT,"+
+            InhalerColumn.InhalerEntry.COLUMN_EMPRESC+ " TEXT,"+
+            InhalerColumn.InhalerEntry.COLUMN_PATIENT+ " INT,"+
             InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE+ " DATE)";
 
     private static final String SQL_CREATE_USER = "CREATE TABLE " + UserColumn.UserEntry.TABLE_NAME + " (" +
             UserColumn.UserEntry._ID + " INTEGER PRIMARY KEY," +
             UserColumn.UserEntry.NAME + " TEXT,"+
             UserColumn.UserEntry.EMAIL + " TEXT,"+
-            UserColumn.UserEntry.PASSWORD + "TEXT)";
+            UserColumn.UserEntry.PASSWORD + "TEXT,"+
+            UserColumn.UserEntry.PATIENTID + "INTEGER,"+
+            UserColumn.UserEntry.PASSCODE + "TEXT)";
 
 
     private static final String SQL_DELETE_INHALER = "DROP TABLE IF EXISTS " + InhalerColumn.InhalerEntry.TABLE_NAME;

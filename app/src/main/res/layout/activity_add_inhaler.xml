@@ -6,6 +6,108 @@
     android:layout_height="match_parent"
     tools:context=".Activities.AddInhalerActivity">
 
+    <EditText
+        android:id="@+id/emergencyTimesEdittext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/timesText8"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerEmergencySpinner" />
+
+    <TextView
+        android:id="@+id/timesText7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="สูด"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/emergencyTimesEdittext"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerEmergencySpinner" />
+
+    <TextView
+        android:id="@+id/timesText8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:text="ครั้งละ"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerEmergencySpinner" />
+
+    <TextView
+        android:id="@+id/timesText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="ครั้ง"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/indayEdittext"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
+
+    <EditText
+        android:id="@+id/indayEdittext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/timesText3"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
+
+    <TextView
+        android:id="@+id/timesText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="วันละ"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/timesText2"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
+
+    <TextView
+        android:id="@+id/timesText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="สูด"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/timesEdittext"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
+
+    <Spinner
+        android:id="@+id/inhalerEmergencySpinner"
+        android:layout_width="357dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectEmergencyInhaler"
+        app:layout_constraintVertical_bias="0.005" />
+
+    <TextView
+        android:id="@+id/selectEmergencyInhaler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="เลือกยาพ่นฉุกเฉิน"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timesText" />
+
     <TextView
         android:id="@+id/selectHeader"
         android:layout_width="wrap_content"
@@ -19,48 +121,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card1"
-        android:checkable="true"
-        android:clickable="true"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="8dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectHeader"
-        android:focusable="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp"
-            android:layout_gravity="center">
-
-
-            <ImageView
-                android:id="@+id/medimageview"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ventolin"
-                android:contentDescription="Med Picture" />
-
-            <TextView
-                android:id="@+id/medname"
-                android:layout_width="wrap_content"
-                android:text="เวนโทลิน"
-                android:textColor="#000"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
@@ -73,5 +133,62 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.948"
         app:srcCompat="@drawable/check" />
+
+    <Spinner
+        android:id="@+id/inhalerSpinner"
+        android:layout_width="357dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectHeader"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/timesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:text="ครั้งละ"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
+
+    <EditText
+        android:id="@+id/timesEdittext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/timesText"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/timesText4"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner">
+
+        <RadioButton
+            android:id="@+id/morningrRadioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="เช้า" />
+
+        <RadioButton
+            android:id="@+id/eveRadioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="เย็น" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
