@@ -16,6 +16,8 @@ public class InhalerModel {
         this.name = name;
         this.times = times;
         this.inaday = inaday;
+        this.emergency = emergency;
+        this.isactive = isactive;
     }
 
     public int getId() {

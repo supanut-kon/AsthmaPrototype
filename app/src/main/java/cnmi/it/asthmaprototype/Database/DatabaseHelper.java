@@ -59,7 +59,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             UserColumn.UserEntry.PATIENTID + "INTEGER,"+
             UserColumn.UserEntry.PASSCODE + "TEXT)";
 
-
     private static final String SQL_DELETE_INHALER = "DROP TABLE IF EXISTS " + InhalerColumn.InhalerEntry.TABLE_NAME;
 
     private static final String SQL_DELETE_FLOW = "DROP TABLE IF EXISTS " + FlowColumn.FlowEntry.TABLE_NAME;
