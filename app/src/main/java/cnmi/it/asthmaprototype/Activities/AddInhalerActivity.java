@@ -1,43 +1,43 @@
 package cnmi.it.asthmaprototype.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.ByteArrayOutputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
-import cnmi.it.asthmaprototype.Models.InhalerColumn;
+import cnmi.it.asthmaprototype.Models.InhalerModel;
 import cnmi.it.asthmaprototype.R;
 
 public class AddInhalerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    ArrayList<InhalerModel> addedInhaler;
     Spinner inhalerSpinner, emergencySpinner;
     EditText timesEdittext, indayEdittext, emergencyEdittext;
-    FloatingActionButton fab;
-    RadioGroup radio;
+    FloatingActionButton fab, addfab;
+    CheckBox morning, evening, isemergency;
+    CardView card;
+    ImageView img;
+    ViewGroup.LayoutParams layout, imageLayout;
+    TextView timesText3, timesText4;
+
     final Calendar calendar = Calendar.getInstance();
 
     int[] resources = {R.drawable.flixotide_evohaler,
@@ -55,50 +55,60 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_inhaler);
         fab = findViewById(R.id.floatingActionButton2);
+        addfab = findViewById(R.id.addFab);
         timesEdittext = findViewById(R.id.timesEdittext);
         indayEdittext = findViewById(R.id.indayEdittext);
-        emergencyEdittext = findViewById(R.id.emergencyTimesEdittext);
-        radio = findViewById(R.id.radioGroup1);
+        timesText3 = findViewById(R.id.timesText3);
+        timesText4 = findViewById(R.id.timesText4);
+        morning = findViewById(R.id.morningCheckBox);
+        evening = findViewById(R.id.eveningCheckBox);
+        isemergency = findViewById(R.id.isEmergencyCB);
 
+        if(isemergency.isChecked()){
+            timesText3.setVisibility(View.INVISIBLE);
+            indayEdittext.setVisibility(View.INVISIBLE);
+            timesText4.setVisibility(View.INVISIBLE);
+            morning.setVisibility(View.INVISIBLE);
+            evening.setVisibility(View.INVISIBLE);
+        }
+
+        addedInhaler = new ArrayList<>();
         inhalerSpinner = findViewById(R.id.inhalerSpinner);
         inhalerSpinner.setOnItemSelectedListener(this);
         CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), resources, resourcesname);
         inhalerSpinner.setAdapter(customAdapter);
 
-        emergencySpinner = findViewById(R.id.inhalerEmergencySpinner);
         emergencySpinner.setOnItemSelectedListener(this);
         emergencySpinner.setAdapter(customAdapter);
 
-//        int rowcount = c.getInt(0);
-//        if(rowcount > 0){
-//            for(int i=0;i<=resources.length;i++) {
-//                String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
-//                SQLiteDatabase writedb = helper.getWritableDatabase();
-//                ContentValues cv = new ContentValues();
-//                String flixotide = getResources().getResourceName(resources[i]);
-//                cv.put(InhalerColumn.InhalerEntry.COLUMN_NAME, resourcesname[i]);
-//                cv.put(InhalerColumn.InhalerEntry.COLUMN_IMAGE, convertImage(R.drawable.flixotide_evohaler));
-//                cv.put(InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE, timetext);
-//            }
-//        }
+        addfab.setOnClickListener(v->{
+
+        });
 
         fab.setOnClickListener(v->{
-
-            String timetext = new SimpleDateFormat("HH:mm:ss").format(calendar.getTime());
             DatabaseHelper helper = new DatabaseHelper(this);
             SQLiteDatabase writedb = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
-            RadioButton selected = findViewById(radio.getCheckedRadioButtonId());
-            cv.put(InhalerColumn.InhalerEntry.COLUMN_INHALERID, inhalerSpinner.getSelectedItemPosition());
-            cv.put(InhalerColumn.InhalerEntry.COLUMN_PRESC, "ครั้งละ "+ timesEdittext.getText().toString() + " สูด" + " วันละ"+indayEdittext.getText().toString()+" ครั้ง"+" ตอน "+selected.getText().toString());
-            cv.put(InhalerColumn.InhalerEntry.COLUMN_EMINHALERID, emergencySpinner.getSelectedItemPosition());
-            cv.put(InhalerColumn.InhalerEntry.COLUMN_EMPRESC, "ครั้งละ "+emergencyEdittext.getText().toString()+ " สูด");
-            cv.put(InhalerColumn.InhalerEntry.COLUMN_PATIENT, 1);
-            cv.put(InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE, Calendar.DATE+" "+timetext);
-            writedb.insert(InhalerColumn.InhalerEntry.TABLE_NAME, null, cv);
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_INHALERID, inhalerSpinner.getSelectedItemPosition());
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_PRESC, "ครั้งละ "+ timesEdittext.getText().toString() + " สูด" + " วันละ"+indayEdittext.getText().toString()+" ครั้ง"+" ตอน "+selected.getText().toString());
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_EMINHALERID, emergencySpinner.getSelectedItemPosition());
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_EMPRESC, "ครั้งละ "+emergencyEdittext.getText().toString()+ " สูด");
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_PATIENT, 1);
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE, Calendar.DATE+" "+timetext);
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_DID, inhalerSpinner.getSelectedItemPosition());
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_NAME, inhalerSpinner.getSelectedItem().toString());
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_TIMES, timesEdittext.getText().toString().trim());
+//            cv.put(InhalerColumn.InhalerEntry.COLUMN_INADAY, indayEdittext.getText().toString().trim());
+//            writedb.insert(InhalerColumn.InhalerEntry.TABLE_NAME, null, cv);
+            
+//            ContentValues emergency = new ContentValues();
+//            emergency.put(InhalerColumn.InhalerEntry.COLUMN_DID, emergencySpinner.getSelectedItemPosition());
+//            emergency.put(InhalerColumn.InhalerEntry.COLUMN_NAME, emergencySpinner.getSelectedItem().toString());
+//            emergency.put(InhalerColumn.InhalerEntry.COLUMN_TIMES, emergencyEdittext.getText().toString().trim());
+//            emergency.put(InhalerColumn.InhalerEntry.COLUMN_INADAY, "0");
+//            writedb.insert(InhalerColumn.InhalerEntry.TABLE_NAME,null,emergency);
 
-
-
+            writedb.close();
         });
     }
 

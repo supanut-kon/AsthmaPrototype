@@ -12,13 +12,12 @@ public class InhalerColumn {
         public static final String TABLE_NAME = "asthma_inhaler";
 
         public static final String _ID = "id";
-        public static final String COLUMN_INHALERID = "inhalerid";
-        public static final String COLUMN_PRESC = "prescription";
-        public static final String COLUMN_EMINHALERID = "emergencyinhalerid";
-        public static final String COLUMN_EMPRESC = "emergencyprescription";
-        public static final String COLUMN_PATIENT = "patientid";
-        public static final String COLUMN_UPDATE_DATE = "update_date";
-
+        public static final String COLUMN_DID = "drugid";
+        public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_TIMES = "times";
+        public static final String COLUMN_INADAY = "inaday";
+        public static final String COLUMN_EMERGENCY = "is_emergency";
+        public static final String COLUMN_ISACTIVE = "is_active";
 
     }
 

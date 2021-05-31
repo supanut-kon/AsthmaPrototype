@@ -4,13 +4,18 @@ import java.sql.Blob;
 
 public class InhalerModel {
     private int id;
+    private int did;
     private String name;
-    private Blob image;
-
-    public InhalerModel(int id, String name, Blob image) {
+    private String times;
+    private String inaday;
+    private int emergency;
+    private int isactive;
+    public InhalerModel(int id, int did, String name, String times, String inaday, int emergency, int isactive) {
         this.id = id;
+        this.did = did;
         this.name = name;
-        this.image = image;
+        this.times = times;
+        this.inaday = inaday;
     }
 
     public int getId() {
@@ -29,11 +34,43 @@ public class InhalerModel {
         this.name = name;
     }
 
-    public Blob getImage() {
-        return image;
+    public String getTimes() {
+        return times;
     }
 
-    public void setImage(Blob image) {
-        this.image = image;
+    public void setTimes(String times) {
+        this.times = times;
+    }
+
+    public String getInaday() {
+        return inaday;
+    }
+
+    public void setInaday(String inaday) {
+        this.inaday = inaday;
+    }
+
+    public int getDid() {
+        return did;
+    }
+
+    public void setDid(int did) {
+        this.did = did;
+    }
+
+    public int getEmergency() {
+        return emergency;
+    }
+
+    public void setEmergency(int emergency) {
+        this.emergency = emergency;
+    }
+
+    public int getIsactive() {
+        return isactive;
+    }
+
+    public void setIsactive(int isactive) {
+        this.isactive = isactive;
     }
 }

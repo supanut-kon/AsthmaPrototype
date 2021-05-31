@@ -9,7 +9,7 @@ import cnmi.it.asthmaprototype.Models.InhalerColumn;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
 import cnmi.it.asthmaprototype.Models.UserColumn;
 
-public class  DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static final String DATABASE_NAME = "asthma_patient.db";
@@ -46,12 +46,10 @@ public class  DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_INHALER = "CREATE TABLE " + InhalerColumn.InhalerEntry.TABLE_NAME + " (" +
             InhalerColumn.InhalerEntry._ID + " INTEGER PRIMARY KEY," +
-            InhalerColumn.InhalerEntry.COLUMN_INHALERID+ " INT,"+
-            InhalerColumn.InhalerEntry.COLUMN_PRESC+" TEXT,"+
-            InhalerColumn.InhalerEntry.COLUMN_EMINHALERID+ " INT,"+
-            InhalerColumn.InhalerEntry.COLUMN_EMPRESC+ " TEXT,"+
-            InhalerColumn.InhalerEntry.COLUMN_PATIENT+ " INT,"+
-            InhalerColumn.InhalerEntry.COLUMN_UPDATE_DATE+ " DATE)";
+            InhalerColumn.InhalerEntry.COLUMN_NAME +" TEXT,"+
+            InhalerColumn.InhalerEntry.COLUMN_TIMES + " TEXT,"+
+            InhalerColumn.InhalerEntry.COLUMN_INADAY + " TEXT)";
+
 
     private static final String SQL_CREATE_USER = "CREATE TABLE " + UserColumn.UserEntry.TABLE_NAME + " (" +
             UserColumn.UserEntry._ID + " INTEGER PRIMARY KEY," +

@@ -6,39 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Activities.AddInhalerActivity">
 
-    <EditText
-        android:id="@+id/emergencyTimesEdittext"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/timesText8"
-        app:layout_constraintTop_toBottomOf="@+id/inhalerEmergencySpinner" />
-
-    <TextView
-        android:id="@+id/timesText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="สูด"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/emergencyTimesEdittext"
-        app:layout_constraintTop_toBottomOf="@+id/inhalerEmergencySpinner" />
-
-    <TextView
-        android:id="@+id/timesText8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="24dp"
-        android:text="ครั้งละ"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inhalerEmergencySpinner" />
-
     <TextView
         android:id="@+id/timesText4"
         android:layout_width="wrap_content"
@@ -82,31 +49,6 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/timesEdittext"
         app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
-
-    <Spinner
-        android:id="@+id/inhalerEmergencySpinner"
-        android:layout_width="357dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectEmergencyInhaler"
-        app:layout_constraintVertical_bias="0.005" />
-
-    <TextView
-        android:id="@+id/selectEmergencyInhaler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="เลือกยาพ่นฉุกเฉิน"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timesText" />
 
     <TextView
         android:id="@+id/selectHeader"
@@ -168,27 +110,53 @@
         app:layout_constraintStart_toEndOf="@+id/timesText"
         app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup1"
+    <CheckBox
+        android:id="@+id/morningCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
+        android:text="เช้า"
         app:layout_constraintStart_toEndOf="@+id/timesText4"
-        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner">
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
-        <RadioButton
-            android:id="@+id/morningrRadioButton1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="เช้า" />
+    <CheckBox
+        android:id="@+id/eveningCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="เย็น"
+        app:layout_constraintStart_toEndOf="@+id/morningCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
-        <RadioButton
-            android:id="@+id/eveRadioButton1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="เย็น" />
-    </RadioGroup>
+    <CheckBox
+        android:id="@+id/isEmergencyCB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="ยาฉุกเฉิน"
+        app:layout_constraintStart_toEndOf="@+id/selectHeader"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.892"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/indayEdittext"
+        app:srcCompat="@drawable/plus_thin" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="409dp"
+        android:layout_height="250dp"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addFab"
+        app:layout_constraintVertical_bias="0.775" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
