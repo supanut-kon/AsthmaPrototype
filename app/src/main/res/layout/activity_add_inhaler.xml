@@ -151,6 +151,7 @@
         app:srcCompat="@drawable/plus_thin" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="409dp"
         android:layout_height="250dp"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"

@@ -2,6 +2,8 @@ package cnmi.it.asthmaprototype.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -22,21 +25,27 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import cnmi.it.asthmaprototype.Adapters.CardAdapter;
+import cnmi.it.asthmaprototype.Adapters.InhalerCardAdapter;
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.InhalerModel;
 import cnmi.it.asthmaprototype.R;
 
 public class AddInhalerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    ArrayList<InhalerModel> addedInhaler;
+    ArrayList<InhalerModel> addedArraylist;
     Spinner inhalerSpinner, emergencySpinner;
     EditText timesEdittext, indayEdittext, emergencyEdittext;
     FloatingActionButton fab, addfab;
     CheckBox morning, evening, isemergency;
-    CardView card;
+    InhalerCardAdapter card;
     ImageView img;
     ViewGroup.LayoutParams layout, imageLayout;
     TextView timesText3, timesText4;
+    InhalerModel addedinhaler;
+    int ischecked, selectposition;
+    String selecteditem;
+    RecyclerView recycler;
 
     final Calendar calendar = Calendar.getInstance();
 
@@ -63,27 +72,47 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
         morning = findViewById(R.id.morningCheckBox);
         evening = findViewById(R.id.eveningCheckBox);
         isemergency = findViewById(R.id.isEmergencyCB);
+        recycler = findViewById(R.id.recycler);
 
-        if(isemergency.isChecked()){
-            timesText3.setVisibility(View.INVISIBLE);
-            indayEdittext.setVisibility(View.INVISIBLE);
-            timesText4.setVisibility(View.INVISIBLE);
-            morning.setVisibility(View.INVISIBLE);
-            evening.setVisibility(View.INVISIBLE);
-        }
 
-        addedInhaler = new ArrayList<>();
+//        if(isemergency.isChecked()){
+//            timesText3.setVisibility(View.INVISIBLE);
+//            indayEdittext.setVisibility(View.INVISIBLE);
+//            timesText4.setVisibility(View.INVISIBLE);
+//            morning.setVisibility(View.INVISIBLE);
+//            evening.setVisibility(View.INVISIBLE);
+//        } else {
+//            timesText3.setVisibility(View.VISIBLE);
+//            indayEdittext.setVisibility(View.VISIBLE);
+//            timesText4.setVisibility(View.VISIBLE);
+//            morning.setVisibility(View.VISIBLE);
+//            evening.setVisibility(View.VISIBLE);
+//        }
+        isemergency.setOnCheckedChangeListener(new checkbox());
+        addedArraylist = new ArrayList<>();
+
         inhalerSpinner = findViewById(R.id.inhalerSpinner);
         inhalerSpinner.setOnItemSelectedListener(this);
         CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), resources, resourcesname);
         inhalerSpinner.setAdapter(customAdapter);
 
-        emergencySpinner.setOnItemSelectedListener(this);
-        emergencySpinner.setAdapter(customAdapter);
+        LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recycler.setLayoutManager(layout);
+        card = new InhalerCardAdapter(this, addedArraylist);
+        recycler.setAdapter(card);
+        card.notifyDataSetChanged();
+//        emergencySpinner.setOnItemSelectedListener(this);
+//        emergencySpinner.setAdapter(customAdapter);
 
         addfab.setOnClickListener(v->{
-
+            String times = timesEdittext.getText().toString();
+            String inaday = indayEdittext.getText().toString();
+            addedinhaler = new InhalerModel(0, selectposition, selecteditem, times, inaday, ischecked,1);
+            addedArraylist.add(addedinhaler);
+            card.notifyDataSetChanged();
         });
+//        card.notifyAll();
+
 
         fab.setOnClickListener(v->{
             DatabaseHelper helper = new DatabaseHelper(this);
@@ -117,10 +146,32 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
 
         Toast.makeText(this, resourcesname[position], Toast.LENGTH_LONG).show();
 
+        selectposition = position;
+        selecteditem = resourcesname[position];
+
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    private class checkbox implements CompoundButton.OnCheckedChangeListener {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if(isemergency.isChecked() == isChecked){
+                ischecked = 1;
+//                timesText3.setVisibility(View.INVISIBLE);
+//                indayEdittext.setVisibility(View.INVISIBLE);
+//                timesText4.setVisibility(View.INVISIBLE);
+//                morning.setVisibility(View.INVISIBLE);
+//                evening.setVisibility(View.INVISIBLE);
+            }else ischecked = 0;
+        }
+    }
+//
+//    public ArrayList<InhalerModel> getAddedArraylist(){
+//
+//
+//    }
 }

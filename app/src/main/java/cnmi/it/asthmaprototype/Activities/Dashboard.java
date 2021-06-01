@@ -63,8 +63,6 @@ public class Dashboard extends AppCompatActivity {
 //        }else {
 //            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, AddProfile.class)));
 //        }
-
-
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
@@ -86,25 +84,12 @@ public class Dashboard extends AppCompatActivity {
         fab = findViewById(R.id.fabadd);
         recyclerView = findViewById(R.id.recyclerView);
 
-
         SOS.setOnClickListener(v -> {
             startActivity(new Intent(Dashboard.this, RedWarning.class));
         });
 
-
         getFlows();
 
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        ArrayList<FlowModel> queryFlows = databaseAccess.getFlow();
-        databaseAccess.close();
-
-
-        LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layout);
-        card = new CardAdapter(this, queryFlows);
-        recyclerView.setAdapter(card);
-        card.notifyDataSetChanged();
         bottomAppBar.setOnMenuItemClickListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {

@@ -17,17 +17,22 @@ import cnmi.it.asthmaprototype.R;
 
 public class InhalerCardAdapter extends RecyclerView.Adapter<InhalerCardAdapter.AddHolder>{
     private Context context;
-    private ArrayList<InhalerModel> inhaler;
+    private ArrayList<InhalerModel> Inhaler;
     int[] resources = {R.drawable.flixotide_evohaler,
             R.drawable._0_aeronide,
             R.drawable.easyhaler_budesoniude,
             R.drawable.easyhaler_salbutamolsq,
             R.drawable.seretideevo,
             R.drawable.seretideaccuhaler,
-            R.drawable.ventolin_inhaler};
+            R.drawable.ventolin_inhaler,
+    R.drawable.add_user2};
 
     String[] resourcesname = {"Flixotide Evohaler", "Aeronide", "Easyhaler Budesonide", "Easyhaler Salbutamol", "Seretide Evohaler", "Seretide Accuhaler", "Ventolin"};
 
+    public InhalerCardAdapter(Context context, ArrayList<InhalerModel> arraylist){
+        this.context = context;
+        this.Inhaler = arraylist;
+    }
 
     @NonNull
     @Override
@@ -38,7 +43,8 @@ public class InhalerCardAdapter extends RecyclerView.Adapter<InhalerCardAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull InhalerCardAdapter.AddHolder holder, int position) {
-
+        InhalerModel inhaler = Inhaler.get(position);
+        holder.setDetails(inhaler, position);
     }
 
     @Override
@@ -61,7 +67,42 @@ public class InhalerCardAdapter extends RecyclerView.Adapter<InhalerCardAdapter.
             int imgid = added.getDid();
             String name = added.getName();
             int isem = added.getEmergency();
-            String desc = "ครั้งละ "+added.getTimes()+" สูด วันละ "+added.getInaday()+" ครั้ง";
+            String tdesc = "ครั้งละ "+added.getTimes()+" สูด วันละ "+added.getInaday()+" ครั้ง";
+
+            int resourceId;
+            switch(imgid){
+                case 0:
+                    resourceId = resources[0];
+                    break;
+                case 1:
+                    resourceId = resources[1];
+                    break;
+                case 2:
+                    resourceId = resources[2];
+                    break;
+                case 3:
+                    resourceId = resources[3];
+                    break;
+                case 4:
+                    resourceId = resources[4];
+                    break;
+                case 5:
+                    resourceId = resources[5];
+                    break;
+                case 6:
+                    resourceId = resources[6];
+                    break;
+                default:
+                    resourceId = resources[7];
+                    break;
+            }
+            img.setImageResource(resourceId);
+            inhalername.setText(name);
+            if(isem == 0){
+                isemergnecy.setText("ยาพ่นปกติ");
+            }else isemergnecy.setText("ยาพ่นฉุกเฉิน");
+
+            desc.setText(tdesc);
         }
     }
 }
