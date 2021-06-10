@@ -1,5 +1,6 @@
 package cnmi.it.asthmaprototype.Activities;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ public class GreenWarning extends AppCompatActivity {
 
     FloatingActionButton fab, help;
     TextView greentext, greendesc, greeninhalertext;
+    SQLiteDatabase sql;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

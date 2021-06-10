@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,12 +18,13 @@ import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
 import cnmi.it.asthmaprototype.R;
 
-public class PatientInformationEdit extends AppCompatActivity {
+public class  PatientInformationEdit extends AppCompatActivity {
 
     RadioGroup genderGroup;
     EditText age, height, weight, congenital, hn, patientname;
     int userid;
     //Button confirmbtn;
+    Button addinhalerbtn;
     FloatingActionButton savefab;
 
 
@@ -44,7 +46,12 @@ public class PatientInformationEdit extends AppCompatActivity {
         weight = findViewById(R.id.weightText);
         congenital = findViewById(R.id.congenitaltext);
         hn = findViewById(R.id.hntext);
+        addinhalerbtn = findViewById(R.id.editInhalerbtn);
         patientname = findViewById(R.id.patientnametext);
+
+        addinhalerbtn.setOnClickListener(v -> {
+            startActivity(new Intent(PatientInformationEdit.this, addInhalerListActivity.class));
+        });
 
         savefab.setOnClickListener(v -> {
             int iage = Integer.parseInt(age.getText().toString().trim());
@@ -79,7 +86,7 @@ public class PatientInformationEdit extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Bundle extras = getIntent().getExtras();
+
 
     }
 }

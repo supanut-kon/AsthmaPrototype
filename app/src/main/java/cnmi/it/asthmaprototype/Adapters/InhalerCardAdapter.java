@@ -1,6 +1,8 @@
 package cnmi.it.asthmaprototype.Adapters;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import cnmi.it.asthmaprototype.Models.InhalerModel;
+import cnmi.it.asthmaprototype.Database.DatabaseHelper;
+import cnmi.it.asthmaprototype.Models.tmp_inhalerModel;
 import cnmi.it.asthmaprototype.R;
 
-public class InhalerCardAdapter extends RecyclerView.Adapter<InhalerCardAdapter.AddHolder>{
+public class InhalerCardAdapter extends RecyclerView.Adapter<InhalerCardAdapter.ViewHolder>{
     private Context context;
-    private ArrayList<InhalerModel> Inhaler;
+    private ArrayList<tmp_inhalerModel> Inhaler;
     int[] resources = {R.drawable.flixotide_evohaler,
             R.drawable._0_aeronide,
             R.drawable.easyhaler_budesoniude,
@@ -27,82 +30,88 @@ public class InhalerCardAdapter extends RecyclerView.Adapter<InhalerCardAdapter.
             R.drawable.ventolin_inhaler,
     R.drawable.add_user2};
 
-    String[] resourcesname = {"Flixotide Evohaler", "Aeronide", "Easyhaler Budesonide", "Easyhaler Salbutamol", "Seretide Evohaler", "Seretide Accuhaler", "Ventolin"};
-
-    public InhalerCardAdapter(Context context, ArrayList<InhalerModel> arraylist){
+    public InhalerCardAdapter(Context context, ArrayList<tmp_inhalerModel> Inhaler){
         this.context = context;
-        this.Inhaler = arraylist;
+        this.Inhaler = Inhaler;
     }
 
     @NonNull
     @Override
-    public InhalerCardAdapter.AddHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.inhaler_card_layout, parent, false);
-        return new AddHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InhalerCardAdapter.AddHolder holder, int position) {
-        InhalerModel inhaler = Inhaler.get(position);
-        holder.setDetails(inhaler, position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        tmp_inhalerModel inhaler = Inhaler.get(position);
+        //holder.setDetails(inhaler, position);
+        int imgid = inhaler.getDid();
+        String name = inhaler.getName();
+        int type = inhaler.getType();
+        String tdesc;
+
+
+        holder.img.setImageResource(resources[imgid]);
+        holder.inhalername.setText(name);
+        if(type == 0){
+            holder.type.setText("ยาพ่นปกติ");
+            holder.type.setTextColor(Color.parseColor("#59B55D"));
+            tdesc = "ครั้งละ "+inhaler.getTimes()+" สูด วันละ "+inhaler.getInaday()+" ครั้ง";
+        }else {
+            holder.type.setText("ยาพ่นฉุกเฉิน");
+            holder.type.setTextColor(Color.parseColor("#D3E91E1E"));
+            tdesc = "ครั้งละ "+inhaler.getTimes()+" สูด";
+        }
+        holder.desc.setText(tdesc);
+
+        holder.delete.setOnClickListener(v -> {
+            DatabaseHelper helper = new DatabaseHelper(context);
+            SQLiteDatabase writedb = helper.getWritableDatabase();
+            int aposition = holder.getAdapterPosition();
+            Inhaler.remove(aposition);
+            notifyItemRemoved(aposition);
+            notifyItemRangeChanged(aposition, Inhaler.size());
+            writedb.delete("tmp_inhaler", "id = " + aposition, null);
+            writedb.close();
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return Inhaler.size();
     }
 
-    public class AddHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView img;
-        private TextView inhalername, isemergnecy, desc;
-        public AddHolder(@NonNull View itemView) {
+        private TextView inhalername, type, desc;
+        private ImageView edit, delete;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.inhalerimg);
             inhalername = itemView.findViewById(R.id.inhalerName);
-            isemergnecy = itemView.findViewById(R.id.isemergencyText);
+            type = itemView.findViewById(R.id.typeText);
             desc = itemView.findViewById(R.id.descText);
+            edit = itemView.findViewById(R.id.editimg);
+            delete = itemView.findViewById(R.id.deleteimg);
         }
 
-        void setDetails(InhalerModel added, int pos){
-            int imgid = added.getDid();
-            String name = added.getName();
-            int isem = added.getEmergency();
-            String tdesc = "ครั้งละ "+added.getTimes()+" สูด วันละ "+added.getInaday()+" ครั้ง";
-
-            int resourceId;
-            switch(imgid){
-                case 0:
-                    resourceId = resources[0];
-                    break;
-                case 1:
-                    resourceId = resources[1];
-                    break;
-                case 2:
-                    resourceId = resources[2];
-                    break;
-                case 3:
-                    resourceId = resources[3];
-                    break;
-                case 4:
-                    resourceId = resources[4];
-                    break;
-                case 5:
-                    resourceId = resources[5];
-                    break;
-                case 6:
-                    resourceId = resources[6];
-                    break;
-                default:
-                    resourceId = resources[7];
-                    break;
-            }
-            img.setImageResource(resourceId);
-            inhalername.setText(name);
-            if(isem == 0){
-                isemergnecy.setText("ยาพ่นปกติ");
-            }else isemergnecy.setText("ยาพ่นฉุกเฉิน");
-
-            desc.setText(tdesc);
-        }
+//        void setDetails(InhalerModel added, int pos){
+//
+//            int imgid = added.getDid();
+//            String name = added.getName();
+//            int isem = added.getEmergency();
+//            String tdesc = "ครั้งละ "+added.getTimes()+" สูด วันละ "+added.getInaday()+" ครั้ง";
+//
+//            img.setImageResource(resources[imgid]);
+//            inhalername.setText(name);
+//            if(isem == 0){
+//                isemergnecy.setText("ยาพ่นปกติ");
+//            }else isemergnecy.setText("ยาพ่นฉุกเฉิน");
+//
+//            desc.setText(tdesc);
+//        }
     }
+
+
 }

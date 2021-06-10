@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B9FFC107"
-    tools:context=".Activities.YellowWarning"
-    android:id="@+id/main_layout">
+    android:background="#FFC107"
+    tools:context=".Activities.YellowWarning">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/YellowinhalerHelp"
@@ -43,6 +43,7 @@
         android:layout_width="360dp"
         android:layout_height="400dp"
         android:layout_marginTop="8dp"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,15 +2,15 @@ package cnmi.it.asthmaprototype.Models;
 
 public class TransactionModel {
     private int id;
+    private int pid;
     private int drugid;
-    private String drugname;
     private int morning;
     private int evening;
 
-    public TransactionModel(int id, int drugid, String drugname, int morning, int evening){
+    public TransactionModel(int id, int pid, int drugid, int morning, int evening){
         this.id = id;
         this.drugid = drugid;
-        this.drugname = drugname;
+        this.pid = pid;
         this.morning = morning;
         this.evening = evening;
 
@@ -32,12 +32,12 @@ public class TransactionModel {
         this.drugid = drugid;
     }
 
-    public String getDrugname() {
-        return drugname;
+    public int getPid() {
+        return pid;
     }
 
-    public void setDrugname(String drugname) {
-        this.drugname = drugname;
+    public void setPid(int pid) {
+        this.pid = pid;
     }
 
     public int getMorning() {

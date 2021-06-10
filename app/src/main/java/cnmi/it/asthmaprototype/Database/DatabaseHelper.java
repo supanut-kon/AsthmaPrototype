@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import cnmi.it.asthmaprototype.Models.FlowColumn;
 import cnmi.it.asthmaprototype.Models.InhalerColumn;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
+import cnmi.it.asthmaprototype.Models.TransColumn;
 import cnmi.it.asthmaprototype.Models.UserColumn;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -46,10 +47,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_INHALER = "CREATE TABLE " + InhalerColumn.InhalerEntry.TABLE_NAME + " (" +
             InhalerColumn.InhalerEntry._ID + " INTEGER PRIMARY KEY," +
+            InhalerColumn.InhalerEntry.COLUMN_DID + " INTEGER,"+
             InhalerColumn.InhalerEntry.COLUMN_NAME +" TEXT,"+
+            InhalerColumn.InhalerEntry.COLUMN_TYPE+ " INTEGER,"+
             InhalerColumn.InhalerEntry.COLUMN_TIMES + " TEXT,"+
-            InhalerColumn.InhalerEntry.COLUMN_INADAY + " TEXT)";
+            InhalerColumn.InhalerEntry.COLUMN_INADAY + " TEXT,"+
+            InhalerColumn.InhalerEntry.COLUMN_ISACTIVE+ "INTEGER)";
 
+    private static final String SQL_CREATE_TRANS = "CREATE TABLE " + TransColumn.TransEntry.TABLE_NAME + " (" +
+            TransColumn.TransEntry.COLUMN_TID + " INTEGER PRIMARY KEY,"+
+            TransColumn.TransEntry.COLUMN_PID + " INTEGER,"+
+            TransColumn.TransEntry.COLUMN_DID + " INTEGER,"+
+            TransColumn.TransEntry.COLUMN_MORNING + " INTEGER,"+
+            TransColumn.TransEntry.COLUMN_EVENING + " INTEGER)";
 
     private static final String SQL_CREATE_USER = "CREATE TABLE " + UserColumn.UserEntry.TABLE_NAME + " (" +
             UserColumn.UserEntry._ID + " INTEGER PRIMARY KEY," +
@@ -58,6 +68,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             UserColumn.UserEntry.PASSWORD + "TEXT,"+
             UserColumn.UserEntry.PATIENTID + "INTEGER,"+
             UserColumn.UserEntry.PASSCODE + "TEXT)";
+
+    private static final String SQL_CREATE_TEMP_INHALER = "CREATE TABLE tmp_inhaler (id INTEGER PRIMARY KEY, did INTEGER, name TEXT, times TEXT, inaday TEXT, type INT, isactive INT, morning INT, evening INT)";
 
     private static final String SQL_DELETE_INHALER = "DROP TABLE IF EXISTS " + InhalerColumn.InhalerEntry.TABLE_NAME;
 
@@ -73,6 +85,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_FLOW);
         db.execSQL(SQL_CREATE_INHALER);
         db.execSQL(SQL_CREATE_USER);
+        db.execSQL(SQL_CREATE_TEMP_INHALER);
+        db.execSQL(SQL_CREATE_TRANS);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -82,5 +96,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_FLOW);
         db.execSQL(SQL_DELETE_INHALER);
         onCreate(db);
+    }
+
+    public void deletetmp(SQLiteDatabase db){
+        db.execSQL("DELETE FROM tmp_inhaler");
+    }
+
+    public void deletetmprow(SQLiteDatabase db, int id){
+        db.execSQL("DELETE FROM tmp_inhaler WHERE id =" + id);
     }
 }

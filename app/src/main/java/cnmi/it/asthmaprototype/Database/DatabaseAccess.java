@@ -9,8 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import cnmi.it.asthmaprototype.Models.FlowModel;
+import cnmi.it.asthmaprototype.Models.InhalerModel;
 import cnmi.it.asthmaprototype.Models.PatientModel;
 import cnmi.it.asthmaprototype.Models.UserModel;
+import cnmi.it.asthmaprototype.Models.tmp_inhalerModel;
 
 public class DatabaseAccess {
     private static DatabaseAccess instance;
@@ -20,6 +22,10 @@ public class DatabaseAccess {
     private ArrayList<FlowModel> flowsArraylist;
     private ArrayList<UserModel> userArraylist;
     private ArrayList<PatientModel> patientArraylist;
+    private ArrayList<InhalerModel> addInhaler;
+    private ArrayList<tmp_inhalerModel> tmparraylist;
+    private tmp_inhalerModel tmp;
+    InhalerModel inhalers;
     private UserModel theuser;
     private PatientModel patients;
 
@@ -100,6 +106,21 @@ public class DatabaseAccess {
         c.close();
         return patientArraylist;
     }
+
+    public ArrayList<tmp_inhalerModel> getAddInhaler(){
+        tmparraylist = new ArrayList<>();
+
+        Cursor c = database.rawQuery("SELECT * FROM tmp_inhaler",null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            tmp = new tmp_inhalerModel(c.getInt(0), c.getInt(1), c.getString(2), c.getString(3), c.getString(4),c.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8));
+            tmparraylist.add(tmp);
+            c.moveToNext();
+        }
+        c.close();
+        return tmparraylist;
+    }
+
 
 
 }

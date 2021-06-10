@@ -1,22 +1,26 @@
 package cnmi.it.asthmaprototype.Models;
 
-
-public class InhalerModel {
+public class tmp_inhalerModel {
     private int id;
     private int did;
     private String name;
     private String times;
     private String inaday;
-    private int emergency;
+    private int type;
     private int isactive;
-    public InhalerModel(int id, int did, String name, String times, String inaday, int emergency, int isactive) {
+    private int morning;
+    private int evening;
+
+    public tmp_inhalerModel(int id, int did, String name, String times, String inaday, int type, int isactive, int morning, int evening) {
         this.id = id;
         this.did = did;
         this.name = name;
         this.times = times;
         this.inaday = inaday;
-        this.emergency = emergency;
+        this.type = type;
         this.isactive = isactive;
+        this.morning = morning;
+        this.evening = evening;
     }
 
     public int getId() {
@@ -25,6 +29,14 @@ public class InhalerModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getDid() {
+        return did;
+    }
+
+    public void setDid(int did) {
+        this.did = did;
     }
 
     public String getName() {
@@ -51,20 +63,12 @@ public class InhalerModel {
         this.inaday = inaday;
     }
 
-    public int getDid() {
-        return did;
+    public int getType() {
+        return type;
     }
 
-    public void setDid(int did) {
-        this.did = did;
-    }
-
-    public int getEmergency() {
-        return emergency;
-    }
-
-    public void setEmergency(int emergency) {
-        this.emergency = emergency;
+    public void setType(int type) {
+        this.type = type;
     }
 
     public int getIsactive() {
@@ -73,5 +77,21 @@ public class InhalerModel {
 
     public void setIsactive(int isactive) {
         this.isactive = isactive;
+    }
+
+    public int getMorning() {
+        return morning;
+    }
+
+    public void setMorning(int morning) {
+        this.morning = morning;
+    }
+
+    public int getEvening() {
+        return evening;
+    }
+
+    public void setEvening(int evening) {
+        this.evening = evening;
     }
 }
