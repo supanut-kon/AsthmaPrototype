@@ -40,7 +40,6 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
     CheckBox morning, evening, isemergency;
     InhalerCardAdapter card;
     ImageView img;
-    ViewGroup.LayoutParams layout, imageLayout;
     int inhalertype;
     TextView timesText3, timesText4;
     InhalerModel addedinhaler;
@@ -92,13 +91,13 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
 //        }
 //        isemergency.setOnCheckedChangeListener(new checkbox());
         inhalergroup.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.criticalinhaler || checkedId == R.id.emergencyinhaler) {
+            if (checkedId == R.id.emergencyinhaler || checkedId == R.id.relieveinhaler) {
                 timesText3.setVisibility(View.GONE);
                 indayEdittext.setVisibility(View.GONE);
                 timesText4.setVisibility(View.GONE);
                 morning.setVisibility(View.GONE);
                 evening.setVisibility(View.GONE);
-                if(checkedId == R.id.criticalinhaler){
+                if(checkedId == R.id.emergencyinhaler){
                     inhalertype = 3;
                     Log.d("inhalertype", "33");
                 }else {
@@ -193,41 +192,6 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
-
-//    private class checkbox implements CompoundButton.OnCheckedChangeListener {
-//        @Override
-//        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//            if(isemergency.isChecked() == isChecked){
-//                ischecked = 1;
-//                timesText3.setVisibility(View.INVISIBLE);
-//                indayEdittext.setVisibility(View.INVISIBLE);
-//                timesText4.setVisibility(View.INVISIBLE);
-//                morning.setVisibility(View.INVISIBLE);
-//                evening.setVisibility(View.INVISIBLE);
-//            }
-//            if(!isemergency.isChecked()){
-//                ischecked = 0;
-//                if(timesText3.getVisibility() == View.INVISIBLE){
-//                    timesText3.setVisibility(View.VISIBLE);
-//                }
-//                if(indayEdittext.getVisibility() == View.INVISIBLE){
-//                    indayEdittext.setVisibility(View.VISIBLE);
-//                }
-//                if(timesText4.getVisibility() == View.INVISIBLE){
-//                    timesText4.setVisibility(View.VISIBLE);
-//                }
-//                if(morning.getVisibility() == View.INVISIBLE){
-//                    morning.setVisibility(View.VISIBLE);
-//                }
-//                if(evening.getVisibility() == View.INVISIBLE){
-//                    evening.setVisibility(View.VISIBLE);
-//                }
-//
-//            }
-//        }
-//    }
 
     @Override
     protected void onResume() {

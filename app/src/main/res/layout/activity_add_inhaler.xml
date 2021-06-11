@@ -162,16 +162,16 @@
             android:text="ยาพ่นปกติ" />
 
         <RadioButton
+            android:id="@+id/relieveinhaler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ยาพ่นบรรเทาอาการ" />
+
+        <RadioButton
             android:id="@+id/emergencyinhaler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ยาพ่นฉุกเฉิน" />
-
-        <RadioButton
-            android:id="@+id/criticalinhaler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ยาพ่นวิกฤต" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
