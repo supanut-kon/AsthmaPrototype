@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AsthmaPrototype">
-        <activity android:name=".Activities.addInhalerListActivity"></activity>
+        <activity android:name=".Activities.AddInhalerListActivity"></activity>
         <activity android:name=".Activities.GreenFinalActivity" />
         <activity android:name=".Activities.FinalWarningActivity" />
         <activity android:name=".Activities.StatsActivity" />
@@ -31,10 +31,6 @@
             android:name=".Activities.GreenWarning"
             android:exported="true" />
         <activity android:name=".Activities.Profile" />
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AsthmaPrototype.NoActionBar" />
         <activity android:name=".Activities.LoginActivity" />
         <activity
             android:name=".Activities.Dashboard"
@@ -50,7 +46,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.PatientInformationEdit" />
+        <activity android:name=".Activities.EditProfile" />
         <activity android:name=".Activities.FlowActivityAfterYellow" />
         <activity
             android:name=".Activities.YellowFinalWarningActivity"

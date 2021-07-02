@@ -17,6 +17,8 @@ public class InhalerColumn {
         public static final String COLUMN_TIMES = "times";
         public static final String COLUMN_INADAY = "inaday";
         public static final String COLUMN_TYPE = "type";
+        public static final String COLUMN_MORNING  = "ismorning";
+        public static final String COLUMN_EVENING = "isevening";
         public static final String COLUMN_ISACTIVE = "is_active";
 
     }

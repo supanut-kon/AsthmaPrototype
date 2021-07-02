@@ -92,7 +92,7 @@ public class FlowActivityAfterYellow extends AppCompatActivity {
 
         if (f.getCount() < 0) {
             finish();
-            Intent toConfig = new Intent(FlowActivityAfterYellow.this, PatientInformationEdit.class);
+            Intent toConfig = new Intent(FlowActivityAfterYellow.this, EditProfile.class);
             startActivity(toConfig);
         } else {
             flowMeasure();

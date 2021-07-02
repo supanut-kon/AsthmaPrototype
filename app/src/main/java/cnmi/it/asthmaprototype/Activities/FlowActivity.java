@@ -40,6 +40,7 @@ public class FlowActivity extends AppCompatActivity {
     Chip morning, evening;
     final Calendar calendar = Calendar.getInstance();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +93,7 @@ public class FlowActivity extends AppCompatActivity {
 
         if (f.getCount() < 0) {
             finish();
-            Intent toConfig = new Intent(FlowActivity.this, PatientInformationEdit.class);
+            Intent toConfig = new Intent(FlowActivity.this, EditProfile.class);
             startActivity(toConfig);
         } else {
             flowMeasure();
@@ -134,10 +135,7 @@ public class FlowActivity extends AppCompatActivity {
             } else {
                 max = -487.12 + (7 * height) - 0.0085 * Math.pow(height, 2);
             }
-
-
             yellowvalue = (int) (max * (80.00 / 100.00));
-
             redvalue = (int) (max * (60.00 / 100.00));
 
             bar.setMax((int) ((int) max +(max *(15.00/100.00))));
@@ -208,17 +206,22 @@ public class FlowActivity extends AppCompatActivity {
 
                 startActivity(toRed);
             } else {
-                finish();
+                calendar.add(Calendar.DATE, 7);
+                String dateFormat = "d MMMM y";
+                SimpleDateFormat df = new SimpleDateFormat(dateFormat, new Locale("th", "TH"));
+                String add7days = df.format(calendar.getTime());
                 Intent toAfter = new Intent(FlowActivity.this, AfterFlow.class);
                 String datetext = date.getText().toString();
                 toAfter.putExtra("pfvalue", pfvalue);
                 toAfter.putExtra("max", max);
                 toAfter.putExtra("yellow", yellowvalue);
                 toAfter.putExtra("red", redvalue);
-                toAfter.putExtra("id", 1);
+                toAfter.putExtra("id", 1); // patientid
                 toAfter.putExtra("date", datetext);
+                toAfter.putExtra("add7days", add7days);
 
                 startActivity(toAfter);
+                finish();
             }
         });
 

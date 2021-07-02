@@ -25,6 +25,7 @@ import java.util.Calendar;
 
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.FlowColumn;
+import cnmi.it.asthmaprototype.Models.YellowPFColumn;
 import cnmi.it.asthmaprototype.R;
 
 public class AfterFlow extends AppCompatActivity {
@@ -36,8 +37,7 @@ public class AfterFlow extends AppCompatActivity {
     Spinner carespinner;
     int pfvalue, id, yellowvalue, redvalue;
     double max;
-    String date, selectedspinner;
-    double peakflow;
+    String date, selectedspinner, add7days;
     Button normal;
 
     final Calendar calendar = Calendar.getInstance();
@@ -56,6 +56,8 @@ public class AfterFlow extends AppCompatActivity {
         redvalue = extras.getInt("red");
         max = extras.getDouble("max");
         date = extras.getString("datetext");
+        add7days = extras.getString("add7days");
+
 
 
         symptomsheader = findViewById(R.id.symptomsheader);
@@ -138,6 +140,19 @@ public class AfterFlow extends AppCompatActivity {
                 values.put(FlowColumn.FlowEntry.COLUMN_CAREMETHOD, selectedspinner);
 
                 db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
+
+
+                ContentValues cv2 = new ContentValues();
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_PEF, pfvalue);
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_ZONE, "yellow");
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_MAX, max);
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_80, yellowvalue);
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_60, redvalue);
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_DATE, date);
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_TIME, timetext);
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_ENDDATE, add7days);
+                cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_ISACTIVE, 1);
+
                 db2.close();
                 finish();
                 Intent toYellow = new Intent(AfterFlow.this, YellowWarning.class);
@@ -163,6 +178,8 @@ public class AfterFlow extends AppCompatActivity {
             values.put(FlowColumn.FlowEntry.COLUMN_CAREMETHOD, selectedspinner);
 
             db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
+
+
             db2.close();
             finish();
             Intent toGreen = new Intent(AfterFlow.this, GreenWarning.class);

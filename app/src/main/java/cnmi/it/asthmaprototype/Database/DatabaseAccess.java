@@ -12,6 +12,7 @@ import cnmi.it.asthmaprototype.Models.FlowModel;
 import cnmi.it.asthmaprototype.Models.InhalerModel;
 import cnmi.it.asthmaprototype.Models.PatientModel;
 import cnmi.it.asthmaprototype.Models.UserModel;
+import cnmi.it.asthmaprototype.Models.YellowPFModel;
 import cnmi.it.asthmaprototype.Models.tmp_inhalerModel;
 
 public class DatabaseAccess {
@@ -22,10 +23,10 @@ public class DatabaseAccess {
     private ArrayList<FlowModel> flowsArraylist;
     private ArrayList<UserModel> userArraylist;
     private ArrayList<PatientModel> patientArraylist;
-    private ArrayList<InhalerModel> addInhaler;
-    private ArrayList<tmp_inhalerModel> tmparraylist;
-    private tmp_inhalerModel tmp;
-    InhalerModel inhalers;
+    private ArrayList<InhalerModel> addInhaler, getInhalers;
+    private ArrayList<YellowPFModel> yellows;
+    private YellowPFModel yellowPFModel;
+    private InhalerModel inhalers;
     private UserModel theuser;
     private PatientModel patients;
 
@@ -71,7 +72,7 @@ public class DatabaseAccess {
         Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE email = " + userEmail, null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3));
+            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3), c.getString(4));
             userArraylist.add(theuser);
             c.moveToNext();
         }
@@ -79,13 +80,13 @@ public class DatabaseAccess {
         return userArraylist;
     }
     
-    public ArrayList<UserModel> getUser(int id){
+    public ArrayList<UserModel> getUser(){
         userArraylist = new ArrayList<>();
 
-        Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE id = " + id, null);
+        Cursor c = database.rawQuery("SELECT * FROM asthma_user", null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3));
+            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3), c.getString(4));
             userArraylist.add(theuser);
             c.moveToNext();
         }
@@ -107,19 +108,56 @@ public class DatabaseAccess {
         return patientArraylist;
     }
 
-    public ArrayList<tmp_inhalerModel> getAddInhaler(){
-        tmparraylist = new ArrayList<>();
+    public ArrayList<InhalerModel> getAddInhaler(){
+        addInhaler = new ArrayList<>();
 
-        Cursor c = database.rawQuery("SELECT * FROM tmp_inhaler",null);
+        Cursor c = database.rawQuery("SELECT * FROM asthma_inhaler",null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            tmp = new tmp_inhalerModel(c.getInt(0), c.getInt(1), c.getString(2), c.getString(3), c.getString(4),c.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8));
-            tmparraylist.add(tmp);
+            inhalers = new InhalerModel(c.getInt(0), c.getInt(1), c.getString(2), c.getInt(3), c.getString(4), c.getString(5), c.getInt(6), c.getInt(7), c.getInt(8));
+            addInhaler.add(inhalers);
             c.moveToNext();
         }
         c.close();
-        return tmparraylist;
+        return addInhaler;
     }
+
+    public ArrayList<InhalerModel> getInhaler(int type){
+        getInhalers = new ArrayList<>();
+        Cursor c = database.rawQuery("SELECT * FROM asthma_inhaler WHERE type = " + type, null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            inhalers = new InhalerModel(c.getInt(0), c.getInt(1), c.getString(2), c.getInt(3), c.getString(4), c.getString(5), c.getInt(6), c.getInt(7), c.getInt(8));
+            getInhalers.add(inhalers);
+            c.moveToNext();
+        }
+        c.close();
+        return getInhalers;
+    }
+
+    public ArrayList<YellowPFModel> getYellow(int isactive){
+        yellows = new ArrayList<>();
+        Cursor c = database.rawQuery("SELECT * FROM yellow_log WHERE is_active =" + isactive + "ORDER BY id DESC LIMIT 1", null);
+        c.moveToFirst();
+        while (!c.isAfterLast()){
+            yellowPFModel = new YellowPFModel(c.getInt(0), c.getInt(1), c.getString(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getString(7), c.getString(8), c.getString(9), c.getInt(10));
+            yellows.add(yellowPFModel);
+        }
+        return yellows;
+    }
+
+
+//    public  ArrayList<InhalerModel> getAdd(){
+//        addInhaler = new ArrayList<>();
+//        Cursor cursor = database.rawQuery("SELECT * FROM asthma_inhaler", null);
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()){
+//            inhalers = new InhalerModel(cursor.getInt(0), c)
+//        }
+//        return
+//    }
+
+
 
 
 

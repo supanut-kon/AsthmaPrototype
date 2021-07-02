@@ -58,26 +58,14 @@
             android:layout_margin="10dp">
 
             <ImageView
-                android:id="@+id/RedImage"
+                android:id="@+id/RedInhalerImage"
                 android:layout_width="147dp"
                 android:layout_height="129dp"
-                android:alpha=".5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/RedTextview"
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/flixotide_evohaler" />
-
-            <TextView
-                android:id="@+id/redInhalerlabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(ยาของคนไข้)"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/RedImage"
-                app:layout_constraintEnd_toEndOf="@+id/RedImage"
-                app:layout_constraintStart_toStartOf="@+id/RedImage"
-                app:layout_constraintTop_toTopOf="@+id/RedImage" />
 
             <TextView
                 android:id="@+id/RedinhalerText"
@@ -87,7 +75,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/RedImage"
+                app:layout_constraintStart_toEndOf="@+id/RedInhalerImage"
                 app:layout_constraintTop_toBottomOf="@+id/RedTextview"
                 app:layout_constraintVertical_bias="0.0" />
 

@@ -1,7 +1,6 @@
 package cnmi.it.asthmaprototype.Activities;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -45,8 +44,8 @@ public class YellowFinalWarningActivity extends AppCompatActivity {
         timerText = findViewById(R.id.TimerText);
         yellowHeader = findViewById(R.id.YellowHeader1);
         yellowDesc = findViewById(R.id.YellowDesc);
-        image = findViewById(R.id.RedImage);
-        inhalerlabel = findViewById(R.id.redInhalerlabel);
+        image = findViewById(R.id.RedInhalerImage);
+//        inhalerlabel = findViewById(R.id.redInhalerlabel);
 
         yellowinhaler.setVisibility(View.INVISIBLE);
         image.setVisibility(View.INVISIBLE);

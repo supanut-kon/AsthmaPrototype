@@ -22,15 +22,14 @@ import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.InhalerColumn;
 import cnmi.it.asthmaprototype.Models.InhalerModel;
 import cnmi.it.asthmaprototype.Models.TransColumn;
-import cnmi.it.asthmaprototype.Models.tmp_inhalerModel;
 import cnmi.it.asthmaprototype.R;
 
-public class addInhalerListActivity extends AppCompatActivity {
+public class AddInhalerListActivity extends AppCompatActivity {
 
     int selectposition, ismorning, isevening, isemergency;
     String resourcename, times, inaday;
     InhalerModel addinhaler;
-    ArrayList<tmp_inhalerModel> inhalerArrayList;
+    ArrayList<InhalerModel> inhalerArrayList;
     RecyclerView recycler;
     InhalerCardAdapter card;
     FloatingActionButton savefab;
@@ -60,41 +59,39 @@ public class addInhalerListActivity extends AppCompatActivity {
         getInhaler();
 //        test.setText(inhalerArrayList.get(0).getName());
 
-
         addmore.setOnClickListener(v->{
-            Intent toadd = new Intent(addInhalerListActivity.this, AddInhalerActivity.class);
+            Intent toadd = new Intent(AddInhalerListActivity.this, AddInhalerActivity.class);
             toadd.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivityIfNeeded(toadd, 0);
         });
 
         savefab.setOnClickListener(v->{
-            DatabaseHelper helper = new DatabaseHelper(this);
-            SQLiteDatabase writedb = helper.getWritableDatabase();
-            ContentValues cv = new ContentValues();
-            ContentValues cvv = new ContentValues();
-            for(int i = 0; i < inhalerArrayList.size(); i++) {
-                cv.put(InhalerColumn.InhalerEntry.COLUMN_DID, inhalerArrayList.get(i).getDid());
-                cv.put(InhalerColumn.InhalerEntry.COLUMN_NAME, inhalerArrayList.get(i).getName());
-                cv.put(InhalerColumn.InhalerEntry.COLUMN_TYPE, inhalerArrayList.get(i).getType());
-                cv.put(InhalerColumn.InhalerEntry.COLUMN_TIMES, inhalerArrayList.get(i).getTimes());
-                cv.put(InhalerColumn.InhalerEntry.COLUMN_INADAY, inhalerArrayList.get(i).getInaday());
-                //cv.put(InhalerColumn.InhalerEntry.COLUMN_ISACTIVE, 1);
-                writedb.insert(InhalerColumn.InhalerEntry.TABLE_NAME, null, cv);
+//            DatabaseHelper helper = new DatabaseHelper(this);
+//            SQLiteDatabase writedb = helper.getWritableDatabase();
+//            ContentValues cv = new ContentValues();
+//            ContentValues cvv = new ContentValues();
+//            for(int i = 0; i < inhalerArrayList.size(); i++) {
+//                cv.put(InhalerColumn.InhalerEntry.COLUMN_DID, inhalerArrayList.get(i).getDid());
+//                cv.put(InhalerColumn.InhalerEntry.COLUMN_NAME, inhalerArrayList.get(i).getName());
+//                cv.put(InhalerColumn.InhalerEntry.COLUMN_TYPE, inhalerArrayList.get(i).getType());
+//                cv.put(InhalerColumn.InhalerEntry.COLUMN_TIMES, inhalerArrayList.get(i).getTimes());
+//                cv.put(InhalerColumn.InhalerEntry.COLUMN_INADAY, inhalerArrayList.get(i).getInaday());
+//                cv.put(InhalerColumn.InhalerEntry.COLUMN_ISACTIVE, 1);
+//                writedb.insert(InhalerColumn.InhalerEntry.TABLE_NAME, null, cv);
+//
+//                cvv.put(TransColumn.TransEntry.COLUMN_DID, inhalerArrayList.get(i).getDid());
+//                cvv.put(TransColumn.TransEntry.COLUMN_PID, 1);
+//             cvv.put(TransColumn.TransEntry.COLUMN_MORNING, inhalerArrayList.get(i).getMorning());
+//                cvv.put(TransColumn.TransEntry.COLUMN_EVENING, inhalerArrayList.get(i).getEvening());
+//                writedb.insert(TransColumn.TransEntry.TABLE_NAME, null, cvv);
+//
+//                helper.deletetmp(writedb);
+//                writedb.close();
 
-                cvv.put(TransColumn.TransEntry.COLUMN_DID, inhalerArrayList.get(i).getDid());
-                cvv.put(TransColumn.TransEntry.COLUMN_PID, 1);
-                cvv.put(TransColumn.TransEntry.COLUMN_MORNING, inhalerArrayList.get(i).getMorning());
-                cvv.put(TransColumn.TransEntry.COLUMN_EVENING, inhalerArrayList.get(i).getEvening());
-                writedb.insert(TransColumn.TransEntry.TABLE_NAME, null, cvv);
-
-                helper.deletetmp(writedb);
-                writedb.close();
-
-                Intent toProfile = new Intent(addInhalerListActivity.this, PatientInformationEdit.class);
+                Intent toProfile = new Intent(AddInhalerListActivity.this, EditProfile.class);
                 toProfile.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 finish();
                 startActivityIfNeeded(toProfile, 0);
-            }
         });
 
     }

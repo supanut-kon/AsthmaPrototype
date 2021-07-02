@@ -43,7 +43,7 @@
         app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toEndOf="@+id/inhalerpreview"
         app:layout_constraintTop_toBottomOf="@+id/inhalergroup"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintVertical_bias="0.014" />
 
     <CheckBox
         android:id="@+id/eveningCheckBox"
@@ -147,31 +147,66 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100000024">
+        app:layout_constraintVertical_bias="0.13">
 
         <RadioButton
             android:id="@+id/normalinhaler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ยาพ่นปกติ" />
+            android:text="ยาพ่นปกติ"
+            android:textColor="#8BC34A" />
 
         <RadioButton
-            android:id="@+id/relieveinhaler"
+            android:id="@+id/acuteinhaler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ยาพ่นบรรเทาอาการ" />
+            android:text="ยาพ่นเมื่อมีอาการจับหืดเฉียบพลัน"
+            android:textColor="#FFC107" />
 
         <RadioButton
             android:id="@+id/emergencyinhaler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ยาพ่นฉุกเฉิน" />
+            android:text="ยาพ่นฉุกเฉิน"
+            android:textColor="#F44336" />
+
+        <RadioButton
+            android:id="@+id/yellowtogreenInhaler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ยาบรรเทาอาการ (เหลืองไปเขียว)"
+            android:textColor="#673AB7" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/dosehead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="ขนาดยา"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toEndOf="@+id/inhalerpreview"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/dosespinner"
+        android:layout_width="213dp"
+        android:layout_height="47dp"
+        app:layout_constraintBottom_toTopOf="@+id/indayEdittext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toEndOf="@+id/inhalerpreview"
+        app:layout_constraintTop_toBottomOf="@+id/dosehead"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

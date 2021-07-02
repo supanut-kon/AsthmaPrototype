@@ -22,7 +22,7 @@ import cnmi.it.asthmaprototype.R;
 
 public class RegisterActivity extends AppCompatActivity {
     Button Reg;
-    EditText username, email, password, repeatpassword;
+    EditText name, email, password, repeatpassword;
     String un, em, pw, rpw;
     SharedPreferences prefs;
 
@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-        username = findViewById(R.id.registerName);
+        name = findViewById(R.id.registerName);
         email = findViewById(R.id.registerEmailAddress);
         password = findViewById(R.id.registerPassword);
         repeatpassword = findViewById(R.id.registerPasswordrepeat);
@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Reg.setOnClickListener(v -> {
 
-            un = username.getText().toString();
+            un = name.getText().toString();
             em = email.getText().toString().trim();
             pw = password.getText().toString().trim();
             rpw = repeatpassword.getText().toString().trim();
@@ -67,9 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 //                int id = loginAfterRegister(em);
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("username", un);
                 editor.putString("email", em);
-//                editor.putInt("id", id);
                 editor.apply();
 
                 finish();
@@ -78,49 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
         });
-
-
     }
-
-    private int loginAfterRegister(String email){ 
-        UserModel user = null;
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-
-        ArrayList<UserModel> theuser = databaseAccess.getUserInfoAfterLogin(email);
-        for (int i = 0; i < theuser.size(); i++) {
-           
-            user = theuser.get(i);
-        }
-        int userid = 0;
-        if (user != null) {
-            userid = user.getId();
-        }
-        databaseAccess.close();
-        
-        return userid;
-        
-    }
-//     private String getPatient(int id){
-//         UserModel user = null;
-//         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-//         databaseAccess.open();
-//
-//         ArrayList<UserModel> theuser = databaseAccess.getUser(id);
-//         for (int i = 0; i < theuser.size(); i++) {
-//
-//             user = theuser.get(i);
-//         }
-//         String patients = null;
-//         if(user != null) {
-//             if (user.getPatientid() != null) {
-//                 patients = user.getPatientid();
-//             } else patients = null;
-//         }
-//         databaseAccess.close();
-//
-//         return patients;
-//     }
     
     
 }

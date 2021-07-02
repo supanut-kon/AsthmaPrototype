@@ -5,15 +5,23 @@ public class UserModel {
     private String name;
     private String email;
     private String password;
+    private String passcode;
 
 
-
-
-    public UserModel(int id, String name, String email, String password) {
+    public UserModel(int id, String name, String email, String password, String passcode) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.passcode = passcode;
+    }
+
+    public String getPasscode() {
+        return passcode;
+    }
+
+    public void setPasscode(String passcode) {
+        this.passcode = passcode;
     }
 
     public int getId() {

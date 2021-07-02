@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -27,6 +26,7 @@ import java.util.Calendar;
 
 import cnmi.it.asthmaprototype.Adapters.InhalerCardAdapter;
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
+import cnmi.it.asthmaprototype.Models.InhalerColumn;
 import cnmi.it.asthmaprototype.Models.InhalerModel;
 import cnmi.it.asthmaprototype.R;
 
@@ -34,14 +34,14 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
 
     final Calendar calendar = Calendar.getInstance();
     ArrayList<InhalerModel> addedArraylist;
-    Spinner inhalerSpinner, emergencySpinner;
+    Spinner inhalerSpinner, emergencySpinner, doseSpinner;
     EditText timesEdittext, indayEdittext, emergencyEdittext;
     FloatingActionButton fab, addfab;
     CheckBox morning, evening, isemergency;
     InhalerCardAdapter card;
     ImageView img;
     int inhalertype;
-    TextView timesText3, timesText4;
+    TextView timesText3, timesText4, dosehead;
     InhalerModel addedinhaler;
     int ischecked, selectposition;
     String selecteditem;
@@ -70,6 +70,8 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
         morning = findViewById(R.id.morningCheckBox);
         evening = findViewById(R.id.eveningCheckBox);
         inhalergroup = findViewById(R.id.inhalergroup);
+        dosehead = findViewById(R.id.dosehead);
+        doseSpinner = findViewById(R.id.dosespinner);
 
 //        isemergency = findViewById(R.id.isEmergencyCB);
         img = findViewById(R.id.inhalerpreview);
@@ -91,22 +93,46 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
 //        }
 //        isemergency.setOnCheckedChangeListener(new checkbox());
         inhalergroup.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == R.id.emergencyinhaler || checkedId == R.id.relieveinhaler) {
+            if (checkedId == R.id.emergencyinhaler) {
                 timesText3.setVisibility(View.GONE);
                 indayEdittext.setVisibility(View.GONE);
                 timesText4.setVisibility(View.GONE);
                 morning.setVisibility(View.GONE);
                 evening.setVisibility(View.GONE);
-                if(checkedId == R.id.emergencyinhaler){
-                    inhalertype = 3;
-                    Log.d("inhalertype", "33");
-                }else {
-                    inhalertype = 2;
-                    Log.d("inhalertype", "22");
-                }
-            }else {
+                inhalertype = 3;
+                Log.d("inhalertype", "33");
+
+            } else if (checkedId == R.id.acuteinhaler) {
+                timesText3.setVisibility(View.GONE);
+                indayEdittext.setVisibility(View.GONE);
+                timesText4.setVisibility(View.GONE);
+                morning.setVisibility(View.GONE);
+                evening.setVisibility(View.GONE);
+                inhalertype = 2;
+                Log.d("inhalertype", "22");
+
+            } else if (checkedId == R.id.normalinhaler){
                 inhalertype = 1;
                 Log.d("inhalertype", "11");
+                if (timesText3.getVisibility() == View.GONE) {
+                    timesText3.setVisibility(View.VISIBLE);
+                }
+                if (indayEdittext.getVisibility() == View.GONE) {
+                    indayEdittext.setVisibility(View.VISIBLE);
+                }
+                if (timesText4.getVisibility() == View.GONE) {
+                    timesText4.setVisibility(View.VISIBLE);
+                }
+                if (morning.getVisibility() == View.GONE) {
+                    morning.setVisibility(View.VISIBLE);
+                }
+                if (evening.getVisibility() == View.GONE) {
+                    evening.setVisibility(View.VISIBLE);
+                }
+
+            }else {
+                inhalertype = 4;
+                Log.d("inhalertype", "44");
                 if (timesText3.getVisibility() == View.GONE) {
                     timesText3.setVisibility(View.VISIBLE);
                 }
@@ -129,7 +155,6 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
 
         inhalerSpinner = findViewById(R.id.inhalerSpinner);
         inhalerSpinner.setOnItemSelectedListener(this);
-//        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), resources, resourcesname);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, resourcesname);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inhalerSpinner.setAdapter(arrayAdapter);
@@ -150,25 +175,16 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
             DatabaseHelper helper = new DatabaseHelper(this);
             SQLiteDatabase writedb = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
-            cv.put("did", selectposition);
-            cv.put("name", selecteditem);
-            cv.put("type", inhalertype);
-            cv.put("times", times);
-            cv.put("inaday", inaday);
-            cv.put("isactive", 1);
-            cv.put("morning", ismorning);
-            cv.put("evening", isevening);
-            writedb.insert("tmp_inhaler", null, cv);
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_DID, selectposition);
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_NAME, selecteditem);
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_TYPE, inhalertype);
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_TIMES, times);
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_INADAY, inaday);
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_ISACTIVE, 1);
+//            ismorning, isevening
+            writedb.insert(InhalerColumn.InhalerEntry.TABLE_NAME, null, cv);
             writedb.close();
-
-            Intent addinhaler = new Intent(AddInhalerActivity.this, addInhalerListActivity.class);
-//            addinhaler.putExtra("resourceid", selectposition);
-//            addinhaler.putExtra("resourcename", selecteditem);
-//            addinhaler.putExtra("isemergency", ischecked);
-//            addinhaler.putExtra("ismorning", ismorning);
-//            addinhaler.putExtra("isevening", isevening);
-//            addinhaler.putExtra("times", times);
-//            addinhaler.putExtra("inaday", inaday);
+            Intent addinhaler = new Intent(AddInhalerActivity.this, AddInhalerListActivity.class);
 
             addinhaler.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivityIfNeeded(addinhaler, 0);
@@ -185,6 +201,10 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
         selectposition = position;
         selecteditem = resourcesname[position];
         img.setImageResource(resources[position]);
+
+//        if(selecteditem == "Seretide Evohaler"){
+//
+//        }
 
     }
 

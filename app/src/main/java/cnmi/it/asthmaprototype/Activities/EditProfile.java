@@ -18,7 +18,7 @@ import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
 import cnmi.it.asthmaprototype.R;
 
-public class  PatientInformationEdit extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
     RadioGroup genderGroup;
     EditText age, height, weight, congenital, hn, patientname;
@@ -50,7 +50,7 @@ public class  PatientInformationEdit extends AppCompatActivity {
         patientname = findViewById(R.id.patientnametext);
 
         addinhalerbtn.setOnClickListener(v -> {
-            startActivity(new Intent(PatientInformationEdit.this, addInhalerListActivity.class));
+            startActivity(new Intent(EditProfile.this, AddInhalerListActivity.class));
         });
 
         savefab.setOnClickListener(v -> {
@@ -70,14 +70,13 @@ public class  PatientInformationEdit extends AppCompatActivity {
             values.put(PatientColumn.PatientEntry.COLUMN_GENDER, igender);
             values.put(PatientColumn.PatientEntry.COLUMN_WEIGHT, weight.getText().toString().trim());
             values.put(PatientColumn.PatientEntry.COLUMN_CONGENITAL, congenital.getText().toString().trim());
-            values.put(PatientColumn.PatientEntry.COLUMN_USER, 1);
             values.put(PatientColumn.PatientEntry.COLUMN_USER, userid);
 
             db.insert(PatientColumn.PatientEntry.TABLE_NAME, null, values);
 
             db.close();
             finish();
-            Intent toDashboard = new Intent(PatientInformationEdit.this, Dashboard.class);
+            Intent toDashboard = new Intent(EditProfile.this, Dashboard.class);
             startActivity(toDashboard);
         });
 

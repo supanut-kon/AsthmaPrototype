@@ -9,6 +9,7 @@ import cnmi.it.asthmaprototype.Models.InhalerColumn;
 import cnmi.it.asthmaprototype.Models.PatientColumn;
 import cnmi.it.asthmaprototype.Models.TransColumn;
 import cnmi.it.asthmaprototype.Models.UserColumn;
+import cnmi.it.asthmaprototype.Models.YellowPFColumn;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -52,22 +53,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             InhalerColumn.InhalerEntry.COLUMN_TYPE+ " INTEGER,"+
             InhalerColumn.InhalerEntry.COLUMN_TIMES + " TEXT,"+
             InhalerColumn.InhalerEntry.COLUMN_INADAY + " TEXT,"+
-            InhalerColumn.InhalerEntry.COLUMN_ISACTIVE+ "INTEGER)";
-
-    private static final String SQL_CREATE_TRANS = "CREATE TABLE " + TransColumn.TransEntry.TABLE_NAME + " (" +
-            TransColumn.TransEntry.COLUMN_TID + " INTEGER PRIMARY KEY,"+
-            TransColumn.TransEntry.COLUMN_PID + " INTEGER,"+
-            TransColumn.TransEntry.COLUMN_DID + " INTEGER,"+
-            TransColumn.TransEntry.COLUMN_MORNING + " INTEGER,"+
-            TransColumn.TransEntry.COLUMN_EVENING + " INTEGER)";
+            InhalerColumn.InhalerEntry.COLUMN_MORNING + " INTEGER,"+
+            InhalerColumn.InhalerEntry.COLUMN_EVENING + " INTEGER,"+
+            InhalerColumn.InhalerEntry.COLUMN_ISACTIVE+ " INTEGER)";
 
     private static final String SQL_CREATE_USER = "CREATE TABLE " + UserColumn.UserEntry.TABLE_NAME + " (" +
             UserColumn.UserEntry._ID + " INTEGER PRIMARY KEY," +
             UserColumn.UserEntry.NAME + " TEXT,"+
             UserColumn.UserEntry.EMAIL + " TEXT,"+
-            UserColumn.UserEntry.PASSWORD + "TEXT,"+
-            UserColumn.UserEntry.PATIENTID + "INTEGER,"+
-            UserColumn.UserEntry.PASSCODE + "TEXT)";
+            UserColumn.UserEntry.PASSWORD + " TEXT,"+
+            UserColumn.UserEntry.PASSCODE + " TEXT)";
+
+    private static final String SQL_CREATE_YELLOWLOG = "CREATE TABLE " + YellowPFColumn.YellowPFEntry.TABLE_NAME + " (" +
+            YellowPFColumn.YellowPFEntry._ID + " INTEGER PRIMARY KEY," +
+            YellowPFColumn.YellowPFEntry.COLUMN_PEF + " INTEGER,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_ZONE + " TEXT,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_MAX + " INTEGER,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_80 + " INTEGER,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_60 + " INTEGER,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_PATIENTID + " INTEGER,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_DATE + " TEXT,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_TIME + " TEXT,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_ENDDATE + " TEXT)";
+
+
 
     private static final String SQL_CREATE_TEMP_INHALER = "CREATE TABLE tmp_inhaler (id INTEGER PRIMARY KEY, did INTEGER, name TEXT, times TEXT, inaday TEXT, type INT, isactive INT, morning INT, evening INT)";
 
@@ -86,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_INHALER);
         db.execSQL(SQL_CREATE_USER);
         db.execSQL(SQL_CREATE_TEMP_INHALER);
-        db.execSQL(SQL_CREATE_TRANS);
+        db.execSQL(SQL_CREATE_YELLOWLOG);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -99,7 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void deletetmp(SQLiteDatabase db){
-        db.execSQL("DELETE FROM tmp_inhaler");
+        db.execSQL("DELETE FROM asthma_inhaler");
     }
 
     public void deletetmprow(SQLiteDatabase db, int id){
