@@ -33,7 +33,7 @@ public class FlowActivity extends AppCompatActivity {
     SeekBar bar;
     int pfvalue, id, age, height, yellowvalue, redvalue;
     String gender;
-    double max;
+    int max = 0;
     ChipGroup periodchip;
     EditText date;
     FloatingActionButton fabNext;
@@ -108,10 +108,11 @@ public class FlowActivity extends AppCompatActivity {
         c.moveToFirst();
         while (!c.isAfterLast()) {
             //user = new UserModel(c.getInt(0), c.getInt(1), c.getInt(2), c.getString(3));
-            id = c.getInt(0);
-            age = c.getInt(3);
-            height = c.getInt(6);
-            gender = c.getString(7);
+//            id = c.getInt(0);
+//            age = c.getInt(3);
+//            height = c.getInt(6);
+//            gender = c.getString(7);
+            max = c.getInt(5);
 
             c.moveToNext();
         }
@@ -129,12 +130,7 @@ public class FlowActivity extends AppCompatActivity {
 //        f.close();
 //        db.close();
 
-        if (gender != null) {
-            if (gender.equals("ชาย")) {
-                max = 319.13 - (4.75 * height) + 0.035 * Math.pow(height, 2);
-            } else {
-                max = -487.12 + (7 * height) - 0.0085 * Math.pow(height, 2);
-            }
+        if (max != 0) {
             yellowvalue = (int) (max * (80.00 / 100.00));
             redvalue = (int) (max * (60.00 / 100.00));
 
@@ -169,22 +165,7 @@ public class FlowActivity extends AppCompatActivity {
 
         fabNext.setOnClickListener(v -> {
             pfvalue = bar.getProgress();
-//            DatabaseHelper dbHelper2 = new DatabaseHelper(this);
-//            SQLiteDatabase db2 = dbHelper2.getWritableDatabase();
-//
-//
-//            ContentValues values = new ContentValues();
-//            values.put(FlowColumn.FlowEntry.COLUMN_FLOW, pfvalue);
-//            values.put(FlowColumn.FlowEntry.COLUMN_MAX, peakflow);
-//            values.put(FlowColumn.FlowEntry.COLUMN_80, yellowvalue);
-//            values.put(FlowColumn.FlowEntry.COLUMN_60, redvalue);
-//            values.put(FlowColumn.FlowEntry.COLUMN_USER_ID, 1);
-//            values.put(FlowColumn.FlowEntry.COLUMN_DATE, datetext);
-//            values.put(FlowColumn.FlowEntry.COLUMN_TIME, timetext);
 
-
-//            db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
-//            db2.close();
             if (pfvalue < redvalue) {
                 finish();
                 String datetext = date.getText().toString();
@@ -206,10 +187,10 @@ public class FlowActivity extends AppCompatActivity {
 
                 startActivity(toRed);
             } else {
-                calendar.add(Calendar.DATE, 7);
-                String dateFormat = "d MMMM y";
-                SimpleDateFormat df = new SimpleDateFormat(dateFormat, new Locale("th", "TH"));
-                String add7days = df.format(calendar.getTime());
+//                calendar.add(Calendar.DATE, 7);
+//                String dateFormat = "d MMMM y";
+//                SimpleDateFormat df = new SimpleDateFormat(dateFormat, new Locale("th", "TH"));
+//                String add7days = df.format(calendar.getTime());
                 Intent toAfter = new Intent(FlowActivity.this, AfterFlow.class);
                 String datetext = date.getText().toString();
                 toAfter.putExtra("pfvalue", pfvalue);
@@ -218,7 +199,7 @@ public class FlowActivity extends AppCompatActivity {
                 toAfter.putExtra("red", redvalue);
                 toAfter.putExtra("id", 1); // patientid
                 toAfter.putExtra("date", datetext);
-                toAfter.putExtra("add7days", add7days);
+//                toAfter.putExtra("add7days", add7days);
 
                 startActivity(toAfter);
                 finish();

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,8 @@ public class EditProfile extends AppCompatActivity {
     int userid;
     //Button confirmbtn;
     Button addinhalerbtn;
+    int max;
+    boolean inhaleradded = false;
     FloatingActionButton savefab;
 
 
@@ -34,6 +37,10 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_patient_info);
         userid = 0;
         SharedPreferences getPrefs = this.getSharedPreferences("AppPreferences", MODE_PRIVATE);
+//        Bundle extras = getIntent().getExtras();
+//        if (extras != null) {
+//            inhaleradded = extras.getBoolean("added");
+//        }
         if(getPrefs !=null) {
 
             userid = getPrefs.getInt("id", 0);
@@ -53,32 +60,46 @@ public class EditProfile extends AppCompatActivity {
             startActivity(new Intent(EditProfile.this, AddInhalerListActivity.class));
         });
 
-        savefab.setOnClickListener(v -> {
-            int iage = Integer.parseInt(age.getText().toString().trim());
-            int iheight = Integer.parseInt(height.getText().toString().trim());
-            int selectedGender = genderGroup.getCheckedRadioButtonId();
-            RadioButton selectedRadio = findViewById(selectedGender);
-            String igender = selectedRadio.getText().toString();
+        if(inhaleradded = true){
+            savefab.setOnClickListener(v -> {
+                int iage = Integer.parseInt(age.getText().toString().trim());
+                int iheight = Integer.parseInt(height.getText().toString().trim());
+                int selectedGender = genderGroup.getCheckedRadioButtonId();
+                String ipatientname = patientname.getText().toString().trim();
+                RadioButton selectedRadio = findViewById(selectedGender);
+                String igender = selectedRadio.getText().toString();
 
-            DatabaseHelper dbHelper = new DatabaseHelper(this);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
+                if (igender.equals("ชาย")) {
+                    max = (int) (319.13 - (4.75 * iheight) + 0.035 * Math.pow(iheight, 2));
+                } else {
+                    max = (int) (-487.12 + (7 * iheight) - 0.0085 * Math.pow(iheight, 2));
+                }
 
-            ContentValues values = new ContentValues();
-            values.put(PatientColumn.PatientEntry.COLUMN_HN, hn.getText().toString().trim());
-            values.put(PatientColumn.PatientEntry.COLUMN_AGE, iage);
-            values.put(PatientColumn.PatientEntry.COLUMN_HEIGHT, iheight);
-            values.put(PatientColumn.PatientEntry.COLUMN_GENDER, igender);
-            values.put(PatientColumn.PatientEntry.COLUMN_WEIGHT, weight.getText().toString().trim());
-            values.put(PatientColumn.PatientEntry.COLUMN_CONGENITAL, congenital.getText().toString().trim());
-            values.put(PatientColumn.PatientEntry.COLUMN_USER, userid);
+                DatabaseHelper dbHelper = new DatabaseHelper(this);
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-            db.insert(PatientColumn.PatientEntry.TABLE_NAME, null, values);
+                ContentValues values = new ContentValues();
+                values.put(PatientColumn.PatientEntry.COLUMN_HN, hn.getText().toString().trim());
+                values.put(PatientColumn.PatientEntry.COLUMN_NAME, ipatientname);
+                values.put(PatientColumn.PatientEntry.COLUMN_AGE, iage);
+                values.put(PatientColumn.PatientEntry.COLUMN_HEIGHT, iheight);
+                values.put(PatientColumn.PatientEntry.COLUMN_GENDER, igender);
+                values.put(PatientColumn.PatientEntry.COLUMN_PEFR, max);
+                values.put(PatientColumn.PatientEntry.COLUMN_WEIGHT, weight.getText().toString().trim());
+                values.put(PatientColumn.PatientEntry.COLUMN_CONGENITAL, congenital.getText().toString().trim());
+                values.put(PatientColumn.PatientEntry.COLUMN_USER, userid);
 
-            db.close();
-            finish();
-            Intent toDashboard = new Intent(EditProfile.this, Dashboard.class);
-            startActivity(toDashboard);
-        });
+                db.insert(PatientColumn.PatientEntry.TABLE_NAME, null, values);
+
+                db.close();
+                finish();
+                Intent toDashboard = new Intent(EditProfile.this, Dashboard.class);
+                startActivity(toDashboard);
+            });
+        }else {
+            Toast.makeText(this, "กรุณาเพิ่มยาพ่นก่อนบันทึกข้อมูล", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(EditProfile.this, AddInhalerListActivity.class));
+        }
 
     }
 

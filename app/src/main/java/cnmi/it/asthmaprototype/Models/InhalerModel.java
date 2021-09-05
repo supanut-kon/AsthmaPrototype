@@ -5,16 +5,18 @@ public class InhalerModel {
     private int id;
     private int did;
     private String name;
+    private String dosage;
     private int type;
     private String times;
     private String inaday;
     private int ismorning;
     private int isevening;
     private int isactive;
-    public InhalerModel(int id, int did, String name, int type, String times, String inaday, int ismorning, int isevening, int isactive) {
+    public InhalerModel(int id, int did, String name, String dosage, int type, String times, String inaday, int ismorning, int isevening, int isactive) {
         this.id = id;
         this.did = did;
         this.name = name;
+        this.dosage = dosage;
         this.type = type;
         this.times = times;
         this.inaday = inaday;
@@ -37,6 +39,14 @@ public class InhalerModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDosage() {
+        return dosage;
+    }
+
+    public void setDosage(String dosage) {
+        this.dosage = dosage;
     }
 
     public String getTimes() {

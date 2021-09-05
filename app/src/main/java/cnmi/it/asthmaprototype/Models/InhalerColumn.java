@@ -14,6 +14,7 @@ public class InhalerColumn {
         public static final String _ID = "id";
         public static final String COLUMN_DID = "drugid";
         public static final String COLUMN_NAME = "name";
+        public static final String COLUMN_DOSAGE = "dosage";
         public static final String COLUMN_TIMES = "times";
         public static final String COLUMN_INADAY = "inaday";
         public static final String COLUMN_TYPE = "type";

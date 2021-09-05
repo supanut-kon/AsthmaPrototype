@@ -50,7 +50,6 @@ public class YellowCardAdapter extends RecyclerView.Adapter<YellowCardAdapter.Ye
         int timestoint = Integer.parseInt(times);
         holder.desc.setText(String.format("ครั้งละ %d สูด วันละ %s ครั้ง", timestoint+timestoint, inhaler.getInaday()));
 
-
     }
 
     @Override

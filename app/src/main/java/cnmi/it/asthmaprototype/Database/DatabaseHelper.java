@@ -74,7 +74,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             YellowPFColumn.YellowPFEntry.COLUMN_PATIENTID + " INTEGER,"+
             YellowPFColumn.YellowPFEntry.COLUMN_DATE + " TEXT,"+
             YellowPFColumn.YellowPFEntry.COLUMN_TIME + " TEXT,"+
-            YellowPFColumn.YellowPFEntry.COLUMN_ENDDATE + " TEXT)";
+            YellowPFColumn.YellowPFEntry.COLUMN_ENDDATE + " TEXT,"+
+            YellowPFColumn.YellowPFEntry.COLUMN_ISACTIVE + " INTEGER)";
 
 
 

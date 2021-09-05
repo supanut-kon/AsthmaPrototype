@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hanks.passcodeview.PasscodeView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import cnmi.it.asthmaprototype.Database.DatabaseAccess;
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
@@ -22,8 +23,6 @@ import cnmi.it.asthmaprototype.R;
 public class PasscodeActivity  extends AppCompatActivity {
 
     PasscodeView passcodeView;
-    SharedPreferences sharedPreferences;
-    String localPasscode;
     ArrayList<UserModel> user = new ArrayList<>();
 
     @Override
@@ -34,6 +33,7 @@ public class PasscodeActivity  extends AppCompatActivity {
         passcodeView = findViewById(R.id.passcodeView);
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
+
         user = databaseAccess.getUser();
         String passcode = user.get(0).getPasscode();
         if(passcode != null){
@@ -50,16 +50,11 @@ public class PasscodeActivity  extends AppCompatActivity {
                     @Override
                     public void onSuccess(String number) {
 
-
                         String passcode = passcodeView.getLocalPasscode();
-//                        SharedPreferences.Editor editor = sharedPreferences.edit();
-//                        editor.putString("passcode", passcode);
-//                        editor.apply();
-
                         SQLiteDatabase writedb = helper.getWritableDatabase();
                         ContentValues cv = new ContentValues();
                         cv.put(UserColumn.UserEntry.PASSCODE, passcode);
-                        writedb.update(UserColumn.UserEntry.TABLE_NAME,cv, "id = ?", new String[]{String.valueOf(1)});
+                        writedb.update(UserColumn.UserEntry.TABLE_NAME , cv, "id = 1",null);
                         startActivity(new Intent(PasscodeActivity.this, EditProfile.class));
                         finish();
                     }

@@ -11,7 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,9 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import cnmi.it.asthmaprototype.Adapters.InhalerCardAdapter;
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.InhalerColumn;
 import cnmi.it.asthmaprototype.Models.InhalerModel;
@@ -32,31 +29,36 @@ import cnmi.it.asthmaprototype.R;
 
 public class AddInhalerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    final Calendar calendar = Calendar.getInstance();
     ArrayList<InhalerModel> addedArraylist;
     Spinner inhalerSpinner, emergencySpinner, doseSpinner;
-    EditText timesEdittext, indayEdittext, emergencyEdittext;
+    EditText timesEdittext, indayEdittext, emergencyEdittext, dosequantity;
     FloatingActionButton fab, addfab;
     CheckBox morning, evening, isemergency;
-    InhalerCardAdapter card;
     ImageView img;
     int inhalertype;
     TextView timesText3, timesText4, dosehead;
     InhalerModel addedinhaler;
     int ischecked, selectposition;
-    String selecteditem;
+    String selecteditem, selecteddose;
     RadioGroup inhalergroup;
-    RadioButton normal, abnormal, emergency;
     int[] resources = {R.drawable.flixotide_evohaler,
-            R.drawable._0_aeronide,
             R.drawable.easyhaler_budesoniude,
             R.drawable.easyhaler_salbutamolsq,
             R.drawable.seretideevo,
             R.drawable.seretideaccuhaler,
             R.drawable.ventolin_inhaler};
 
-    String[] resourcesname = {"Flixotide Evohaler", "Aeronide", "Easyhaler Budesonide", "Easyhaler Salbutamol", "Seretide Evohaler", "Seretide Accuhaler", "Ventolin"};
+    String[] resourcesname = {"Flixotide Evohaler", "Easyhaler Budesonide", "Easyhaler Salbutamol", "Seretide Evohaler", "Seretide Accuhaler", "Ventolin"};
 
+    String[] symbicortdose = {"80/4.5 mcg", "160/4.5 mcg", "320/4.5 mcg"};
+    String[] seretideevodose = {"25/50 mcg", "25/150 mcg", "25/150 mcg"};
+    String[] seretideaccdose = {"50/100 mcg", "50/500 mcg", "50/500 mcg"};
+    String[] nebulizationflix = {"0.5 mg/2 mL", "2 mg/ 2 mL"};
+    String[] nebulizationpul = {"0.5 mg/2 mL", "2 mg/ 2 mL"};
+    String[] ventolin = {"2.5 mg/2.5 mL", "5 mg/1 mL"};
+
+
+    //TODO update inhalers and dosage
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,10 +74,11 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
         inhalergroup = findViewById(R.id.inhalergroup);
         dosehead = findViewById(R.id.dosehead);
         doseSpinner = findViewById(R.id.dosespinner);
+        dosequantity = findViewById(R.id.dosequantityEdittext);
+        dosequantity.setVisibility(View.GONE);
 
 //        isemergency = findViewById(R.id.isEmergencyCB);
         img = findViewById(R.id.inhalerpreview);
-
 
 
 //        if(isemergency.isChecked()){
@@ -111,7 +114,7 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
                 inhalertype = 2;
                 Log.d("inhalertype", "22");
 
-            } else if (checkedId == R.id.normalinhaler){
+            } else if (checkedId == R.id.normalinhaler) {
                 inhalertype = 1;
                 Log.d("inhalertype", "11");
                 if (timesText3.getVisibility() == View.GONE) {
@@ -130,7 +133,7 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
                     evening.setVisibility(View.VISIBLE);
                 }
 
-            }else {
+            } else {
                 inhalertype = 4;
                 Log.d("inhalertype", "44");
                 if (timesText3.getVisibility() == View.GONE) {
@@ -160,28 +163,31 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
         inhalerSpinner.setAdapter(arrayAdapter);
 
 
-        fab.setOnClickListener(v->{
+        fab.setOnClickListener(v -> {
             int ismorning;
             int isevening;
             String times = timesEdittext.getText().toString();
             String inaday = indayEdittext.getText().toString();
-            if(morning.isChecked()){
+            if (morning.isChecked()) {
                 ismorning = 1;
-            }else ismorning = 0;
-            if(evening.isChecked()){
+            } else ismorning = 0;
+            if (evening.isChecked()) {
                 isevening = 1;
-            }else isevening = 0;
+            } else isevening = 0;
 
             DatabaseHelper helper = new DatabaseHelper(this);
             SQLiteDatabase writedb = helper.getWritableDatabase();
             ContentValues cv = new ContentValues();
             cv.put(InhalerColumn.InhalerEntry.COLUMN_DID, selectposition);
             cv.put(InhalerColumn.InhalerEntry.COLUMN_NAME, selecteditem);
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_DOSAGE, selecteddose);
             cv.put(InhalerColumn.InhalerEntry.COLUMN_TYPE, inhalertype);
             cv.put(InhalerColumn.InhalerEntry.COLUMN_TIMES, times);
             cv.put(InhalerColumn.InhalerEntry.COLUMN_INADAY, inaday);
             cv.put(InhalerColumn.InhalerEntry.COLUMN_ISACTIVE, 1);
 //            ismorning, isevening
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_MORNING, ismorning);
+            cv.put(InhalerColumn.InhalerEntry.COLUMN_EVENING, isevening);
             writedb.insert(InhalerColumn.InhalerEntry.TABLE_NAME, null, cv);
             writedb.close();
             Intent addinhaler = new Intent(AddInhalerActivity.this, AddInhalerListActivity.class);
@@ -190,7 +196,18 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
             startActivityIfNeeded(addinhaler, 0);
         });
 
+        doseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selecteddose = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(), selecteddose, Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override
@@ -202,9 +219,43 @@ public class AddInhalerActivity extends AppCompatActivity implements AdapterView
         selecteditem = resourcesname[position];
         img.setImageResource(resources[position]);
 
-//        if(selecteditem == "Seretide Evohaler"){
-//
-//        }
+        if (selecteditem.equals(resourcesname[0])) {
+            ArrayAdapter ar = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, symbicortdose);
+            ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            doseSpinner.setAdapter(ar);
+            if(dosequantity.getVisibility() == View.VISIBLE){
+                dosequantity.setVisibility(View.GONE);
+            }
+        } else if (selecteditem.equals(resourcesname[1])) {
+            ArrayAdapter ar = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, seretideevodose);
+            ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            doseSpinner.setAdapter(ar);
+            if(dosequantity.getVisibility() == View.VISIBLE){
+                dosequantity.setVisibility(View.GONE);
+            }
+        } else if (selecteditem.equals(resourcesname[2])) {
+            ArrayAdapter ar = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, seretideaccdose);
+            ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            doseSpinner.setAdapter(ar);
+            if(dosequantity.getVisibility() == View.VISIBLE){
+                dosequantity.setVisibility(View.GONE);
+            }
+        } else if (selecteditem.equals(resourcesname[3])) {
+            ArrayAdapter ar = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, nebulizationflix);
+            ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            doseSpinner.setAdapter(ar);
+            dosequantity.setVisibility(View.VISIBLE);
+        } else if (selecteditem.equals(resourcesname[4])) {
+            ArrayAdapter ar = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, nebulizationpul);
+            ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            doseSpinner.setAdapter(ar);
+            dosequantity.setVisibility(View.VISIBLE);
+        } else if (selecteditem.equals(resourcesname[5])) {
+            ArrayAdapter ar = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, ventolin);
+            ar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            doseSpinner.setAdapter(ar);
+            dosequantity.setVisibility(View.VISIBLE);
+        }
 
     }
 

@@ -49,51 +49,63 @@
         android:id="@+id/eveningCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="152dp"
         android:text="เย็น"
         app:layout_constraintStart_toEndOf="@+id/morningCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
+
+    <TextView
+        android:id="@+id/timesText4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="160dp"
+        android:text="ครั้ง"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/indayEdittext"
         app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
     <TextView
         android:id="@+id/timesText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="160dp"
         android:text="สูด"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/timesEdittext"
         app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
+    <EditText
+        android:id="@+id/timesEdittext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="152dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/timesText"
+        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
+
     <CheckBox
         android:id="@+id/morningCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="152dp"
         android:text="เช้า"
         app:layout_constraintStart_toEndOf="@+id/timesText4"
-        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
-
-    <TextView
-        android:id="@+id/timesText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="108dp"
-        android:text="วันละ"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/timesText2"
         app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
     <TextView
         android:id="@+id/timesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="160dp"
         android:text="ครั้งละ"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -101,34 +113,26 @@
         app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
     <TextView
-        android:id="@+id/timesText4"
+        android:id="@+id/timesText3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:text="ครั้ง"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="160dp"
+        android:text="วันละ"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/indayEdittext"
+        app:layout_constraintStart_toEndOf="@+id/timesText2"
         app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
     <EditText
         android:id="@+id/indayEdittext"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="152dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/timesText3"
-        app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
-
-    <EditText
-        android:id="@+id/timesEdittext"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/timesText"
         app:layout_constraintTop_toBottomOf="@+id/inhalerSpinner" />
 
     <ImageView
@@ -207,6 +211,21 @@
         app:layout_constraintHorizontal_bias="0.35"
         app:layout_constraintStart_toEndOf="@+id/inhalerpreview"
         app:layout_constraintTop_toBottomOf="@+id/dosehead"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/dosequantityEdittext"
+        android:layout_width="213dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="เติม mL เพิ่ม"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dosespinner"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

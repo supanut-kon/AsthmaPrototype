@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Locale;
 
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.FlowColumn;
@@ -142,6 +143,9 @@ public class AfterFlow extends AppCompatActivity {
                 db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
 
 
+                calendar.add(Calendar.DATE, 7);
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String add7days = df.format(calendar.getTime());
                 ContentValues cv2 = new ContentValues();
                 cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_PEF, pfvalue);
                 cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_ZONE, "yellow");
@@ -152,6 +156,8 @@ public class AfterFlow extends AppCompatActivity {
                 cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_TIME, timetext);
                 cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_ENDDATE, add7days);
                 cv2.put(YellowPFColumn.YellowPFEntry.COLUMN_ISACTIVE, 1);
+
+                db2.insert(YellowPFColumn.YellowPFEntry.TABLE_NAME, null, cv2);
 
                 db2.close();
                 finish();

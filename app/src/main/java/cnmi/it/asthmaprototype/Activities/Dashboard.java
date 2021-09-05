@@ -1,5 +1,6 @@
 package cnmi.it.asthmaprototype.Activities;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,15 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.material.bottomappbar.BottomAppBar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -36,8 +35,7 @@ import cnmi.it.asthmaprototype.Database.DatabaseAccess;
 import cnmi.it.asthmaprototype.Database.DatabaseHelper;
 import cnmi.it.asthmaprototype.Models.FlowModel;
 import cnmi.it.asthmaprototype.Models.InhalerModel;
-import cnmi.it.asthmaprototype.Models.PatientModel;
-import cnmi.it.asthmaprototype.Models.UserModel;
+import cnmi.it.asthmaprototype.Models.YellowPFColumn;
 import cnmi.it.asthmaprototype.Models.YellowPFModel;
 import cnmi.it.asthmaprototype.R;
 
@@ -58,7 +56,8 @@ public class Dashboard extends AppCompatActivity {
     ArrayList<YellowPFModel> yellows;
     ArrayList<InhalerModel> yellowinhaler = new ArrayList<>();
     SharedPreferences sharedPreferences;
-//    private FusedLocationProviderClient fusedLocationProviderClient;
+
+    //    private FusedLocationProviderClient fusedLocationProviderClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,14 +71,15 @@ public class Dashboard extends AppCompatActivity {
 //        getUserId();
         //ArrayList<PatientModel> patients = db.getPatient(userid);
 //        if(patients == null){
-            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PasscodeActivity.class)));
+        profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, PasscodeActivity.class)));
 //        }else {
 //            profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, AddProfile.class)));
 //        }
 //        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if(acct != null){
+        if (acct != null) {
             gName = acct.getDisplayName();
             gPhoto = acct.getPhotoUrl();
         }
@@ -120,9 +120,9 @@ public class Dashboard extends AppCompatActivity {
         fab.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, FlowActivity.class)));
 
         //profilecard.setOnClickListener(v -> startActivity(new Intent(Dashboard.this, Profile.class)));
-
     }
-    public void getFlows(){
+
+    public void getFlows() {
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         ArrayList<FlowModel> queryFlows = databaseAccess.getFlow();
@@ -148,45 +148,51 @@ public class Dashboard extends AppCompatActivity {
 //    }
 
     public void getYellowandDisplay(){
-        int yid = 0, did;
-        String enddate = null, datel;
-        Date date = null;
+        int yid = 0;
+        String enddate = null;
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM yellow_log WHERE is_active = " + 1 + " ", null);
+        Cursor c = db.rawQuery("SELECT * FROM yellow_log WHERE is_active = " + 1, null);
         c.moveToFirst();
-        while(c.isAfterLast()) {
-            yid = c.getInt(0);
-            enddate = c.getString(9);
-
-
+        while (c.isAfterLast()) {
+            if (c.getCount() > 0) {
+                yid = c.getInt(0);
+                enddate = c.getString(9);
+            } else return;
         }
         c.close();
         db.close();
-        String dateFormat = "d MMMM y";
-        SimpleDateFormat df = new SimpleDateFormat(dateFormat, new Locale("th" , "TH"));
-        try{
-            date = df.parse(enddate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        if(new Date().after(date)){
-            
-        }
-
-
         if(yid != 0){
-            DatabaseAccess dbAccess = DatabaseAccess.getInstance(this);
-            yellowinhaler = dbAccess.getInhaler(4);
-            LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-            yellowCard.setLayoutManager(layout);
-            ycard = new YellowCardAdapter(this, yellowinhaler);
-            recyclerView.setAdapter(ycard);
-            ycard.notifyDataSetChanged();
+            Date cd = Calendar.getInstance().getTime();
+            SimpleDateFormat df = new SimpleDateFormat("d MMMM y");
+            String currentDate  = df.format(cd);
+            Date convertedDate1 = new Date();
+            Date convertedDate2 = new Date();
+            try{
+                convertedDate1 = df.parse(enddate);
+                convertedDate2 = df.parse(currentDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if (convertedDate1.after(convertedDate2)) {
+                DatabaseHelper helper = new DatabaseHelper(this);
+                SQLiteDatabase writedb = helper.getReadableDatabase();
+                ContentValues cv = new ContentValues();
+                cv.put(YellowPFColumn.YellowPFEntry.COLUMN_ISACTIVE, 0);
+                writedb.update("yellow_log", cv, "id = " + yid, null);
+                writedb.close();
+            } else {
+                DatabaseAccess dbAccess = DatabaseAccess.getInstance(this);
+                yellowinhaler = dbAccess.getInhaler(4);
+                LinearLayoutManager layout = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                yellowCard.setLayoutManager(layout);
+                ycard = new YellowCardAdapter(this, yellowinhaler);
+                yellowCard.setAdapter(ycard);
+                ycard.notifyDataSetChanged();
+            }
         }
-
     }
-
 
     @Override
     protected void onResume() {

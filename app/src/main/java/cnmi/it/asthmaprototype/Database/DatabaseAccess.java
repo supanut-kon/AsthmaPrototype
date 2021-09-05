@@ -114,7 +114,7 @@ public class DatabaseAccess {
         Cursor c = database.rawQuery("SELECT * FROM asthma_inhaler",null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            inhalers = new InhalerModel(c.getInt(0), c.getInt(1), c.getString(2), c.getInt(3), c.getString(4), c.getString(5), c.getInt(6), c.getInt(7), c.getInt(8));
+            inhalers = new InhalerModel(c.getInt(0), c.getInt(1), c.getString(2),c.getString(3), c.getInt(4), c.getString(5), c.getString(6), c.getInt(7), c.getInt(8), c.getInt(9));
             addInhaler.add(inhalers);
             c.moveToNext();
         }
@@ -127,7 +127,7 @@ public class DatabaseAccess {
         Cursor c = database.rawQuery("SELECT * FROM asthma_inhaler WHERE type = " + type, null);
         c.moveToFirst();
         while (!c.isAfterLast()){
-            inhalers = new InhalerModel(c.getInt(0), c.getInt(1), c.getString(2), c.getInt(3), c.getString(4), c.getString(5), c.getInt(6), c.getInt(7), c.getInt(8));
+            inhalers = new InhalerModel(c.getInt(0), c.getInt(1), c.getString(2),c.getString(3), c.getInt(4), c.getString(5), c.getString(6), c.getInt(7), c.getInt(8), c.getInt(9));
             getInhalers.add(inhalers);
             c.moveToNext();
         }
@@ -145,20 +145,5 @@ public class DatabaseAccess {
         }
         return yellows;
     }
-
-
-//    public  ArrayList<InhalerModel> getAdd(){
-//        addInhaler = new ArrayList<>();
-//        Cursor cursor = database.rawQuery("SELECT * FROM asthma_inhaler", null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()){
-//            inhalers = new InhalerModel(cursor.getInt(0), c)
-//        }
-//        return
-//    }
-
-
-
-
 
 }
