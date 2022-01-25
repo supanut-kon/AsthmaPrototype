@@ -16,7 +16,6 @@
         android:theme="@style/Theme.AsthmaPrototype">
         <activity android:name=".Activities.AddInhalerListActivity"></activity>
         <activity android:name=".Activities.GreenFinalActivity" />
-        <activity android:name=".Activities.FinalWarningActivity" />
         <activity android:name=".Activities.StatsActivity" />
         <activity android:name=".Activities.GuideActivity" />
         <activity android:name=".HospitalSelectActivity" />
@@ -39,7 +38,8 @@
             android:name=".Activities.RegisterActivity"
             android:parentActivityName=".Activities.LoginActivity" />
         <activity android:name=".Activities.FlowActivity" />
-        <activity android:name=".Activities.splashScreen">
+        <activity android:name=".Activities.splashScreen"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -55,7 +55,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.SumHolder> {
         void setDetails(FlowModel flows, int pos){
 
 
-            int flowsstring = flows.getPef();
+            int flowsstring = flows.getPefr();
             String dateString = flows.getDate();
             String timeString = flows.getTime();
 

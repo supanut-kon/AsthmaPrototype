@@ -13,7 +13,6 @@ import cnmi.it.asthmaprototype.Models.InhalerModel;
 import cnmi.it.asthmaprototype.Models.PatientModel;
 import cnmi.it.asthmaprototype.Models.UserModel;
 import cnmi.it.asthmaprototype.Models.YellowPFModel;
-import cnmi.it.asthmaprototype.Models.tmp_inhalerModel;
 
 public class DatabaseAccess {
     private static DatabaseAccess instance;
@@ -66,19 +65,6 @@ public class DatabaseAccess {
         return flowsArraylist;
     }
 
-    public ArrayList<UserModel> getUserInfoAfterLogin(String userEmail){
-        userArraylist = new ArrayList<>();
-
-        Cursor c = database.rawQuery("SELECT * FROM asthma_user WHERE email = " + userEmail, null);
-        c.moveToFirst();
-        while (!c.isAfterLast()){
-            theuser = new UserModel(c.getInt(0),c.getString(1), c.getString(2), c.getString(3), c.getString(4));
-            userArraylist.add(theuser);
-            c.moveToNext();
-        }
-        c.close();
-        return userArraylist;
-    }
     
     public ArrayList<UserModel> getUser(){
         userArraylist = new ArrayList<>();

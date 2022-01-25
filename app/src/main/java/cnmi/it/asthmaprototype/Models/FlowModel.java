@@ -2,7 +2,7 @@ package cnmi.it.asthmaprototype.Models;
 
 public class FlowModel {
     private int id;
-    private int pef;
+    private int pefr;
     private String zone;
     private int pefr_max;
     private int percent80;
@@ -10,13 +10,13 @@ public class FlowModel {
     private int patientid;
     private String date;
     private String time;
-    private String haveSymptom;
+    private String haveSymptoms;
     private String[] symptoms;
     private String caremethod;
 
-    public FlowModel(int id, int pef, String zone, int pefr_max, int percent80, int percent60, int patientid, String date, String time, String haveSymptom, String[] symptoms, String caremethod) {
+    public FlowModel(int id, int pefr, String zone, int pefr_max, int percent80, int percent60, int patientid, String date, String time, String haveSymptoms, String[] symptoms, String caremethod) {
         this.id = id;
-        this.pef = pef;
+        this.pefr = pefr;
         this.zone = zone;
         this.pefr_max = pefr_max;
         this.percent80 = percent80;
@@ -24,7 +24,7 @@ public class FlowModel {
         this.patientid = patientid;
         this.date = date;
         this.time = time;
-        this.haveSymptom = haveSymptom;
+        this.haveSymptoms = haveSymptoms;
         this.symptoms = symptoms;
         this.caremethod = caremethod;
     }
@@ -37,12 +37,12 @@ public class FlowModel {
         this.zone = zone;
     }
 
-    public String getHaveSymptom() {
-        return haveSymptom;
+    public String getHaveSymptoms() {
+        return haveSymptoms;
     }
 
-    public void setHaveSymptom(String haveSymptom) {
-        this.haveSymptom = haveSymptom;
+    public void setHaveSymptoms(String haveSymptoms) {
+        this.haveSymptoms = haveSymptoms;
     }
 
     public String[] getSymptoms() {
@@ -109,12 +109,12 @@ public class FlowModel {
         this.id = id;
     }
 
-    public int getPef() {
-        return pef;
+    public int getPefr() {
+        return pefr;
     }
 
-    public void setPef(int pef) {
-        this.pef = pef;
+    public void setPefr(int pefr) {
+        this.pefr = pefr;
     }
 
     public int getPatientid() {
