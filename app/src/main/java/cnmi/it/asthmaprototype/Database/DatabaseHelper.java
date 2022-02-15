@@ -51,6 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             InhalerColumn.InhalerEntry.COLUMN_DID + " INTEGER,"+
             InhalerColumn.InhalerEntry.COLUMN_NAME +" TEXT,"+
             InhalerColumn.InhalerEntry.COLUMN_TYPE+ " INTEGER,"+
+            InhalerColumn.InhalerEntry.COLUMN_DOSAGE+" TEXT,"+
             InhalerColumn.InhalerEntry.COLUMN_TIMES + " TEXT,"+
             InhalerColumn.InhalerEntry.COLUMN_INADAY + " TEXT,"+
             InhalerColumn.InhalerEntry.COLUMN_MORNING + " INTEGER,"+

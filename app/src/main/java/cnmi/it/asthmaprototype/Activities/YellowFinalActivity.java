@@ -18,7 +18,7 @@ import java.util.TimeZone;
 
 import cnmi.it.asthmaprototype.R;
 
-public class YellowFinalWarningActivity extends AppCompatActivity {
+public class YellowFinalActivity extends AppCompatActivity {
 
     FloatingActionButton fab, yellowTimer;
     TextView yellowtext, yellowinhaler, timer, againText, timerText, yellowHeader, yellowDesc, inhalertext, inhalerlabel;
@@ -49,7 +49,7 @@ public class YellowFinalWarningActivity extends AppCompatActivity {
 
         yellowinhaler.setVisibility(View.INVISIBLE);
         image.setVisibility(View.INVISIBLE);
-        inhalerlabel.setVisibility(View.INVISIBLE);
+//        inhalerlabel.setVisibility(View.INVISIBLE);
         yellowDesc.setVisibility(View.INVISIBLE);
         hiddenBtn.setVisibility(View.INVISIBLE);
         againText.setVisibility(View.INVISIBLE);
@@ -82,7 +82,7 @@ public class YellowFinalWarningActivity extends AppCompatActivity {
 
             }
         }.start());
-        hiddenBtn.setOnClickListener(v -> startActivity(new Intent(YellowFinalWarningActivity.this, FlowActivityAfterYellow.class)));
+        hiddenBtn.setOnClickListener(v -> startActivity(new Intent(YellowFinalActivity.this, FlowActivityAfterYellow.class)));
 
         fab.setOnClickListener(v -> finish());
     }

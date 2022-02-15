@@ -89,7 +89,10 @@ public class YellowWarning extends AppCompatActivity {
         }.start());
         Intent toFlow = new Intent(YellowWarning.this, FlowActivityAfterYellow.class);
         toFlow.putExtra("count", count+1);
-        hiddenBtn.setOnClickListener(v -> startActivity(toFlow));
+        hiddenBtn.setOnClickListener(v -> {
+            finish();
+            startActivity(toFlow);
+        });
 
         fab.setOnClickListener(v -> finish());
 

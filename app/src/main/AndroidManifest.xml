@@ -49,7 +49,7 @@
         <activity android:name=".Activities.EditProfile" />
         <activity android:name=".Activities.FlowActivityAfterYellow" />
         <activity
-            android:name=".Activities.YellowFinalWarningActivity"
+            android:name=".Activities.YellowFinalActivity"
             android:exported="true" />
         <activity android:name=".Activities.PasscodeActivity" />
         <activity

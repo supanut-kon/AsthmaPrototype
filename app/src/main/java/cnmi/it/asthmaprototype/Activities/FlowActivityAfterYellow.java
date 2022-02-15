@@ -225,7 +225,7 @@ public class FlowActivityAfterYellow extends AppCompatActivity {
                 db2.insert(FlowColumn.FlowEntry.TABLE_NAME, null, values);
                 db2.close();
 
-                Intent toYellow = new Intent(FlowActivityAfterYellow.this, YellowFinalWarningActivity.class);
+                Intent toYellow = new Intent(FlowActivityAfterYellow.this, YellowFinalActivity.class);
                 toYellow.putExtra("count", count+1);
                 finish();
                 startActivity(toYellow);
